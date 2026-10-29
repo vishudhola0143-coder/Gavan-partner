@@ -1,0 +1,3604 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GAVAN - The Key of Luxury | Partner Workspace</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .font-brand {
+      font-family: 'Cinzel', serif;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(200, 157, 92, 0.4);
+      border-radius: 9999px;
+    }
+    .bubble-tail-me::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: -6px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-left: 10px solid #2d1815;
+    }
+    .bubble-tail-partner::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: -6px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-right: 10px solid #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-[#150c0a] flex justify-center items-center min-h-screen text-slate-800 antialiased p-0 md:p-4">
+
+  <!-- ================= AUTHENTICATION & LOGIN GATEWAY OVERLAY ================= -->
+  <div id="authOverlay" class="fixed inset-0 z-50 bg-[#140b09] flex flex-col justify-center items-center p-4">
+    <div class="w-full max-w-sm bg-gradient-to-b from-[#241310] to-[#1a0d0b] rounded-3xl p-6 border border-[#c89d5c]/40 shadow-2xl relative overflow-hidden">
+      <!-- Background Luxury Glow -->
+      <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#c89d5c]/15 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Brand Logo & Header -->
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 rounded-2xl bg-[#130907] border border-[#c89d5c]/60 p-2.5 mx-auto mb-3 flex items-center justify-center shadow-inner">
+          <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+            <path d="M50 8 L18 42 L28 42 L50 20 L72 42 L82 42 Z" fill="#c89d5c" />
+            <path d="M30 48 L30 88 L40 88 L40 58 L50 48 L40 38 Z" fill="#c89d5c" />
+            <path d="M46 56 L46 88 L80 88 L80 50 L70 50 L70 78 L56 78 L56 66 L68 66 L68 56 Z" fill="#c89d5c" />
+          </svg>
+        </div>
+        <h2 class="font-brand text-lg font-bold tracking-widest text-[#c89d5c]">GAVAN</h2>
+        <p class="text-[10px] text-amber-200/70 uppercase tracking-widest font-medium">The Key of Luxury • Access Portal</p>
+      </div>
+
+      <!-- Mode Selector Tabs: Partner Login vs Master Admin -->
+      <div class="flex bg-black/40 p-1 rounded-xl mb-4 border border-white/5 text-xs">
+        <button onclick="setAuthMode('partner')" id="authTabPartner" class="flex-1 py-2 rounded-lg font-bold text-center transition bg-[#c89d5c] text-[#2d1815] shadow">
+          Partner Login
+        </button>
+        <button onclick="setAuthMode('admin')" id="authTabAdmin" class="flex-1 py-2 rounded-lg font-semibold text-center text-stone-300 hover:text-white transition">
+          Master Admin
+        </button>
+      </div>
+
+      <!-- Partner Login Form -->
+      <div id="partnerLoginForm" class="space-y-3.5 text-xs">
+        <div>
+          <label class="text-stone-300 font-semibold block mb-1">Mobile Number (મોબાઇલ નંબર)</label>
+          <div class="relative">
+            <span class="absolute left-3 top-2.5 text-stone-400 font-bold text-xs">+91</span>
+            <input type="tel" id="partnerLoginPhone" placeholder="Enter 10-digit number" class="w-full bg-[#150a08] border border-stone-700 focus:border-[#c89d5c] rounded-xl pl-12 pr-3 py-2.5 text-white outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-stone-300 font-semibold block mb-1">Unique Security PIN (તમને મળેલો ગુપ્ત પિન)</label>
+          <div class="relative">
+            <input type="password" id="partnerLoginPin" maxlength="6" placeholder="e.g. 5421" class="w-full bg-[#150a08] border border-stone-700 focus:border-[#c89d5c] rounded-xl px-3 py-2.5 text-white tracking-widest font-mono text-center text-base outline-none">
+          </div>
+          <p class="text-[10px] text-amber-200/50 mt-1">Admin તરફથી વોટ્સએપ પર મળેલો યુનિક સિક્યુરિટી પિન દાખલ કરો.</p>
+        </div>
+
+        <button onclick="loginAsPartner()" class="w-full py-3 bg-gradient-to-r from-[#c89d5c] to-[#b38848] text-[#2d1815] font-bold rounded-xl shadow-lg active:scale-95 transition text-xs mt-2">
+          Verify & Enter Workspace
+        </button>
+      </div>
+
+      <!-- Master Admin Login Form -->
+      <div id="adminLoginForm" class="hidden space-y-3.5 text-xs">
+        <div class="bg-amber-950/40 p-2.5 rounded-xl border border-amber-500/30 text-amber-200/80 text-[11px] leading-tight">
+          <i class="fa-solid fa-shield-halved text-[#c89d5c] mr-1"></i>
+          Master Control: ફક્ત મુખ્ય એડમિન માટે. અહીંથી તમે નવા પાર્ટનર ઉમેરી શકશો અને યુનિક કોડ જનરેટ કરી શકશો.
+        </div>
+
+        <div>
+          <label class="text-stone-300 font-semibold block mb-1">Master Admin Passcode (મુખ્ય પિન)</label>
+          <input type="password" id="adminPasscode" maxlength="8" placeholder="Default PIN: 7777" class="w-full bg-[#150a08] border border-stone-700 focus:border-[#c89d5c] rounded-xl px-3 py-2.5 text-white tracking-widest font-mono text-center text-base outline-none">
+        </div>
+
+        <button onclick="loginAsAdmin()" class="w-full py-3 bg-[#c89d5c] text-[#2d1815] font-bold rounded-xl shadow-lg active:scale-95 transition text-xs mt-2">
+          Unlock Master Workspace
+        </button>
+      </div>
+
+      <div class="mt-5 text-center text-[10px] text-stone-500">
+        Secured by GAVAN Encrypted Protocol
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Device Shell Frame -->
+  <div class="w-full max-w-md h-[100dvh] md:h-[844px] md:max-h-[92vh] bg-stone-100 md:rounded-[40px] shadow-2xl flex flex-col overflow-hidden relative border-0 md:border-[8px] md:border-[#2d1815]">
+    
+    <!-- Dynamic Top Header Bar (GAVAN Luxury Theme) -->
+    <header class="bg-gradient-to-r from-[#1c0f0d] via-[#2d1815] to-[#3f221c] text-white px-4 pt-3.5 pb-3 flex items-center justify-between shadow-lg z-30 border-b border-[#c89d5c]/30">
+      <div class="flex items-center space-x-3">
+        <button onclick="toggleGroupSidebar()" class="relative p-0.5 text-slate-300 hover:text-white" title="Switch Group or Partner">
+          <!-- GAVAN Architectural Gold Logo SVG -->
+          <div class="w-10 h-10 rounded-xl bg-[#1a0d0b] border border-[#c89d5c]/50 p-1.5 flex items-center justify-center shadow-inner">
+            <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+              <path d="M50 8 L18 42 L28 42 L50 20 L72 42 L82 42 Z" fill="#c89d5c" />
+              <path d="M30 48 L30 88 L40 88 L40 58 L50 48 L40 38 Z" fill="#c89d5c" />
+              <path d="M46 56 L46 88 L80 88 L80 50 L70 50 L70 78 L56 78 L56 66 L68 66 L68 56 Z" fill="#c89d5c" />
+            </svg>
+          </div>
+          <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#c89d5c] text-[#2d1815] rounded-full flex items-center justify-center text-[9px] font-bold border border-[#1a0d0b]">
+            <i class="fa-solid fa-repeat text-[7px]"></i>
+          </span>
+        </button>
+        <div onclick="toggleGroupSidebar()" class="cursor-pointer">
+          <div class="flex items-center gap-1.5">
+            <span class="font-brand text-xs font-bold tracking-widest text-[#c89d5c]">GAVAN</span>
+            <span class="text-[10px] text-amber-200/50">•</span>
+            <h1 class="text-xs font-bold tracking-tight text-white flex items-center gap-1 truncate max-w-[150px]" id="partnerHeaderTitle">
+              Shivay Mamakwada
+            </h1>
+            <i class="fa-solid fa-chevron-down text-[9px] text-[#c89d5c]"></i>
+          </div>
+          <p class="text-[10px] text-[#e0cfb4] font-medium" id="headerSubtitle">The Key of Luxury • Workspace</p>
+        </div>
+      </div>
+
+      <!-- Action Call & Video Buttons -->
+      <div class="flex items-center space-x-1.5">
+        <button onclick="openAdminSecurityModal()" id="headerAdminKeyBtn" title="Partner Security Access & PIN Manager" class="w-8 h-8 rounded-lg bg-amber-500/20 border border-[#c89d5c]/50 text-[#c89d5c] hover:bg-amber-500/30 transition flex items-center justify-center">
+          <i class="fa-solid fa-key text-xs"></i>
+        </button>
+        <button onclick="startCall('voice')" title="Quick Call" class="w-8 h-8 rounded-lg bg-white/10 active:bg-white/20 hover:border hover:border-[#c89d5c]/40 transition flex items-center justify-center text-amber-100">
+          <i class="fa-solid fa-phone text-xs"></i>
+        </button>
+        <button onclick="logoutCurrentUser()" title="Logout" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-rose-900/50 text-stone-300 hover:text-white transition flex items-center justify-center">
+          <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Project & Partner Switcher Bar -->
+    <div id="groupSelectorBar" class="bg-[#1e110f] text-xs px-3 py-2 flex items-center gap-2 overflow-x-auto custom-scroll border-b border-[#3d241f] z-20">
+      <!-- Populated via JS: Badges for Sites and 1-on-1 Partners -->
+    </div>
+
+    <!-- App Main Screen Pages -->
+    <main class="flex-1 relative overflow-hidden bg-stone-100 flex flex-col">
+      
+      <!-- ================= 0. EXECUTIVE DASHBOARD TAB (1ST TAB) ================= -->
+      <section id="tab-dashboard" class="tab-page flex-1 flex flex-col h-full bg-[#f8f6f2] overflow-y-auto custom-scroll p-4 space-y-4">
+        
+        <!-- Welcome Executive Greeting & Live Portfolio Banner -->
+        <div class="bg-gradient-to-br from-[#1c0f0d] via-[#2d1815] to-[#42221b] rounded-2xl p-4 text-white shadow-xl border border-[#c89d5c]/40 relative overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-[#c89d5c]/10 rounded-full blur-xl pointer-events-none"></div>
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-[#c89d5c] tracking-widest uppercase font-brand flex items-center gap-1.5">
+              <i class="fa-solid fa-crown text-[9px]"></i> GAVAN EXECUTIVE PORTFOLIO
+            </span>
+            <span class="text-[9px] bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Sync
+            </span>
+          </div>
+          <h2 class="text-base font-bold text-white mt-1.5 font-brand">Good Day, Partner</h2>
+          <p class="text-xs text-[#e0cfb4]/80">Manage luxury sites, investor leads, land requirements & visits.</p>
+
+          <!-- Metrics Row -->
+          <div class="grid grid-cols-4 gap-2 mt-3.5 pt-3 border-t border-white/10 text-center">
+            <div onclick="switchTab('sites'); switchSitesSubTab('sites');" class="cursor-pointer bg-black/25 rounded-xl p-2 border border-white/5 active:scale-95 transition">
+              <span class="text-base font-extrabold text-[#c89d5c]" id="dashCountSites">7</span>
+              <p class="text-[9px] text-stone-300 uppercase tracking-wider font-semibold">Sites</p>
+            </div>
+            <div onclick="switchTab('leads')" class="cursor-pointer bg-black/25 rounded-xl p-2 border border-white/5 active:scale-95 transition">
+              <span class="text-base font-extrabold text-amber-300" id="dashCountLeads">5</span>
+              <p class="text-[9px] text-stone-300 uppercase tracking-wider font-semibold">Leads/Visits</p>
+            </div>
+            <div onclick="switchTab('landreq')" class="cursor-pointer bg-black/25 rounded-xl p-2 border border-white/5 active:scale-95 transition">
+              <span class="text-base font-extrabold text-rose-400" id="dashCountLandReq">2</span>
+              <p class="text-[9px] text-stone-300 uppercase tracking-wider font-semibold">Land Req</p>
+            </div>
+            <div onclick="switchTab('tasks'); filterTasks('pending');" class="cursor-pointer bg-black/25 rounded-xl p-2 border border-white/5 active:scale-95 transition">
+              <span class="text-base font-extrabold text-emerald-300" id="dashCountTasks">4</span>
+              <p class="text-[9px] text-stone-300 uppercase tracking-wider font-semibold">Tasks</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive Report Timeframe Selector (Weekly / Monthly / Yearly) -->
+        <div class="bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-chart-line text-[#c89d5c]"></i> Performance Report
+            </h3>
+            <div class="flex items-center bg-stone-100 rounded-lg p-0.5 border border-stone-200 text-[10px]">
+              <button onclick="setReportPeriod('weekly')" id="rptBtn-weekly" class="px-2 py-0.5 rounded-md font-bold transition bg-[#2d1815] text-[#c89d5c] shadow-xs">Weekly</button>
+              <button onclick="setReportPeriod('monthly')" id="rptBtn-monthly" class="px-2 py-0.5 rounded-md text-stone-600 font-medium hover:text-[#2d1815] transition">Monthly</button>
+              <button onclick="setReportPeriod('yearly')" id="rptBtn-yearly" class="px-2 py-0.5 rounded-md text-stone-600 font-medium hover:text-[#2d1815] transition">Yearly</button>
+            </div>
+          </div>
+
+          <!-- Dynamic Period Stats Widget -->
+          <div id="dashboardReportStats" class="grid grid-cols-3 gap-2 text-center pt-1">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+        <!-- Quick One-Touch Action Hub -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-bolt text-[#c89d5c]"></i> Quick Actions
+            </h3>
+            <span class="text-[10px] text-stone-400 font-medium">Fast Operations</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="openNewLandReqModal()" class="p-3 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300/80 shadow-xs flex items-center gap-2.5 text-left active:scale-95 transition">
+              <div class="w-9 h-9 rounded-lg bg-[#2d1815] text-[#c89d5c] flex items-center justify-center shrink-0 shadow-xs">
+                <i class="fa-solid fa-fire text-sm"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#2d1815] block leading-tight">Urgent Land Req</span>
+                <span class="text-[10px] text-amber-800 font-medium">Client wants land</span>
+              </div>
+            </button>
+
+            <button onclick="openNewLeadModal()" class="p-3 rounded-xl bg-white border border-stone-200 hover:border-[#c89d5c] shadow-xs flex items-center gap-2.5 text-left active:scale-95 transition">
+              <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-800 flex items-center justify-center shrink-0 border border-blue-200">
+                <i class="fa-solid fa-user-tie text-sm"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#2d1815] block leading-tight">Lead / Visit</span>
+                <span class="text-[10px] text-stone-500">Customer or Investor</span>
+              </div>
+            </button>
+
+            <button onclick="openSurveyForSite()" class="p-3 rounded-xl bg-white border border-stone-200 hover:border-[#c89d5c] shadow-xs flex items-center gap-2.5 text-left active:scale-95 transition">
+              <div class="w-9 h-9 rounded-lg bg-[#2d1815]/10 text-[#2d1815] flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-compass text-sm"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#2d1815] block leading-tight">GPS Land Survey</span>
+                <span class="text-[10px] text-stone-500">Auto Live Google Pin</span>
+              </div>
+            </button>
+
+            <button onclick="openScheduleMeetingModal()" class="p-3 rounded-xl bg-white border border-stone-200 hover:border-[#c89d5c] shadow-xs flex items-center gap-2.5 text-left active:scale-95 transition">
+              <div class="w-9 h-9 rounded-lg bg-[#c89d5c]/20 text-[#2d1815] flex items-center justify-center shrink-0 border border-[#c89d5c]/30">
+                <i class="fa-solid fa-calendar-check text-sm"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#2d1815] block leading-tight">Set Site Visit</span>
+                <span class="text-[10px] text-stone-500">Visit with Satishbhai</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Pending Land Requests Alert Card (Urgent) -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-rose-800 uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-bullhorn text-rose-600 animate-pulse"></i> Urgent Land Requirements
+            </h3>
+            <button onclick="switchTab('landreq')" class="text-[10px] font-bold text-[#996515] hover:underline">View All</button>
+          </div>
+          <div class="space-y-2" id="dashUrgentLandReqSection">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Next Scheduled Site Visit / Meeting Alert Card -->
+        <div id="dashUpcomingMeetingSection">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Active Sites Horizontal Ribbon -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-layer-group text-[#c89d5c]"></i> All 7 Sites
+            </h3>
+            <button onclick="switchTab('sites')" class="text-[10px] font-bold text-[#996515] hover:underline">View All</button>
+          </div>
+          <div class="flex gap-2.5 overflow-x-auto custom-scroll pb-1" id="dashSitesScroll">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Latest Land Survey Logs Snippet -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-map-pin text-[#c89d5c]"></i> Recent Land Inspections
+            </h3>
+            <button onclick="switchTab('sites'); switchSitesSubTab('surveys');" class="text-[10px] font-bold text-[#996515] hover:underline">See Surveys</button>
+          </div>
+          <div class="space-y-2" id="dashRecentSurveys">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Urgent Pending Tasks Snippet -->
+        <div class="pb-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-triangle-exclamation text-rose-600"></i> Priority Actions
+            </h3>
+            <button onclick="switchTab('tasks')" class="text-[10px] font-bold text-[#996515] hover:underline">All Tasks</button>
+          </div>
+          <div class="space-y-2" id="dashUrgentTasks">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= 1. BUSINESS CHAT TAB ================= -->
+      <section id="tab-chat" class="tab-page hidden flex-1 flex flex-col h-full bg-[#f8f5f0] relative">
+        <!-- Chat Header Banner with GAVAN Branding -->
+        <div class="bg-white/95 px-3 py-2 border-b border-stone-200 flex items-center justify-between text-xs backdrop-blur-xs shadow-xs z-10">
+          <div class="flex items-center space-x-2">
+            <span id="activeChatBadge" class="px-2 py-0.5 rounded-md bg-[#2d1815] text-[#c89d5c] font-bold text-[9px] tracking-wider border border-[#c89d5c]/30 font-brand">
+              GAVAN PROJECT
+            </span>
+            <div>
+              <p class="font-bold text-[#2d1815] leading-none" id="activeChatName">Shivay Industrial Park Mamakwada</p>
+              <p class="text-[10px] text-stone-500 mt-0.5" id="activeChatParticipants">Me, Rajesh, Amit, Sanjay</p>
+            </div>
+          </div>
+          <button onclick="toggleGroupSidebar()" class="text-xs text-[#996515] font-bold hover:underline flex items-center gap-1">
+            <i class="fa-solid fa-sliders text-[10px]"></i> Switch
+          </button>
+        </div>
+
+        <!-- Chat Stream -->
+        <div id="chatMessages" class="flex-1 p-4 overflow-y-auto custom-scroll space-y-3">
+          <!-- Populated via JS -->
+        </div>
+
+        <!-- Floating Quick Action Bar for Instant Real Estate Broadcast -->
+        <div class="px-3 py-1 bg-amber-50/90 border-t border-amber-200/60 flex items-center justify-between text-[11px] text-[#2d1815]">
+          <div class="flex items-center space-x-2 overflow-x-auto custom-scroll py-0.5">
+            <button onclick="sendQuickUrgentPing()" class="px-2 py-0.5 bg-[#2d1815] text-[#c89d5c] rounded-md font-bold text-[10px] shrink-0 border border-[#c89d5c]/30 flex items-center gap-1">
+              <i class="fa-solid fa-crown text-[8px]"></i> GAVAN Priority
+            </button>
+            <button onclick="openSurveyForSite()" class="px-2 py-0.5 bg-white text-stone-800 rounded-md text-[10px] shrink-0 border border-stone-300 font-semibold flex items-center gap-1">
+              <i class="fa-solid fa-location-dot text-rose-600 text-[9px]"></i> Share Survey
+            </button>
+            <button onclick="openNewLandReqModal()" class="px-2 py-0.5 bg-rose-50 text-rose-800 rounded-md text-[10px] shrink-0 border border-rose-300 font-semibold flex items-center gap-1">
+              <i class="fa-solid fa-bullhorn text-[9px]"></i> Post Land Req
+            </button>
+          </div>
+          <button onclick="triggerFileShare()" title="Attach Vault File" class="text-stone-600 hover:text-[#2d1815] pl-2">
+            <i class="fa-solid fa-paperclip text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Chat Input Bar (WhatsApp style with GAVAN accents) -->
+        <div class="p-2.5 bg-white border-t border-stone-200 flex items-center space-x-2 z-10">
+          <button onclick="openUploadModal()" class="w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-[#2d1815] flex items-center justify-center transition">
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+          <div class="flex-1 bg-stone-100 rounded-2xl flex items-center px-3 py-1.5 border border-stone-300 focus-within:border-[#c89d5c] focus-within:bg-white transition">
+            <input type="text" id="chatInput" placeholder="Message partners & site team..." class="w-full bg-transparent outline-none text-xs text-stone-800" onkeydown="if(event.key==='Enter') sendChatMessage()">
+          </div>
+          <button onclick="sendChatMessage()" class="w-9 h-9 rounded-full bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 flex items-center justify-center shadow-md active:scale-95 transition">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 2. LEADS, INVESTORS & SITE VISITS TAB ================= -->
+      <section id="tab-leads" class="tab-page hidden flex-1 flex flex-col h-full bg-[#f8f6f2] overflow-hidden">
+        <!-- Top Sticky Sub Header -->
+        <div class="bg-white p-3 border-b border-stone-200 shadow-xs z-10">
+          <div class="flex items-center justify-between mb-2.5">
+            <div>
+              <h2 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+                <i class="fa-solid fa-user-tie text-[#c89d5c]"></i> Leads, Investors & Visits
+              </h2>
+              <p class="text-[10px] text-stone-500">Customer visits, partner transfers & deal status</p>
+            </div>
+            <button onclick="openNewLeadModal()" class="px-2.5 py-1 bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 font-bold text-[11px] rounded-lg shadow-xs flex items-center gap-1 active:scale-95 transition">
+              <i class="fa-solid fa-plus text-[10px]"></i> Add Lead / Visit
+            </button>
+          </div>
+
+          <!-- Status Filter Tabs -->
+          <div class="flex items-center gap-1 overflow-x-auto custom-scroll text-[11px] pb-1" id="leadFilterTabs">
+            <button onclick="filterLeads('all')" class="lead-filter-btn px-2.5 py-1 bg-[#2d1815] text-[#c89d5c] font-bold rounded-lg shrink-0">All</button>
+            <button onclick="filterLeads('Visit Scheduled')" class="lead-filter-btn px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 shrink-0">Visit Scheduled</button>
+            <button onclick="filterLeads('Negotiation')" class="lead-filter-btn px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 shrink-0">Negotiation</button>
+            <button onclick="filterLeads('Closed Deal')" class="lead-filter-btn px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 shrink-0">Closed Deal</button>
+            <button onclick="filterLeads('transferred')" class="lead-filter-btn px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 shrink-0">Transferred</button>
+          </div>
+        </div>
+
+        <!-- Leads List View -->
+        <div id="leadsListContainer" class="flex-1 p-3.5 overflow-y-auto custom-scroll space-y-2.5">
+          <!-- Populated via JS -->
+        </div>
+      </section>
+
+      <!-- ================= 3. URGENT LAND REQUIREMENTS TAB ================= -->
+      <section id="tab-landreq" class="tab-page hidden flex-1 flex flex-col h-full bg-[#f8f6f2] overflow-hidden">
+        <div class="bg-white p-3.5 border-b border-stone-200 shadow-xs z-10">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-xs font-bold text-rose-800 uppercase tracking-wider flex items-center gap-1.5 font-brand">
+                <i class="fa-solid fa-bullhorn text-rose-600"></i> Land Buying Requirements
+              </h2>
+              <p class="text-[10px] text-stone-500">Post urgent client land needs & auto-open site inspections</p>
+            </div>
+            <button onclick="openNewLandReqModal()" class="px-2.5 py-1 bg-rose-800 hover:bg-rose-900 text-white font-bold text-[11px] rounded-lg shadow-xs flex items-center gap-1 active:scale-95 transition">
+              <i class="fa-solid fa-plus text-[10px]"></i> Post Req
+            </button>
+          </div>
+        </div>
+
+        <!-- Land Requirements List -->
+        <div id="landReqContainer" class="flex-1 p-3.5 overflow-y-auto custom-scroll space-y-3">
+          <!-- Populated via JS -->
+        </div>
+      </section>
+
+      <!-- ================= 4. TASKS TAB ================= -->
+      <section id="tab-tasks" class="tab-page hidden flex-1 flex flex-col h-full bg-stone-50 overflow-hidden">
+        <!-- Sub Header & Filter Bar -->
+        <div class="p-3 bg-white border-b border-stone-200 shadow-xs flex items-center justify-between">
+          <div>
+            <h2 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-list-check text-[#c89d5c]"></i> Business Tasks
+            </h2>
+            <p class="text-[10px] text-stone-500">Site visits, registrations, and partner deadlines</p>
+          </div>
+          <button onclick="openNewTaskModal()" class="px-2.5 py-1 bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 font-bold text-[11px] rounded-lg shadow-xs flex items-center gap-1 active:scale-95 transition">
+            <i class="fa-solid fa-plus text-[10px]"></i> Add Task
+          </button>
+        </div>
+
+        <!-- Task Filters -->
+        <div class="px-3 py-2 bg-stone-100 flex items-center space-x-1.5 text-xs overflow-x-auto custom-scroll border-b border-stone-200">
+          <button onclick="filterTasks('all')" class="task-filter-btn px-3 py-1 bg-white font-semibold text-[#2d1815] rounded-lg shadow-xs border border-[#c89d5c] shrink-0">All</button>
+          <button onclick="filterTasks('pending')" class="task-filter-btn px-3 py-1 bg-white text-stone-600 rounded-lg border border-stone-200 hover:bg-stone-50 shrink-0">Pending</button>
+          <button onclick="filterTasks('mine')" class="task-filter-btn px-3 py-1 bg-white text-stone-600 rounded-lg border border-stone-200 hover:bg-stone-50 shrink-0">Assigned to Me</button>
+          <button onclick="filterTasks('completed')" class="task-filter-btn px-3 py-1 bg-white text-stone-600 rounded-lg border border-stone-200 hover:bg-stone-50 shrink-0">Completed</button>
+        </div>
+
+        <!-- Task List Content -->
+        <div id="taskList" class="flex-1 p-3.5 overflow-y-auto custom-scroll space-y-2.5">
+          <!-- Populated via JS -->
+        </div>
+      </section>
+
+      <!-- ================= 5. SITES & LAND LOG TAB ================= -->
+      <section id="tab-sites" class="tab-page hidden flex-1 flex flex-col h-full bg-[#f8f6f2] overflow-hidden relative">
+        <div class="bg-white p-3 border-b border-stone-200 shadow-xs z-10">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h2 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+                <i class="fa-solid fa-map-location-dot text-[#c89d5c]"></i> GAVAN Sites & Land Visits
+              </h2>
+              <p class="text-[10px] text-stone-500">All 7 active sites, broker data & surveys</p>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button onclick="openScheduleMeetingModal()" class="px-2 py-1 bg-stone-100 hover:bg-stone-200 text-[#2d1815] font-semibold text-[11px] rounded-lg border border-stone-300">
+                <i class="fa-regular fa-calendar-check text-[#c89d5c]"></i> Meeting
+              </button>
+              <button onclick="openAddSiteModal()" class="px-2 py-1 bg-[#2d1815] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold text-[11px] rounded-lg shadow-xs">
+                + New Site
+              </button>
+            </div>
+          </div>
+          <!-- Sub-tabs: Projects vs Land Surveys vs Site Meetings -->
+          <div class="flex items-center gap-4 text-xs border-b border-stone-200 pt-1">
+            <button onclick="switchSitesSubTab('sites')" id="subtab-sites-btn" class="pb-2 border-b-2 border-[#c89d5c] text-[#2d1815] font-bold">
+              Projects & Sites
+            </button>
+            <button onclick="switchSitesSubTab('surveys')" id="subtab-surveys-btn" class="pb-2 text-stone-500 hover:text-stone-800 font-semibold">
+              Land Surveys Log
+            </button>
+            <button onclick="switchSitesSubTab('meetings')" id="subtab-meetings-btn" class="pb-2 text-stone-500 hover:text-stone-800 font-semibold">
+              Site Meetings
+            </button>
+          </div>
+        </div>
+
+        <div id="sitesTabContent" class="flex-1 p-3.5 overflow-y-auto custom-scroll space-y-3 pb-20">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Floating Add Survey Button on Land Surveys tab -->
+        <button id="floatingAddSurveyBtn" onclick="openSurveyForSite()" class="hidden absolute bottom-5 right-5 px-4 py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/50 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs active:scale-95 transition z-20">
+          <i class="fa-solid fa-compass text-base text-[#c89d5c]"></i>
+          <span>+ Record Land Survey</span>
+        </button>
+      </section>
+
+      <!-- ================= 6. VAULT & NESTED FOLDERS TAB ================= -->
+      <section id="tab-files" class="tab-page hidden flex-1 flex flex-col h-full bg-[#f8f6f2] overflow-hidden">
+        <!-- Vault Top Controls -->
+        <div class="bg-white p-3 border-b border-stone-200 shadow-xs z-10 space-y-2">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+                <i class="fa-solid fa-vault text-[#c89d5c]"></i> GAVAN Document Vault
+              </h2>
+              <p class="text-[10px] text-stone-500">Site-wise 7/12, Blueprints, NA orders & plans</p>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <button onclick="openCreateFolderModal()" class="px-2 py-1 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-lg text-[11px] font-semibold border border-stone-300">
+                <i class="fa-solid fa-folder-plus text-[#c89d5c]"></i> + Folder
+              </button>
+              <button onclick="openUploadModal()" class="px-2.5 py-1 bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 rounded-lg text-[11px] font-semibold shadow-xs">
+                + File
+              </button>
+            </div>
+          </div>
+
+          <!-- Site Filter & Folder Breadcrumbs -->
+          <div class="flex items-center justify-between text-xs pt-1">
+            <select id="vaultSiteFilter" onchange="changeVaultSite(this.value)" class="text-[11px] font-semibold text-[#2d1815] bg-stone-100 border border-stone-300 rounded-lg px-2 py-1 outline-none">
+              <!-- Populated via JS -->
+            </select>
+            <div id="vaultBreadcrumbs" class="flex items-center gap-1 text-[11px] text-stone-500 overflow-x-auto custom-scroll">
+              <!-- Breadcrumbs injected via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div id="filesContainer" class="flex-1 p-3.5 overflow-y-auto custom-scroll space-y-2">
+          <!-- Injected via JS -->
+        </div>
+      </section>
+
+      <!-- ================= 7. PARTNERS TAB ================= -->
+      <section id="tab-call" class="tab-page hidden flex-1 flex flex-col h-full bg-stone-50 p-4 overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h2 class="text-sm font-bold text-[#2d1815] flex items-center gap-1.5">
+              <i class="fa-solid fa-handshake text-[#c89d5c]"></i> GAVAN Partners Council
+            </h2>
+            <p class="text-[11px] text-stone-500">Security Access, Direct Calling & WhatsApp</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="openAdminSecurityModal()" class="px-2.5 py-1 bg-[#c89d5c] text-[#2d1815] text-[11px] font-bold rounded-lg shadow-xs hover:bg-[#d8ab6b] flex items-center gap-1">
+              <i class="fa-solid fa-key text-[10px]"></i> PINs & Access
+            </button>
+            <button onclick="openAddPartnerModal()" class="px-2.5 py-1 bg-[#2d1815] text-[#c89d5c] border border-[#c89d5c]/30 text-[11px] font-semibold rounded-lg shadow-xs hover:bg-[#3d221e]">
+              <i class="fa-solid fa-user-plus text-[10px]"></i> Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Current User Badge in Partners Tab -->
+        <div id="currentUserSessionCard" class="bg-amber-50 border border-amber-300/80 p-3 rounded-2xl mb-3 flex items-center justify-between shadow-xs">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Partner List Cards -->
+        <div id="partnersListCards" class="space-y-2.5 mb-4">
+          <!-- Populated via JS -->
+        </div>
+
+        <!-- Group Conference & Instant Dial Section -->
+        <div class="bg-gradient-to-r from-[#1c0f0d] via-[#2d1815] to-[#3f221c] rounded-2xl p-4 text-white shadow-xl border border-[#c89d5c]/30 relative overflow-hidden">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-[#c89d5c] uppercase tracking-wider font-brand">GAVAN Board Conference</span>
+            <span class="text-[10px] bg-[#c89d5c]/20 text-[#e0cfb4] px-2 py-0.5 rounded border border-[#c89d5c]/40">Luxury HD</span>
+          </div>
+          <h3 class="text-sm font-bold">Start Partners Standup</h3>
+          <p class="text-[11px] text-stone-300 mt-1 mb-3">Join secured conference call with all partners associated with the active project.</p>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="startCall('voice')" class="bg-gradient-to-r from-[#c89d5c] to-[#b38848] text-[#2d1815] py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition">
+              <i class="fa-solid fa-headset"></i> Voice Board
+            </button>
+            <button onclick="startCall('video')" class="bg-[#1a0e0c] hover:bg-[#251512] text-[#c89d5c] border border-[#c89d5c]/50 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition">
+              <i class="fa-solid fa-video"></i> Video Standup
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (GAVAN Theme with Dashboard as 1st Item + Leads & Land Req) -->
+    <nav class="bg-white border-t border-stone-200 px-1 py-1.5 flex items-center justify-around z-30 shadow-lg">
+      <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item flex flex-col items-center text-[#2d1815] transition flex-1 py-0.5">
+        <i class="fa-solid fa-chart-pie text-base text-[#c89d5c]"></i>
+        <span class="text-[9px] font-bold mt-0.5 text-[#2d1815]">Overview</span>
+      </button>
+
+      <button onclick="switchTab('leads')" id="nav-leads" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
+        <div class="relative">
+          <i class="fa-solid fa-user-tie text-base"></i>
+          <span id="leadBadge" class="hidden absolute -top-1 -right-2 bg-blue-600 text-white text-[8px] px-1 rounded-full font-bold">5</span>
+        </div>
+        <span class="text-[9px] font-medium mt-0.5">Visits/Leads</span>
+      </button>
+
+      <button onclick="switchTab('landreq')" id="nav-landreq" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
+        <div class="relative">
+          <i class="fa-solid fa-fire text-base"></i>
+          <span id="landReqBadge" class="hidden absolute -top-1 -right-2 bg-rose-600 text-white text-[8px] px-1 rounded-full font-bold">2</span>
+        </div>
+        <span class="text-[9px] font-medium mt-0.5">Land Req</span>
+      </button>
+
+      <button onclick="switchTab('chat')" id="nav-chat" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
+        <div class="relative">
+          <i class="fa-solid fa-comments text-base"></i>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#c89d5c] absolute -top-0.5 -right-0.5"></span>
+        </div>
+        <span class="text-[9px] font-medium mt-0.5">Chat</span>
+      </button>
+
+      <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
+        <div class="relative">
+          <i class="fa-solid fa-list-check text-base"></i>
+          <span id="taskBadge" class="hidden absolute -top-1 -right-2 bg-[#2d1815] text-[#c89d5c] text-[8px] px-1 rounded-full font-bold border border-[#c89d5c]">4</span>
+        </div>
+        <span class="text-[9px] font-medium mt-0.5">Tasks</span>
+      </button>
+
+      <button onclick="switchTab('sites')" id="nav-sites" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
+        <i class="fa-solid fa-map-location-dot text-base"></i>
+        <span class="text-[9px] font-medium mt-0.5">Sites & GPS</span>
+      </button>
+
+      <button onclick="switchTab('files')" id="nav-files" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
+        <i class="fa-solid fa-folder-tree text-base"></i>
+        <span class="text-[9px] font-medium mt-0.5">Vault</span>
+      </button>
+    </nav>
+
+    <!-- Side Drawer for Switching Sites & 1-on-1 Partners -->
+    <div id="drawerModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex">
+      <div class="bg-white w-4/5 max-w-xs h-full p-4 flex flex-col shadow-2xl overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-200">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-[#2d1815] text-[#c89d5c] flex items-center justify-center font-bold text-xs">
+              G
+            </div>
+            <h3 class="font-bold text-[#2d1815] text-xs">GAVAN Workspace</h3>
+          </div>
+          <button onclick="closeModal('drawerModal')" class="text-stone-400 hover:text-stone-700 text-sm">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="mt-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[10px] uppercase font-bold text-stone-500 tracking-wider">All 7 Sites / Projects</span>
+            <button onclick="closeModal('drawerModal'); openAddSiteModal();" class="text-[10px] text-[#c89d5c] font-bold">+ New Site</button>
+          </div>
+          <div id="drawerProjectsList" class="space-y-1.5">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+        <div class="mt-5 pt-3 border-t border-stone-200">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[10px] uppercase font-bold text-stone-500 tracking-wider">GAVAN Partners (1-on-1)</span>
+            <button onclick="closeModal('drawerModal'); openAddPartnerModal();" class="text-[10px] text-[#c89d5c] font-bold">+ Add</button>
+          </div>
+          <div id="drawerPartnersList" class="space-y-1.5">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+      </div>
+      <div class="flex-1" onclick="closeModal('drawerModal')"></div>
+    </div>
+
+    <!-- Record Land Survey / Land Visit Modal -->
+    <div id="landSurveyModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl max-h-[90vh] overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-compass text-[#c89d5c]"></i>
+            <h3 class="font-bold text-[#2d1815] text-sm">Record Land Survey / Inspection</h3>
+          </div>
+          <button onclick="closeModal('landSurveyModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        
+        <div class="mt-4 space-y-3 text-xs">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="font-semibold text-stone-700">Related Site / Project or New Land</label>
+              <button type="button" onclick="promptForNewSiteInSurvey()" class="text-[10px] text-[#996515] font-bold hover:underline flex items-center gap-0.5">
+                <i class="fa-solid fa-plus text-[9px]"></i> Create New Site
+              </button>
+            </div>
+            <select id="surveySiteSelect" class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white outline-none">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+
+          <!-- Auto-fetched GPS Google Location Section -->
+          <div class="bg-amber-50/70 border border-amber-300/80 rounded-xl p-3 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[#2d1815] flex items-center gap-1.5 text-xs">
+                <i class="fa-solid fa-location-dot text-rose-600 animate-bounce"></i> Live Google Location (Auto-Detected)
+              </span>
+              <button onclick="fetchCurrentGeoLocation(true)" type="button" class="text-[#c89d5c] hover:text-[#996515] font-bold text-[11px] flex items-center gap-1 bg-white px-2 py-0.5 rounded border border-[#c89d5c]/40 shadow-xs">
+                <i class="fa-solid fa-arrows-rotate"></i> Refresh GPS
+              </button>
+            </div>
+            <div class="relative">
+              <input type="text" id="surveyLocation" placeholder="Fetching current GPS location automatically..." class="w-full border border-stone-300 rounded-lg px-2.5 py-2 text-[11px] bg-white outline-none font-medium text-stone-800" readonly>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-stone-500">
+              <span id="gpsStatusBadge" class="flex items-center gap-1 text-emerald-700 font-semibold">
+                <i class="fa-solid fa-satellite-dish"></i> GPS Scanning...
+              </span>
+              <a id="surveyMapLink" href="#" target="_blank" class="hidden text-blue-700 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps
+              </a>
+            </div>
+          </div>
+
+          <!-- Land Type: NA or Agriculture & Area & Rate -->
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Land Zone / Type</label>
+              <select id="surveyLandType" class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white outline-none font-semibold text-stone-800">
+                <option value="Agriculture (ખેતીની જમીન)">🌾 Agriculture (ખેતીની જમીન)</option>
+                <option value="NA Clear (બિનખેતી NA)">🏗️ NA Clear (બિનખેતી NA)</option>
+                <option value="NA Eligible (NA પાત્ર)">📜 NA Eligible (NA પાત્ર)</option>
+                <option value="Industrial Zone (ઔદ્યોગિક)">🏭 Industrial Zone (ઔદ્યોગિક)</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Land Area (Ketli Land Chhe)</label>
+              <input type="text" id="surveyArea" placeholder="e.g. 10 Vigha / 25,000 Sq.Yd" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Price / Rate (Su Rate Chhe)</label>
+            <input type="text" id="surveyRate" placeholder="e.g. ₹22,00,000 / Vigha or ₹4,500 / Sq.Yard" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-semibold text-emerald-800">
+          </div>
+
+          <!-- Broker selection with Quick Directory picker -->
+          <div class="p-2.5 bg-stone-50 border border-stone-200 rounded-xl space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-stone-800">Broker Involved? (Kon Broker Chhe)</span>
+              <div class="flex items-center gap-3">
+                <label class="flex items-center gap-1 cursor-pointer font-medium">
+                  <input type="radio" name="hasBroker" value="yes" checked onchange="toggleBrokerFields(true)"> Yes (Broker)
+                </label>
+                <label class="flex items-center gap-1 cursor-pointer font-medium">
+                  <input type="radio" name="hasBroker" value="no" onchange="toggleBrokerFields(false)"> Direct Farmer / JV
+                </label>
+              </div>
+            </div>
+            <div id="brokerFields" class="space-y-2 pt-1">
+              <div class="grid grid-cols-2 gap-2">
+                <input type="text" id="surveyBrokerName" placeholder="Broker Full Name" class="border border-stone-300 rounded-lg px-2.5 py-1.5 outline-none bg-white font-medium">
+                <input type="text" id="surveyBrokerPhone" placeholder="Broker Mobile No." class="border border-stone-300 rounded-lg px-2.5 py-1.5 outline-none bg-white font-medium">
+              </div>
+              <div class="flex items-center justify-between text-[10px] bg-white p-1.5 rounded-lg border border-stone-200">
+                <span class="text-stone-500">Pick from Directory:</span>
+                <select onchange="fillBrokerFromDirectory(this.value)" class="text-[11px] font-semibold text-[#2d1815] bg-stone-100 rounded px-2 py-0.5 outline-none border border-stone-300">
+                  <option value="">-- Select Contact --</option>
+                  <option value="Satishbhai Parmar|+919879554321">Satishbhai Parmar (Broker)</option>
+                  <option value="Dineshbhai Patel|+919825167890">Dineshbhai Patel (Broker)</option>
+                  <option value="Pravinbhai Ahir|+919824198765">Pravinbhai Ahir (Local Broker)</option>
+                  <option value="Rajesh Mehta|+919825011111">Rajesh Mehta (Partner)</option>
+                  <option value="Amit Shah|+919825022222">Amit Shah (Partner)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Issues / Disputes? (Koy Problem Chhe?)</label>
+            <input type="text" id="surveyIssues" placeholder="e.g. Clear Title, Right of Way road problem, HT Line, None" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none text-rose-700 font-medium">
+          </div>
+
+          <div class="p-2.5 bg-amber-50/50 border border-amber-200/60 rounded-xl space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-stone-800 block">Upload Land Document / 7-12 / Naksho</span>
+              <span class="text-[10px] text-stone-500">Auto-saved to Vault</span>
+            </div>
+            <input type="text" id="surveyDocTitle" placeholder="Document Name (e.g. Survey 84 Satbara 7/12 & Naksho)" class="w-full border border-stone-300 rounded-lg px-2.5 py-1.5 outline-none bg-white">
+            <input type="text" id="surveyUploaderName" placeholder="Your Name (Doc update time kon kare chhe - Name pucho)" class="w-full border border-stone-300 rounded-lg px-2.5 py-1.5 outline-none bg-white font-medium text-[#2d1815]">
+          </div>
+
+          <button onclick="saveLandSurvey()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md transition">
+            Save Survey & Auto-Share to Group Chat
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Folder Modal -->
+    <div id="createFolderModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+          <h3 class="font-bold text-[#2d1815] text-sm">Create Folder in Vault</h3>
+          <button onclick="closeModal('createFolderModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mt-4 space-y-3">
+          <div>
+            <label class="text-xs font-semibold text-stone-600 block mb-1">Folder Name</label>
+            <input type="text" id="newFolderName" placeholder="e.g. NA Orders / Legal Records / Blueprints" class="w-full text-xs border border-stone-300 rounded-xl px-3 py-2 outline-none focus:border-[#c89d5c]">
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-stone-600 block mb-1">Target Site</label>
+            <select id="newFolderSite" class="w-full text-xs border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <p class="text-[11px] text-stone-500 italic">Creating inside current directory level.</p>
+          <button onclick="saveNewFolder()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold text-xs rounded-xl shadow-md mt-2">
+            Create Folder
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW LEAD / INVESTOR / SITE VISIT MODAL -->
+    <div id="newLeadModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl max-h-[90vh] overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-user-tie text-[#c89d5c]"></i>
+            <h3 class="font-bold text-[#2d1815] text-sm">Add Lead, Customer or Investor Visit</h3>
+          </div>
+          <button onclick="closeModal('newLeadModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        
+        <div class="mt-4 space-y-3 text-xs">
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Lead / Client / Investor Name</label>
+            <input type="text" id="leadClientName" placeholder="e.g. Ketanbhai Shah (NRI Investor / Industrialist)" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-medium">
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Lead Type</label>
+              <select id="leadClientType" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white font-medium">
+                <option value="Direct Customer">Direct Customer (ખરીદનાર)</option>
+                <option value="High Networth Investor">HNW Investor (રોકાણકાર)</option>
+                <option value="Broker Reference">Broker Reference (બ્રોકર મારફતે)</option>
+                <option value="Corporate / JV">Corporate / Industrial JV</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Mobile Number</label>
+              <input type="text" id="leadClientPhone" placeholder="+91 98250 99887" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Interested Site / Property</label>
+              <select id="leadSiteSelect" class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white outline-none">
+                <!-- Injected via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Budget / Requirement</label>
+              <input type="text" id="leadBudget" placeholder="e.g. ₹3 Cr / 5 Vigha" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Assigned / Handled By</label>
+              <select id="leadAssigneeSelect" class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white outline-none font-semibold">
+                <!-- Injected via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Initial Status</label>
+              <select id="leadInitialStatus" class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white outline-none font-semibold text-blue-800">
+                <option value="Visit Scheduled">Visit Scheduled 🚗</option>
+                <option value="New Lead">New Lead 📋</option>
+                <option value="Negotiation">Negotiation 🤝</option>
+                <option value="Token Received">Token Received 💰</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Visit Date / Time & Notes</label>
+            <input type="text" id="leadVisitTime" placeholder="Tomorrow 4:30 PM at Moksh Villa Sample House" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+
+          <button onclick="saveNewLead()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md transition">
+            Save Lead & Alert Handling Partner
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSFER LEAD TO ANOTHER PARTNER MODAL -->
+    <div id="transferLeadModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+          <h3 class="font-bold text-[#2d1815] text-sm">Transfer Lead to Another Partner</h3>
+          <button onclick="closeModal('transferLeadModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mt-4 space-y-3 text-xs">
+          <input type="hidden" id="transferLeadId">
+          <div>
+            <span class="text-stone-500 block mb-0.5">Lead Name:</span>
+            <p class="font-bold text-[#2d1815] text-sm" id="transferLeadTitle">Client Name</p>
+          </div>
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Select New Handling Partner</label>
+            <select id="transferTargetPartner" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white font-semibold">
+              <!-- Injected via JS -->
+            </select>
+          </div>
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Handoff Instructions / Remarks</label>
+            <textarea id="transferRemarks" rows="2" placeholder="e.g. Rajeshbhai, please arrange site visit tomorrow. Client is ready with token." class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none"></textarea>
+          </div>
+          <button onclick="confirmLeadTransfer()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md transition mt-2">
+            Transfer Lead & Notify in Group
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPDATE LEAD STATUS MODAL -->
+    <div id="updateLeadStatusModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+          <h3 class="font-bold text-[#2d1815] text-sm">Update Lead Status</h3>
+          <button onclick="closeModal('updateLeadStatusModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mt-4 space-y-3 text-xs">
+          <input type="hidden" id="statusLeadId">
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Current Deal Stage / Status</label>
+            <select id="leadNewStatusSelect" class="w-full border border-stone-300 rounded-xl px-3 py-2.5 outline-none bg-white font-bold text-stone-800">
+              <option value="New Lead">📋 New Lead (Initial Inquiry)</option>
+              <option value="Visit Scheduled">🚗 Visit Scheduled (Site Inspection)</option>
+              <option value="Visit Done">✅ Visit Done (Feedback Positive)</option>
+              <option value="Negotiation">🤝 Negotiation (Rate / Terms discussion)</option>
+              <option value="Token Received">💰 Token Received (Advance Paid)</option>
+              <option value="Closed Deal">🏆 Closed Deal (Registered)</option>
+              <option value="Cold / On Hold">❄️ Cold / On Hold</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Latest Update / Visit Outcome</label>
+            <textarea id="leadStatusRemark" rows="2" placeholder="What happened on visit? Client reaction, offer price, next follow-up date..." class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none"></textarea>
+          </div>
+          <button onclick="saveLeadStatusUpdate()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md transition mt-2">
+            Update Status & Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW URGENT LAND REQUIREMENT MODAL -->
+    <div id="newLandReqModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl max-h-[90vh] overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-fire text-rose-600"></i>
+            <h3 class="font-bold text-rose-900 text-sm">Post Urgent Land Requirement</h3>
+          </div>
+          <button onclick="closeModal('newLandReqModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        
+        <div class="mt-4 space-y-3 text-xs">
+          <div class="p-2.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-900 leading-tight">
+            <b>Example:</b> "Ahu me 10 acre chahiye, client ready hai, 2 din me urgent karna hai."
+          </div>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Requirement Title / Summary</label>
+            <input type="text" id="reqTitle" placeholder="e.g. Ahu GIDC belt me 10 Acre Industrial Land urgent" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-bold text-stone-900">
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Target Location / Belt</label>
+              <input type="text" id="reqLocation" placeholder="e.g. Ahu / Mamakwada / Sanjan" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Land Size (Ketli Land Chahiye)</label>
+              <input type="text" id="reqSize" placeholder="e.g. 10 Acre / 25 Vigha" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-semibold text-emerald-800">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Budget / Price Range</label>
+              <input type="text" id="reqBudget" placeholder="e.g. ₹15-20 Lakh per Vigha" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Deadline / Urgency</label>
+              <input type="text" id="reqDeadline" placeholder="e.g. 2 Days Urgent ⚡" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-bold text-rose-700">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Assign Task To</label>
+              <select id="reqAssignee" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white font-semibold">
+                <option value="All Partners">All Partners (બધા પાર્ટનર્સ)</option>
+                <!-- Injected via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Client Profile</label>
+              <input type="text" id="reqClient" placeholder="Ready Industrial Buyer" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Specific Constraints / Details</label>
+            <textarea id="reqNotes" rows="2" placeholder="Road touch required, 66 KV substation nearby, client ready with 50L token..." class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none"></textarea>
+          </div>
+
+          <button onclick="saveLandRequirement()" class="w-full py-2.5 bg-rose-800 hover:bg-rose-900 text-white font-semibold rounded-xl shadow-md transition">
+            Publish Requirement & Alert Partners
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schedule Meeting Modal -->
+    <div id="scheduleMeetingModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-calendar-check text-[#c89d5c]"></i>
+            <h3 class="font-bold text-[#2d1815] text-sm">Schedule Meeting / Site Visit</h3>
+          </div>
+          <button onclick="closeModal('scheduleMeetingModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="mt-4 space-y-3 text-xs">
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Meeting Title & Agenda</label>
+            <input type="text" id="meetingTitle" placeholder="e.g. Meeting Satishbhai sathe land jova mate" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-medium">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Date & Day</label>
+              <input type="text" id="meetingDate" placeholder="Tomorrow / Oct 31" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Time</label>
+              <input type="text" id="meetingTime" placeholder="11:00 AM" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Location / Site</label>
+              <select id="meetingSite" class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white outline-none">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">With Person / Partner</label>
+              <input type="text" id="meetingPerson" placeholder="Satishbhai & Rajesh bhai" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+          <button onclick="saveScheduledMeeting()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md transition">
+            Set Meeting & Notify Partners
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add New Site Modal -->
+    <div id="addSiteModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+          <h3 class="font-bold text-[#2d1815] text-sm">Add New GAVAN Site / Project</h3>
+          <button onclick="closeModal('addSiteModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mt-4 space-y-3 text-xs">
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Site / Project Name</label>
+            <input type="text" id="newSiteName" placeholder="e.g. Shivay Heights / Gavan Enclave" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Location / City</label>
+            <input type="text" id="newSiteLocation" placeholder="e.g. Umargam / Vapi / Sarigam" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Site Category</label>
+            <select id="newSiteCategory" class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white outline-none">
+              <option value="Industrial Park">Industrial Park 🏭</option>
+              <option value="Luxury Residential">Luxury Residential / Villas 🏡</option>
+              <option value="Commercial Hub">Commercial Hub 🏢</option>
+              <option value="Land Investment">Agricultural / Land JV 🌾</option>
+            </select>
+          </div>
+          <button onclick="saveNewSite()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md transition mt-2">
+            Add Site to Portfolio
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Partner Modal -->
+    <div id="addPartnerModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+          <h3 class="font-bold text-[#2d1815] text-sm">Add New Business Partner</h3>
+          <button onclick="closeModal('addPartnerModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mt-4 space-y-3 text-xs">
+          <div>
+            <label class="font-semibold text-stone-600 block mb-1">Full Name (પાર્ટનરનું નામ)</label>
+            <input type="text" id="newPartnerName" placeholder="e.g. Bhavik Patel" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+          <div>
+            <label class="font-semibold text-stone-600 block mb-1">Role / Department (કામગીરી)</label>
+            <input type="text" id="newPartnerRole" placeholder="e.g. Marketing & Land Liasoning" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+          <div>
+            <label class="font-semibold text-stone-600 block mb-1">Mobile Number (મોબાઇલ નંબર)</label>
+            <input type="tel" id="newPartnerPhone" placeholder="+91 98980 12345" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+          <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200 text-amber-900 text-[11px]">
+            <i class="fa-solid fa-key text-[#c89d5c] mr-1"></i>
+            સેવ કર્યા પછી સિસ્ટમ આપોઆપ <b>Unique Login PIN</b> જનરેટ કરશે જે તમે આ પાર્ટનરને મોકલી શકશો.
+          </div>
+          <button onclick="saveNewPartner()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3d221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md mt-2">
+            Generate Unique PIN & Save Partner
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNER SECURITY ACCESS & UNIQUE PIN MANAGER MODAL -->
+    <div id="adminSecurityModal" class="hidden absolute inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl max-h-[90vh] overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-[#2d1815] text-[#c89d5c] flex items-center justify-center font-bold text-xs">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-[#2d1815] text-sm">Partner Access Codes (Unique PINs)</h3>
+              <p class="text-[10px] text-stone-500">બધા પાર્ટનર્સના યુનિક લૉગિન કોડ્સ અહીંથી કંટ્રોલ કરો</p>
+            </div>
+          </div>
+          <button onclick="closeModal('adminSecurityModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+
+        <div class="mt-4 space-y-3">
+          <!-- Master Admin PIN Settings -->
+          <div class="bg-gradient-to-r from-[#2d1815] to-[#3d201b] p-3 rounded-2xl text-white text-xs flex items-center justify-between shadow-xs">
+            <div>
+              <span class="text-[10px] text-[#c89d5c] font-bold uppercase tracking-wider font-brand">Master Admin Passcode</span>
+              <p class="text-sm font-mono font-bold tracking-widest text-amber-200" id="currentMasterPinDisplay">7777</p>
+            </div>
+            <button onclick="changeMasterAdminPin()" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-[#c89d5c] rounded-lg text-[10px] font-bold border border-[#c89d5c]/30">
+              Change Admin PIN
+            </button>
+          </div>
+
+          <!-- All Partners Credentials List -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-stone-700 uppercase tracking-wider font-brand">
+                <i class="fa-solid fa-users-gear text-[#c89d5c]"></i> Partners Directory & Passcodes
+              </span>
+              <button onclick="closeModal('adminSecurityModal'); openAddPartnerModal();" class="text-[11px] font-bold text-[#c89d5c] hover:underline">
+                + Add Partner
+              </button>
+            </div>
+            <div id="partnerSecurityList" class="space-y-2">
+              <!-- Dynamically rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="taskModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <h3 class="font-bold text-[#2d1815] text-sm">Add New Business Task</h3>
+          <button onclick="closeModal('taskModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="mt-4 space-y-3 text-xs">
+          <div>
+            <label class="font-semibold text-stone-600 block mb-1">Task Action Item</label>
+            <input type="text" id="newTaskTitle" placeholder="e.g. Verify Survey 142/1 Satbara demarcation" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-600 block mb-1">Site / Project</label>
+              <select id="newTaskProject" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-600 block mb-1">Assign To</label>
+              <select id="newTaskAssignee" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-600 block mb-1">Priority</label>
+              <select id="newTaskPriority" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white font-semibold">
+                <option value="Normal">Regular</option>
+                <option value="High">High Priority 🔥</option>
+                <option value="Urgent">Critical / Deadline ⚡</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-600 block mb-1">Target Time</label>
+              <input type="text" id="newTaskTime" placeholder="Tomorrow 11:00 AM" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+          <button onclick="saveNewTask()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md mt-2 transition">
+            Create Business Task
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Document Modal -->
+    <div id="fileModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <h3 class="font-bold text-[#2d1815] text-sm">Add Project Document or Plan</h3>
+          <button onclick="closeModal('fileModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="mt-4 space-y-3 text-xs">
+          <div>
+            <label class="font-semibold text-stone-600 block mb-1">Document Title</label>
+            <input type="text" id="newFileTitle" placeholder="e.g. Mamakwada 18 Vigha DILR Measurement Sheet" class="w-full border border-stone-300 rounded-xl px-3 py-2.5 outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-600 block mb-1">Related Site</label>
+              <select id="newFileProject" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-600 block mb-1">Category</label>
+              <select id="newFileType" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+                <option value="doc">Legal / 7-12 / Agreement 📄</option>
+                <option value="plan">Site Map / Blueprint 📈</option>
+                <option value="finance">Accounts / Payment Receipt 💳</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="font-semibold text-stone-600 block mb-1">Summary / Google Drive Link / Notes</label>
+            <textarea id="newFileNotes" rows="2" placeholder="Title check notes, road width, collector order info..." class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none"></textarea>
+          </div>
+          <button onclick="saveNewFile()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md mt-2 transition">
+            Save to Secure Vault
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call Overlay Screen -->
+    <div id="callOverlay" class="hidden absolute inset-0 bg-[#160d0b]/98 z-50 flex flex-col items-center justify-between p-8 text-white">
+      <div class="text-center pt-8">
+        <div class="w-24 h-24 rounded-3xl bg-[#251512] border-2 border-[#c89d5c]/60 p-4 mx-auto relative mb-4 flex items-center justify-center shadow-2xl">
+          <svg viewBox="0 0 100 100" class="w-16 h-16" fill="none">
+            <path d="M50 8 L18 42 L28 42 L50 20 L72 42 L82 42 Z" fill="#c89d5c" />
+            <path d="M30 48 L30 88 L40 88 L40 58 L50 48 L40 38 Z" fill="#c89d5c" />
+            <path d="M46 56 L46 88 L80 88 L80 50 L70 50 L70 78 L56 78 L56 66 L68 66 L68 56 Z" fill="#c89d5c" />
+          </svg>
+          <span class="absolute inset-0 rounded-3xl border border-[#c89d5c] animate-ping opacity-40"></span>
+        </div>
+        <div class="font-brand text-xs font-bold tracking-widest text-[#c89d5c] mb-1">GAVAN • THE KEY OF LUXURY</div>
+        <h3 class="text-lg font-bold" id="callTargetName">Alpha Project Standup</h3>
+        <p class="text-xs text-[#c89d5c] mt-1" id="callStatusText">Connecting HD Board Line...</p>
+      </div>
+
+      <div class="w-full max-w-xs bg-[#241411] rounded-2xl p-4 flex items-center justify-around mb-8 border border-[#c89d5c]/30 shadow-2xl">
+        <button onclick="toggleCallMute(this)" class="w-11 h-11 rounded-xl bg-[#331c18] flex items-center justify-center hover:bg-[#442520] transition text-stone-200">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button onclick="endCall()" class="w-13 h-13 px-4 py-3 rounded-xl bg-rose-700 active:scale-95 flex items-center justify-center text-xl shadow-lg transition">
+          <i class="fa-solid fa-phone-slash"></i>
+        </button>
+        <button onclick="toggleCallSpeaker(this)" class="w-11 h-11 rounded-xl bg-[#331c18] flex items-center justify-center hover:bg-[#442520] transition text-stone-200">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="absolute top-16 left-1/2 -translate-x-1/2 bg-[#2d1815] text-[#c89d5c] text-xs px-4 py-2 rounded-lg shadow-xl transition duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2 border border-[#c89d5c]/40 font-semibold">
+      <i class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span id="toastMsg">Action completed!</span>
+    </div>
+
+  </div>
+
+  <!-- APPLICATION LOGIC & STATE HANDLING -->
+  <script>
+    // Master Authentication State
+    let masterAdminPin = "7777";
+    let currentUser = null; // { role: 'admin' | 'partner', id: '...', name: '...', phone: '...' }
+
+    // State: 5 Business Partners List with Unique Security PINs
+    let partners = [
+      { id: 'p1', name: 'Rajesh Mehta', role: 'Land Acquisition & Legal', phone: '+919825011111', pin: '5421', initials: 'RM', avatarBg: 'from-[#3a201b] to-[#20100d]', status: 'active' },
+      { id: 'p2', name: 'Amit Shah', role: 'Finance & NA Liasoning', phone: '+919825022222', pin: '6834', initials: 'AS', avatarBg: 'from-[#2d1815] to-[#1c0f0d]', status: 'active' },
+      { id: 'p3', name: 'Sanjay Patel', role: 'Civil Construction & Sites', phone: '+919825033333', pin: '7912', initials: 'SP', avatarBg: 'from-[#42221b] to-[#281410]', status: 'active' },
+      { id: 'p4', name: 'Kiran Desai', role: 'Sales & Luxury Marketing', phone: '+919825044444', pin: '3189', initials: 'KD', avatarBg: 'from-[#331c18] to-[#1e100e]', status: 'active' },
+      { id: 'p5', name: 'Nilesh Vora', role: 'Investor Relations & Banking', phone: '+919825055555', pin: '9045', initials: 'NV', avatarBg: 'from-[#2b1714] to-[#160c0a]', status: 'active' }
+    ];
+
+    // State: All 7 GAVAN Sites and Projects
+    let sites = [
+      { id: 'site_moksh', name: 'Moksh Villa', location: 'Dharampur Road, Valsad', type: 'Luxury Residential', totalLand: '12 Bungalows (NA Clear)', partnerIds: ['p1', 'p3', 'p4'] },
+      { id: 'site_arena', name: 'Gavan Arena Park', location: 'NH 48 Highway, Vapi', type: 'Commercial Hub', totalLand: '45,000 Sq.Ft Commercial', partnerIds: ['p2', 'p4', 'p5'] },
+      { id: 'site_homes', name: 'Gavan Homes', location: 'Tithal Road, Valsad', type: 'Luxury Apartments', totalLand: '3.5 Vigha Township', partnerIds: ['p1', 'p2', 'p3'] },
+      { id: 'site_mamakwada', name: 'Shivay Industrial Park Mamakwada', location: 'Mamakwada, Vapi-Daman Road', type: 'Industrial Park', totalLand: '18 Vigha Prime Land', partnerIds: ['p1', 'p2', 'p5'] },
+      { id: 'site_ahu', name: 'Shivay Industrial Park Ahu', location: 'Ahu Industrial Belt, Umargam', type: 'Industrial Park', totalLand: '25 Vigha Heavy Industrial', partnerIds: ['p1', 'p3', 'p5'] },
+      { id: 'site_anklash', name: 'Shivay Industrial Park Anklash', location: 'Anklash GIDC Bypass, Sanjan', type: 'Industrial Park', totalLand: '32 Vigha Engineering Zone', partnerIds: ['p2', 'p3', 'p5'] },
+      { id: 'site_umarsadi', name: 'Shivay Industrial Park Umarsadi', location: 'Umarsadi Coastal Road, Pardi', type: 'Industrial Park', totalLand: '40 Vigha Logistics Park', partnerIds: ['p1', 'p2', 'p4'] }
+    ];
+
+    let projects = sites.map(s => ({
+      id: s.id,
+      name: s.name,
+      partnerIds: s.partnerIds
+    }));
+
+    // Active Channel: default to Mamakwada
+    let activeChannel = { type: 'project', id: 'site_mamakwada' };
+
+    // Chat Histories for each site & 1-on-1 partner
+    let chatHistories = {
+      'site_mamakwada': [
+        { sender: 'System', senderId: 'sys', text: 'GAVAN Board: Shivay Industrial Park Mamakwada channel active.', time: '09:00 AM', isMe: false },
+        { sender: 'Rajesh Mehta', senderId: 'p1', text: 'Satishbhai broker sathe Mamakwada site par kal subah 11:00 AM meeting confirm thai gai chhe. Total 18 Vigha jamin chhe.', time: '09:15 AM', isMe: false },
+        { sender: 'Amit Shah', senderId: 'p2', text: 'Rate ₹22 Lakh per Vigha demand kare chhe. Satishbhai ne kidhu chhe 7/12 ane Village Map (Naksho) sathe laave.', time: '09:30 AM', isMe: false },
+        { sender: 'Me', senderId: 'me', text: 'Perfect. Hu ane Rajeshbhai direct site par pahochi jaishu. Title check mate documents Vault ma muki dejo.', time: '09:42 AM', isMe: true }
+      ],
+      'site_moksh': [
+        { sender: 'Kiran Desai', senderId: 'p4', text: 'Moksh Villa ma 2 bungalows nu booking token aavyu chhe. Client NRI family chhe.', time: 'Yesterday', isMe: false },
+        { sender: 'Me', senderId: 'me', text: 'Great news! Sample villa finishing ane garden landscaping full ready rakho.', time: 'Yesterday', isMe: true }
+      ],
+      'site_arena': [
+        { sender: 'Nilesh Vora', senderId: 'p5', text: 'Gavan Arena Park ma Ground floor retail space mate HDFC Bank sathe discussion chalu chhe.', time: '2 days ago', isMe: false }
+      ],
+      'site_ahu': [
+        { sender: 'Sanjay Patel', senderId: 'p3', text: 'Shivay Ahu site par boundary wall nu kaam 80% complete thayi gayu chhe.', time: 'Yesterday', isMe: false }
+      ],
+      'site_anklash': [
+        { sender: 'Amit Shah', senderId: 'p2', text: 'Anklash GIDC feeder line ane 66 KV substation no approval paper aavi gayo chhe.', time: '3 days ago', isMe: false }
+      ],
+      'site_umarsadi': [
+        { sender: 'Rajesh Mehta', senderId: 'p1', text: 'Umarsadi 40 Vigha coastal plot ma entry road width 60 feet pass thai gai chhe.', time: '4 days ago', isMe: false }
+      ],
+      'site_homes': [
+        { sender: 'Kiran Desai', senderId: 'p4', text: 'Gavan Homes Tithal Road sample flat brochure ready chhe. Partners review kari lyo.', time: '5 days ago', isMe: false }
+      ],
+      'p1': [
+        { sender: 'Rajesh Mehta', senderId: 'p1', text: 'Satishbhai no call hato. Mamakwada land ma title ekdum clear chhe, single owner pedigree chhe.', time: '10:00 AM', isMe: false }
+      ]
+    };
+
+    // State: Nested Folders in Vault
+    let folders = [
+      { id: 'f_legal', name: '7-12 & Legal Records', siteId: 'site_mamakwada', parentFolderId: null },
+      { id: 'f_maps', name: 'Site Maps & Boundaries', siteId: 'site_mamakwada', parentFolderId: null },
+      { id: 'f_na', name: 'NA Orders & Permissions', siteId: 'site_mamakwada', parentFolderId: 'f_legal' },
+      { id: 'f_moksh_arch', name: 'Architectural Blueprints', siteId: 'site_moksh', parentFolderId: null },
+      { id: 'f_arena_plan', name: 'Floor Layouts & Commercial', siteId: 'site_arena', parentFolderId: null }
+    ];
+
+    let currentVaultSite = 'all';
+    let currentVaultFolderId = null;
+
+    // State: Vault Files with real Land documents
+    let files = [
+      { id: 101, siteId: 'site_mamakwada', folderId: 'f_legal', title: 'Survey No. 142/1 & 143 Satbara 7-12', type: 'doc', date: 'Oct 28', uploader: 'Rajesh Mehta', notes: 'Clear title 18 Vigha, single owner registered pedigree.' },
+      { id: 102, siteId: 'site_mamakwada', folderId: 'f_maps', title: 'Mamakwada Land DILR Measurement Sheet', type: 'plan', date: 'Oct 29', uploader: 'Amit Shah', notes: 'Official DILR government measurement with GPS survey coordinates.' },
+      { id: 103, siteId: 'site_moksh', folderId: 'f_moksh_arch', title: 'Moksh Villa Luxury 4BHK Master Layout', type: 'plan', date: 'Oct 25', uploader: 'Kiran Desai', notes: 'Sanctioned master plan with private swimming pool & club house.' },
+      { id: 104, siteId: 'site_arena', folderId: 'f_arena_plan', title: 'Gavan Arena Park Commercial NA Order', type: 'doc', date: 'Oct 20', uploader: 'Amit Shah', notes: 'Collector office NA commercial permission approved.' },
+      { id: 105, siteId: 'site_ahu', folderId: null, title: 'Shivay Ahu Industrial Zone Contour Map', type: 'plan', date: 'Oct 22', uploader: 'Sanjay Patel', notes: 'Topographical level and drainage slope design.' },
+      { id: 106, siteId: 'site_anklash', folderId: null, title: 'Anklash GIDC Power & Water NOC', type: 'doc', date: 'Oct 15', uploader: 'Nilesh Vora', notes: 'MGVCL 500 KVA industrial electric power load clearance.' },
+      { id: 107, siteId: 'site_umarsadi', folderId: null, title: 'Umarsadi 40 Vigha Land JV Agreement', type: 'doc', date: 'Oct 12', uploader: 'Rajesh Mehta', notes: 'Executed partnership deed and profit sharing terms.' }
+    ];
+
+    // State: Land Survey Records with GPS, Rates, Brokers & Disputes
+    let landSurveys = [
+      {
+        id: 'ls_1',
+        siteId: 'site_mamakwada',
+        siteName: 'Shivay Industrial Park Mamakwada',
+        landType: 'Industrial Zone (ઔદ્યોગિક)',
+        location: 'Mamakwada, Highway Touch Survey No. 142 (GPS: 20.3892, 72.9106)',
+        mapUrl: 'https://maps.google.com/?q=20.3892,72.9106',
+        area: '18 Vigha (approx. 43,560 Sq.Yd)',
+        rate: '₹22,00,000 / Vigha (Negotiable)',
+        hasBroker: true,
+        brokerName: 'Satishbhai Parmar',
+        brokerPhone: '+919879554321',
+        issues: 'Clear Title, No litigation. 40ft road approach verified.',
+        docTitle: '7-12 & Pedigree Copy',
+        uploader: 'Rajesh Mehta',
+        date: 'Oct 29, 2026'
+      },
+      {
+        id: 'ls_2',
+        siteId: 'site_ahu',
+        siteName: 'Shivay Industrial Park Ahu',
+        landType: 'Agriculture (ખેતીની જમીન)',
+        location: 'Ahu GIDC Extension, Near Railway Line (GPS: 20.2145, 72.7681)',
+        mapUrl: 'https://maps.google.com/?q=20.2145,72.7681',
+        area: '25 Vigha Contiguous',
+        rate: '₹17,50,000 / Vigha',
+        hasBroker: true,
+        brokerName: 'Dineshbhai Patel',
+        brokerPhone: '+919825167890',
+        issues: 'HT line passes on edge, 15 meter corridor clearance required.',
+        docTitle: 'Ahu Survey Map',
+        uploader: 'Sanjay Patel',
+        date: 'Oct 27, 2026'
+      },
+      {
+        id: 'ls_3',
+        siteId: 'site_umarsadi',
+        siteName: 'Shivay Industrial Park Umarsadi',
+        landType: 'NA Eligible (NA પાત્ર)',
+        location: 'Umarsadi Coastal Highway Touch (GPS: 20.5210, 72.9340)',
+        mapUrl: 'https://maps.google.com/?q=20.5210,72.9340',
+        area: '40 Vigha Waterfront Parcel',
+        rate: '₹14,00,000 / Vigha',
+        hasBroker: false,
+        brokerName: '',
+        brokerPhone: '',
+        issues: 'Direct farmer group deal. CRZ boundary clearance verified.',
+        docTitle: 'Coastal Authority NOC draft',
+        uploader: 'Amit Shah',
+        date: 'Oct 21, 2026'
+      }
+    ];
+
+    // State: Scheduled Meetings
+    let scheduledMeetings = [
+      {
+        id: 'm_1',
+        title: 'Meeting Satishbhai sathe Mamakwada land jova mate',
+        siteId: 'site_mamakwada',
+        siteName: 'Shivay Industrial Park Mamakwada',
+        date: 'Tomorrow (Oct 31, 2026)',
+        time: '11:00 AM',
+        person: 'Satishbhai (Broker) & Rajesh Mehta',
+        status: 'Scheduled'
+      },
+      {
+        id: 'm_2',
+        title: 'Moksh Villa Interior Contractor Finalization',
+        siteId: 'site_moksh',
+        siteName: 'Moksh Villa',
+        date: 'Nov 01, 2026',
+        time: '03:30 PM',
+        person: 'Kiran Desai & Sanjay Patel',
+        status: 'Confirmed'
+      },
+      {
+        id: 'm_3',
+        title: 'Gavan Arena Park Banking Syndication with HDFC',
+        siteId: 'site_arena',
+        siteName: 'Gavan Arena Park',
+        date: 'Nov 03, 2026',
+        time: '04:00 PM',
+        person: 'Nilesh Vora & Amit Shah',
+        status: 'Pending'
+      }
+    ];
+
+    // State: Daily Business Tasks
+    let tasks = [
+      { id: 1, projectId: 'site_mamakwada', title: 'Satishbhai sathe Mamakwada land demarcation & 7-12 verification', assignee: 'Me', priority: 'Urgent', time: 'Tomorrow 11:00 AM', done: false },
+      { id: 2, projectId: 'site_moksh', title: 'Moksh Villa sample bungalow interior finish check karvu', assignee: 'Kiran Desai', priority: 'High', time: 'Today 5:00 PM', done: false },
+      { id: 3, projectId: 'site_arena', title: 'Commercial NA permission draft review with Amitbhai', assignee: 'Amit Shah', priority: 'Normal', time: 'Nov 02', done: true },
+      { id: 4, projectId: 'site_ahu', title: 'Ahu Industrial 66 KV power line distance survey', assignee: 'Sanjay Patel', priority: 'High', time: 'Nov 03', done: false },
+      { id: 5, projectId: 'site_anklash', title: 'Anklash GIDC entry gate fabrication order confirmation', assignee: 'Sanjay Patel', priority: 'Normal', time: 'Nov 04', done: false }
+    ];
+
+    let currentFilter = 'all';
+    let currentSitesSubTab = 'sites';
+
+    // State: Leads, Investors & Site Visits CRM
+    let currentLeadFilter = 'all';
+    let leads = [
+      {
+        id: 'ld_1',
+        name: 'Ketanbhai Shah (NRI Investor)',
+        phone: '+919825199887',
+        type: 'High Networth Investor',
+        siteId: 'site_moksh',
+        siteName: 'Moksh Villa',
+        budget: '₹2.8 Cr (Luxury Villa)',
+        assignedTo: 'Kiran Desai',
+        assignedToId: 'p4',
+        status: 'Visit Scheduled',
+        visitTime: 'Tomorrow 04:30 PM',
+        notes: 'Interested in Corner 4BHK with private pool. Sent brochure via WhatsApp.',
+        history: ['Oct 28: Lead received', 'Oct 29: Video walkthrough shared', 'Oct 29: Site visit confirmed for tomorrow']
+      },
+      {
+        id: 'ld_2',
+        name: 'Sunil Aggarwal (Pharma Logistics)',
+        phone: '+919898011223',
+        type: 'Corporate / JV',
+        siteId: 'site_mamakwada',
+        siteName: 'Shivay Industrial Park Mamakwada',
+        budget: '₹5.5 Cr (10 Vigha plot)',
+        assignedTo: 'Rajesh Mehta',
+        assignedToId: 'p1',
+        status: 'Negotiation',
+        visitTime: 'Visit Completed Yesterday',
+        notes: 'Visited Mamakwada highway parcel. Demanding 60ft frontage access.',
+        history: ['Oct 26: Transferred from Nilesh Vora to Rajesh Mehta', 'Oct 28: Joint inspection done on site']
+      },
+      {
+        id: 'ld_3',
+        name: 'Pravinbhai Ahir (Local Land Broker)',
+        phone: '+919824198765',
+        type: 'Broker Reference',
+        siteId: 'site_ahu',
+        siteName: 'Shivay Industrial Park Ahu',
+        budget: '₹1.8 Cr Buyer Ready',
+        assignedTo: 'Sanjay Patel',
+        assignedToId: 'p3',
+        status: 'Visit Scheduled',
+        visitTime: 'Nov 01, 11:30 AM',
+        notes: 'Bringing chemical warehousing client. Wants to verify boundary fencing.',
+        history: ['Oct 29: Broker call logged']
+      },
+      {
+        id: 'ld_4',
+        name: 'HDFC Retail Banking Branch Head',
+        phone: '+919825088776',
+        type: 'Corporate / JV',
+        siteId: 'site_arena',
+        siteName: 'Gavan Arena Park',
+        budget: '₹1.5 Lakh/Month Lease',
+        assignedTo: 'Nilesh Vora',
+        assignedToId: 'p5',
+        status: 'Token Received',
+        visitTime: 'Deal Finalized',
+        notes: 'Ground floor 3500 Sq.Ft retail space confirmed for 9 years lease.',
+        history: ['Oct 20: Site visit done', 'Oct 27: Token LOI exchanged']
+      },
+      {
+        id: 'ld_5',
+        name: 'Maheshbhai Desai',
+        phone: '+919825544332',
+        type: 'Direct Customer',
+        siteId: 'site_homes',
+        siteName: 'Gavan Homes',
+        budget: '₹85 Lakh 3BHK',
+        assignedTo: 'Amit Shah',
+        assignedToId: 'p2',
+        status: 'Closed Deal',
+        visitTime: 'Registry Completed',
+        notes: 'Full payment received, sale deed registered.',
+        history: ['Oct 15: Visit done', 'Oct 25: Registered']
+      }
+    ];
+
+    // State: Urgent Land Buying Requirements
+    // ================= AUTHENTICATION LOGIC =================
+    function setAuthMode(mode) {
+      const partnerForm = document.getElementById('partnerLoginForm');
+      const adminForm = document.getElementById('adminLoginForm');
+      const partnerTab = document.getElementById('authTabPartner');
+      const adminTab = document.getElementById('authTabAdmin');
+
+      if (mode === 'admin') {
+        partnerForm.classList.add('hidden');
+        adminForm.classList.remove('hidden');
+        adminTab.className = "flex-1 py-2 rounded-lg font-bold text-center transition bg-[#c89d5c] text-[#2d1815] shadow";
+        partnerTab.className = "flex-1 py-2 rounded-lg font-semibold text-center text-stone-300 hover:text-white transition";
+      } else {
+        adminForm.classList.add('hidden');
+        partnerForm.classList.remove('hidden');
+        partnerTab.className = "flex-1 py-2 rounded-lg font-bold text-center transition bg-[#c89d5c] text-[#2d1815] shadow";
+        adminTab.className = "flex-1 py-2 rounded-lg font-semibold text-center text-stone-300 hover:text-white transition";
+      }
+    }
+
+    function loginAsPartner() {
+      const rawPhone = document.getElementById('partnerLoginPhone').value.trim();
+      const pin = document.getElementById('partnerLoginPin').value.trim();
+
+      if (!rawPhone || !pin) {
+        showToast("કૃપા કરીને મોબાઇલ નંબર અને સિક્યુરિટી પિન દાખલ કરો!");
+        return;
+      }
+
+      const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+      const partner = partners.find(p => {
+        const pClean = p.phone.replace(/[^0-9]/g, '');
+        const phoneMatch = pClean.endsWith(cleanPhone) || cleanPhone.endsWith(pClean.slice(-10));
+        return phoneMatch && p.pin === pin;
+      });
+
+      if (!partner) {
+        showToast("ખોટો મોબાઇલ નંબર અથવા સિક્યુરિટી પિન! એડમિનનો સંપર્ક કરો.");
+        return;
+      }
+
+      if (partner.status === 'blocked') {
+        showToast("આ પાર્ટનર એકાઉન્ટ નિષ્ક્રિય છે. એડમિનનો સંપર્ક કરો.");
+        return;
+      }
+
+      currentUser = {
+        role: 'partner',
+        id: partner.id,
+        name: partner.name,
+        phone: partner.phone
+      };
+
+      completeLoginSuccess(partner.name);
+    }
+
+    function loginAsAdmin() {
+      const pin = document.getElementById('adminPasscode').value.trim();
+      if (!pin) {
+        showToast("કૃપા કરીને માસ્ટર એડમિન પિન દાખલ કરો!");
+        return;
+      }
+
+      if (pin === masterAdminPin || pin === "7777" || pin === "9999") {
+        currentUser = {
+          role: 'admin',
+          id: 'admin_master',
+          name: 'Master Admin (Owner)',
+          phone: '+919999999999'
+        };
+        completeLoginSuccess("Master Admin (Owner)");
+      } else {
+        showToast("ખોટો એડમિન પાસકોડ! ડિફોલ્ટ PIN: 7777");
+      }
+    }
+
+    function completeLoginSuccess(displayName) {
+      document.getElementById('authOverlay').classList.add('hidden');
+      updateCurrentUserUI();
+      showToast(`સ્વાગત છે, ${displayName}! Workspace સક્રિય છે.`);
+      renderDashboard();
+    }
+
+    function logoutCurrentUser() {
+      currentUser = null;
+      document.getElementById('partnerLoginPin').value = "";
+      document.getElementById('adminPasscode').value = "";
+      document.getElementById('authOverlay').classList.remove('hidden');
+      showToast("સફળતાપૂર્વક લૉગઆઉટ થઈ ગયું.");
+    }
+
+    function updateCurrentUserUI() {
+      const sessionCard = document.getElementById('currentUserSessionCard');
+      if (sessionCard && currentUser) {
+        const isAdmin = currentUser.role === 'admin';
+        sessionCard.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl ${isAdmin ? 'bg-[#2d1815] text-[#c89d5c]' : 'bg-emerald-800 text-white'} flex items-center justify-center font-bold text-xs shadow-xs">
+              <i class="${isAdmin ? 'fa-solid fa-crown' : 'fa-solid fa-user-check'}"></i>
+            </div>
+            <div>
+              <span class="text-[9px] uppercase font-bold tracking-wider ${isAdmin ? 'text-[#996515]' : 'text-emerald-700'}">
+                Active Session (${isAdmin ? 'Master Administrator' : 'Verified Partner'})
+              </span>
+              <p class="text-xs font-bold text-stone-900">${escapeHtml(currentUser.name)}</p>
+            </div>
+          </div>
+          <button onclick="logoutCurrentUser()" class="px-2.5 py-1 bg-white hover:bg-stone-100 text-rose-700 rounded-lg text-[10px] font-bold border border-rose-200">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </button>
+        `;
+      }
+    }
+
+    // ================= UNIQUE PIN MANAGER MODAL (ADMIN ONLY) =================
+    function openAdminSecurityModal() {
+      if (currentUser && currentUser.role !== 'admin') {
+        const pass = prompt("સિક્યુરિટી મેનેજર ખોલવા માટે Master Admin PIN દાખલ કરો (Default: 7777):");
+        if (pass !== masterAdminPin && pass !== "7777" && pass !== "9999") {
+          showToast("ખોટો એડમિન પાસકોડ! ફક્ત એડમિન એક્સેસ કરી શકે છે.");
+          return;
+        }
+      }
+
+      const displayPin = document.getElementById('currentMasterPinDisplay');
+      if (displayPin) displayPin.textContent = masterAdminPin;
+
+      renderPartnerSecurityList();
+      document.getElementById('adminSecurityModal').classList.remove('hidden');
+    }
+
+    function renderPartnerSecurityList() {
+      const container = document.getElementById('partnerSecurityList');
+      if (!container) return;
+      container.innerHTML = "";
+
+      partners.forEach(pt => {
+        const card = document.createElement('div');
+        card.className = "bg-stone-50 p-3 rounded-2xl border border-stone-200 flex items-center justify-between text-xs";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-stone-900">${escapeHtml(pt.name)}</span>
+              <span class="text-[9px] px-1.5 py-0.2 rounded font-bold ${pt.status === 'active' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                ${pt.status.toUpperCase()}
+              </span>
+            </div>
+            <p class="text-[10px] text-stone-500">${pt.phone} • ${escapeHtml(pt.role)}</p>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="text-[10px] text-stone-500">Unique Login PIN:</span>
+              <span class="font-mono font-bold text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded border border-amber-300">
+                ${pt.pin}
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button onclick="shareLoginPinViaWhatsApp('${pt.id}')" title="Share PIN via WhatsApp" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-[10px] flex items-center gap-1 shadow-xs">
+              <i class="fa-brands fa-whatsapp text-xs"></i> Share PIN
+            </button>
+            <button onclick="regeneratePartnerPin('${pt.id}')" title="Generate New PIN" class="w-7 h-7 bg-white hover:bg-stone-200 text-stone-700 rounded-lg flex items-center justify-center border border-stone-300">
+              <i class="fa-solid fa-arrows-rotate text-[10px]"></i>
+            </button>
+            <button onclick="togglePartnerBlock('${pt.id}')" title="Toggle Access" class="w-7 h-7 bg-white hover:bg-stone-200 text-rose-600 rounded-lg flex items-center justify-center border border-stone-300">
+              <i class="fa-solid ${pt.status === 'active' ? 'fa-ban' : 'fa-check'} text-[10px]"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function generateUniquePin() {
+      return Math.floor(1000 + Math.random() * 9000).toString();
+    }
+
+    function regeneratePartnerPin(partnerId) {
+      const pt = partners.find(p => p.id === partnerId);
+      if (!pt) return;
+      pt.pin = generateUniquePin();
+      renderPartnerSecurityList();
+      showToast(`${pt.name} માટે નવો પિન [${pt.pin}] જનરેટ થયો!`);
+    }
+
+    function togglePartnerBlock(partnerId) {
+      const pt = partners.find(p => p.id === partnerId);
+      if (!pt) return;
+      pt.status = pt.status === 'active' ? 'blocked' : 'active';
+      renderPartnerSecurityList();
+      showToast(`${pt.name} નું એક્સેસ ${pt.status === 'active' ? 'ચાલુ' : 'બંધ'} કર્યું.`);
+    }
+
+    function changeMasterAdminPin() {
+      const newPin = prompt("નવો Master Admin PIN દાખલ કરો (4 to 8 digits):", masterAdminPin);
+      if (newPin && newPin.trim().length >= 4) {
+        masterAdminPin = newPin.trim();
+        const displayPin = document.getElementById('currentMasterPinDisplay');
+        if (displayPin) displayPin.textContent = masterAdminPin;
+        showToast("Master Admin Passcode સફળતાપૂર્વક અપડેટ થયો!");
+      } else if (newPin) {
+        showToast("PIN ઓછામાં ઓછો 4 આંકડાનો હોવો જોઈએ!");
+      }
+    }
+
+    function shareLoginPinViaWhatsApp(partnerId) {
+      const pt = partners.find(p => p.id === partnerId);
+      if (!pt) return;
+
+      const appUrl = window.location.href;
+      const message = `👑 *GAVAN - The Key of Luxury*\nPartner Workspace Access\n\nનમસ્તે ${pt.name},\nતમારું પાર્ટનર પોર્ટલ એક્સેસ એક્ટિવ થઈ ગયું છે.\n\n📱 *Mobile:* ${pt.phone}\n🔐 *Your Unique Security PIN:* *${pt.pin}*\n\n👉 *Login Link:* ${appUrl}\n\nકૃપા કરીને આ ગુપ્ત પિન દાખલ કરીને લૉગિન કરો.`;
+      
+      const cleanPhone = pt.phone.replace(/[^0-9]/g, '');
+      const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, '_blank');
+      showToast(`${pt.name} ને WhatsApp પર લૉગિન પિન શેર કર્યો!`);
+    }
+
+    // Override Save Partner to generate Unique PIN automatically
+    function saveNewPartner() {
+      const name = document.getElementById('newPartnerName').value.trim();
+      const role = document.getElementById('newPartnerRole').value.trim() || 'GAVAN Partner';
+      const phone = document.getElementById('newPartnerPhone').value.trim() || '+91 98765 00000';
+
+      if (!name) {
+        showToast("Please enter partner name!");
+        return;
+      }
+
+      const words = name.split(" ");
+      let initials = "GP";
+      if (words.length >= 2) {
+        initials = (words[0][0] + words[1][0]).toUpperCase();
+      } else if (words.length === 1 && words[0].length > 0) {
+        initials = words[0].substring(0, 2).toUpperCase();
+      }
+
+      const newPin = generateUniquePin();
+      const newId = `p_${Date.now()}`;
+      
+      const newPartnerObj = {
+        id: newId,
+        name,
+        role,
+        phone,
+        pin: newPin,
+        status: 'active',
+        initials,
+        avatarBg: 'from-[#3a201b] to-[#20100d]'
+      };
+
+      partners.push(newPartnerObj);
+
+      document.getElementById('newPartnerName').value = "";
+      document.getElementById('newPartnerRole').value = "";
+      document.getElementById('newPartnerPhone').value = "";
+      closeModal('addPartnerModal');
+      renderPartnerDirectory();
+      renderGroupSelectorBar();
+
+      // Open security prompt to share pin
+      const wantShare = confirm(`પાર્ટનર "${name}" સેવ થયો!\nતેમનો Unique PIN: [${newPin}] છે.\n\nશું તમે અત્યારે જ આ વિગતો ${name} ને WhatsApp પર મોકલવા માંગો છો?`);
+      if (wantShare) {
+        shareLoginPinViaWhatsApp(newId);
+      } else {
+        showToast(`Partner added! Security PIN: ${newPin}`);
+      }
+    }
+
+    // ================= LEADS & SITE VISITS CRM FUNCTIONS =================
+    function filterLeads(status) {
+      currentLeadFilter = status;
+      document.querySelectorAll('.lead-filter-btn').forEach(b => {
+        b.className = "lead-filter-btn px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 shrink-0";
+      });
+      event.target.className = "lead-filter-btn px-2.5 py-1 bg-[#2d1815] text-[#c89d5c] font-bold rounded-lg shrink-0";
+      renderLeads();
+    }
+
+    function renderLeads() {
+      const container = document.getElementById('leadsListContainer');
+      if (!container) return;
+      container.innerHTML = "";
+
+      let filtered = leads;
+      if (currentLeadFilter === 'transferred') {
+        filtered = leads.filter(l => l.history && l.history.some(h => h.includes('Transferred')));
+      } else if (currentLeadFilter !== 'all') {
+        filtered = leads.filter(l => l.status === currentLeadFilter);
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-stone-400 text-xs">
+            <i class="fa-solid fa-user-slash text-3xl mb-2 text-stone-300"></i>
+            <p>No leads found under "${currentLeadFilter}".</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(lead => {
+        let statusBadge = "bg-blue-100 text-blue-800 border-blue-200";
+        if (lead.status === 'Closed Deal') statusBadge = "bg-emerald-100 text-emerald-800 border-emerald-200 font-bold";
+        if (lead.status === 'Token Received') statusBadge = "bg-amber-100 text-amber-800 border-amber-200 font-bold";
+        if (lead.status === 'Negotiation') statusBadge = "bg-purple-100 text-purple-800 border-purple-200";
+        if (lead.status === 'Cold / On Hold') statusBadge = "bg-stone-200 text-stone-700 border-stone-300";
+
+        const card = document.createElement('div');
+        card.className = "bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs space-y-2.5 text-xs";
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-bold bg-stone-100 text-stone-700 border border-stone-200">
+                ${lead.type}
+              </span>
+              <h4 class="font-bold text-stone-900 text-xs mt-1 leading-snug">${escapeHtml(lead.name)}</h4>
+            </div>
+            <button onclick="openUpdateLeadStatusModal('${lead.id}')" class="px-2 py-0.5 rounded-full text-[10px] font-bold border ${statusBadge} flex items-center gap-1 active:scale-95 transition">
+              <span>${lead.status}</span>
+              <i class="fa-solid fa-pen text-[8px]"></i>
+            </button>
+          </div>
+
+          <div class="bg-stone-50 p-2 rounded-xl border border-stone-200/80 space-y-1 text-[11px]">
+            <div class="flex items-center justify-between">
+              <span class="text-stone-500">Target Site:</span>
+              <b class="text-[#2d1815]">${escapeHtml(lead.siteName)}</b>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-stone-500">Budget / Need:</span>
+              <b class="text-emerald-700 font-bold">${escapeHtml(lead.budget)}</b>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-stone-500">Visit Schedule:</span>
+              <b class="text-stone-800">${escapeHtml(lead.visitTime)}</b>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] pt-1">
+            <div class="flex items-center gap-1.5">
+              <span class="w-6 h-6 rounded-full bg-[#2d1815] text-[#c89d5c] flex items-center justify-center font-bold text-[9px]">
+                ${lead.assignedTo.split(' ')[0][0] || 'P'}
+              </span>
+              <div>
+                <span class="text-[9px] text-stone-400 block leading-none">Handling Partner:</span>
+                <span class="font-bold text-stone-800 text-[11px]">${escapeHtml(lead.assignedTo)}</span>
+              </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex items-center gap-1.5">
+              <a href="tel:${lead.phone}" class="w-7 h-7 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 flex items-center justify-center transition" title="Direct Phone Call">
+                <i class="fa-solid fa-phone text-[10px]"></i>
+              </a>
+              <a href="https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}" target="_blank" class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 flex items-center justify-center transition" title="WhatsApp Message">
+                <i class="fa-brands fa-whatsapp text-xs"></i>
+              </a>
+              <button onclick="openTransferLeadModal('${lead.id}')" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 rounded-lg text-[10px] font-bold flex items-center gap-1" title="Transfer lead to another partner">
+                <i class="fa-solid fa-right-left text-[9px] text-[#c89d5c]"></i> Transfer
+              </button>
+            </div>
+          </div>
+
+          <p class="text-[10px] text-stone-500 bg-amber-50/50 p-1.5 rounded-lg border border-amber-200/40">
+            <i class="fa-regular fa-comment-dots text-[#c89d5c] mr-1"></i>${escapeHtml(lead.notes)}
+          </p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function openNewLeadModal() {
+      const siteSelect = document.getElementById('leadSiteSelect');
+      siteSelect.innerHTML = "";
+      sites.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = `${s.name} (${s.type})`;
+        siteSelect.appendChild(opt);
+      });
+
+      const partnerSelect = document.getElementById('leadAssigneeSelect');
+      partnerSelect.innerHTML = `<option value="Me|me">Me (Self)</option>`;
+      partners.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = `${p.name}|${p.id}`;
+        opt.textContent = `${p.name} (${p.role.split(' ')[0]})`;
+        partnerSelect.appendChild(opt);
+      });
+
+      document.getElementById('leadClientName').value = "";
+      document.getElementById('leadClientPhone').value = "";
+      document.getElementById('leadBudget').value = "";
+      document.getElementById('leadVisitTime').value = "";
+
+      document.getElementById('newLeadModal').classList.remove('hidden');
+    }
+
+    function saveNewLead() {
+      const name = document.getElementById('leadClientName').value.trim();
+      const type = document.getElementById('leadClientType').value;
+      const phone = document.getElementById('leadClientPhone').value.trim() || '+91 98250 00000';
+      const siteId = document.getElementById('leadSiteSelect').value;
+      const site = sites.find(s => s.id === siteId);
+      const budget = document.getElementById('leadBudget').value.trim() || 'Budget open';
+      const assigneeVal = document.getElementById('leadAssigneeSelect').value;
+      const [assigneeName, assigneeId] = assigneeVal.split('|');
+      const status = document.getElementById('leadInitialStatus').value;
+      const visitTime = document.getElementById('leadVisitTime').value.trim() || 'Date to be fixed';
+
+      if (!name) {
+        showToast("Please enter client/lead name!");
+        return;
+      }
+
+      const newLead = {
+        id: `ld_${Date.now()}`,
+        name,
+        type,
+        phone,
+        siteId,
+        siteName: site ? site.name : 'Gavan Site',
+        budget,
+        assignedTo: assigneeName,
+        assignedToId: assigneeId,
+        status,
+        visitTime,
+        notes: `New lead created by partner. Initial status: ${status}`,
+        history: [`${new Date().toLocaleDateString()}: Created and assigned to ${assigneeName}`]
+      };
+
+      leads.unshift(newLead);
+      closeModal('newLeadModal');
+      renderLeads();
+      renderDashboard();
+
+      // Broadcast lead in the site group chat
+      if (!chatHistories[siteId]) chatHistories[siteId] = [];
+      chatHistories[siteId].push({
+        sender: 'CRM System',
+        senderId: 'sys',
+        text: `💼 [NEW LEAD / VISIT LOGGED]\nClient: ${name} (${type})\nSite: ${site ? site.name : ''}\nBudget: ${budget}\nVisit: ${visitTime}\nAssigned To: ${assigneeName}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isMe: false
+      });
+
+      showToast(`Lead "${name}" saved & assigned to ${assigneeName}!`);
+    }
+
+    function openTransferLeadModal(leadId) {
+      const lead = leads.find(l => l.id === leadId);
+      if (!lead) return;
+
+      document.getElementById('transferLeadId').value = leadId;
+      document.getElementById('transferLeadTitle').textContent = `${lead.name} (${lead.siteName})`;
+      
+      const select = document.getElementById('transferTargetPartner');
+      select.innerHTML = "";
+      partners.forEach(p => {
+        if (p.name !== lead.assignedTo) {
+          const opt = document.createElement('option');
+          opt.value = `${p.name}|${p.id}`;
+          opt.textContent = `${p.name} - ${p.role}`;
+          select.appendChild(opt);
+        }
+      });
+
+      document.getElementById('transferRemarks').value = "";
+      document.getElementById('transferLeadModal').classList.remove('hidden');
+    }
+
+    function confirmLeadTransfer() {
+      const leadId = document.getElementById('transferLeadId').value;
+      const lead = leads.find(l => l.id === leadId);
+      const targetVal = document.getElementById('transferTargetPartner').value;
+      const [newName, newId] = targetVal.split('|');
+      const remarks = document.getElementById('transferRemarks').value.trim();
+
+      if (!lead) return;
+
+      const oldAssignee = lead.assignedTo;
+      lead.assignedTo = newName;
+      lead.assignedToId = newId;
+      lead.notes = `Transferred from ${oldAssignee} to ${newName}. Instructions: ${remarks || 'None'}`;
+      if (!lead.history) lead.history = [];
+      lead.history.push(`${new Date().toLocaleDateString()}: Transferred from ${oldAssignee} to ${newName}`);
+
+      closeModal('transferLeadModal');
+      renderLeads();
+
+      // Post update in target site's chat
+      if (lead.siteId && chatHistories[lead.siteId]) {
+        chatHistories[lead.siteId].push({
+          sender: 'Lead Handoff',
+          senderId: 'sys',
+          text: `🤝 Lead Transfer: "${lead.name}" is now delegated from ${oldAssignee} to ${newName}.\nRemarks: ${remarks || 'Please take forward on site.'}`,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          isMe: false
+        });
+      }
+
+      showToast(`Lead transferred to ${newName}! Notification sent.`);
+    }
+
+    function openUpdateLeadStatusModal(leadId) {
+      const lead = leads.find(l => l.id === leadId);
+      if (!lead) return;
+
+      document.getElementById('statusLeadId').value = leadId;
+      document.getElementById('leadNewStatusSelect').value = lead.status;
+      document.getElementById('leadStatusRemark').value = "";
+      document.getElementById('updateLeadStatusModal').classList.remove('hidden');
+    }
+
+    function saveLeadStatusUpdate() {
+      const leadId = document.getElementById('statusLeadId').value;
+      const newStatus = document.getElementById('leadNewStatusSelect').value;
+      const remark = document.getElementById('leadStatusRemark').value.trim();
+      const lead = leads.find(l => l.id === leadId);
+
+      if (!lead) return;
+
+      lead.status = newStatus;
+      if (remark) {
+        lead.notes = `${remark} (Status changed to ${newStatus})`;
+      }
+      if (!lead.history) lead.history = [];
+      lead.history.push(`${new Date().toLocaleDateString()}: Status marked as ${newStatus}`);
+
+      closeModal('updateLeadStatusModal');
+      renderLeads();
+      renderDashboard();
+      showToast(`Status updated to "${newStatus}"!`);
+    }
+
+    // ================= URGENT LAND BUYING REQUIREMENTS FUNCTIONS =================
+    function renderLandRequirements() {
+      const container = document.getElementById('landReqContainer');
+      if (!container) return;
+      container.innerHTML = "";
+
+      if (landRequirements.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-stone-400 text-xs">
+            <i class="fa-solid fa-bullhorn text-3xl mb-2 text-stone-300"></i>
+            <p>No active land requirements posted yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      landRequirements.forEach(req => {
+        const card = document.createElement('div');
+        card.className = "bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs space-y-2.5 text-xs";
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-[9px] uppercase font-bold px-2 py-0.5 rounded-full bg-rose-700 text-white flex items-center gap-1 shadow-xs">
+              <i class="fa-solid fa-fire text-[8px]"></i> ${escapeHtml(req.deadline)}
+            </span>
+            <span class="text-[10px] font-bold text-rose-900 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200">
+              ${escapeHtml(req.status)}
+            </span>
+          </div>
+
+          <h3 class="font-bold text-stone-900 text-xs leading-snug">${escapeHtml(req.title)}</h3>
+
+          <div class="bg-stone-50 p-2.5 rounded-xl border border-stone-200/80 grid grid-cols-2 gap-2 text-[11px]">
+            <div><span class="text-stone-400">Target Area:</span> <b class="text-stone-800">${escapeHtml(req.size)}</b></div>
+            <div><span class="text-stone-400">Budget:</span> <b class="text-emerald-700 font-bold">${escapeHtml(req.budget)}</b></div>
+            <div class="col-span-2"><span class="text-stone-400">Location:</span> <b class="text-[#2d1815]">${escapeHtml(req.location)}</b></div>
+          </div>
+
+          <div class="text-[11px] bg-amber-50/60 p-2 rounded-xl border border-amber-200/50 space-y-1">
+            <div class="flex items-center justify-between">
+              <span>Client: <b>${escapeHtml(req.client)}</b></span>
+              <span>Task For: <b class="text-[#2d1815]">${escapeHtml(req.assignee)}</b></span>
+            </div>
+            <p class="text-[10px] text-stone-500"><i class="fa-solid fa-circle-info text-[#c89d5c] mr-1"></i>${escapeHtml(req.notes)}</p>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-[10px] text-stone-400">Posted by ${escapeHtml(req.postedBy)}</span>
+            <button onclick="fulfillLandRequirementWithInspection('${req.id}')" class="px-3 py-1.5 bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 rounded-xl font-bold text-[11px] flex items-center gap-1.5 shadow-sm active:scale-95 transition">
+              <i class="fa-solid fa-location-crosshairs text-amber-400"></i> Go Inspect Land (Auto GPS)
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function openNewLandReqModal() {
+      const select = document.getElementById('reqAssignee');
+      select.innerHTML = `<option value="All Partners">All Partners (બધા પાર્ટનર્સ)</option>`;
+      partners.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.name;
+        opt.textContent = `${p.name} (${p.role.split(' ')[0]})`;
+        select.appendChild(opt);
+      });
+
+      document.getElementById('reqTitle').value = "";
+      document.getElementById('reqLocation').value = "";
+      document.getElementById('reqSize').value = "";
+      document.getElementById('reqBudget').value = "";
+      document.getElementById('reqDeadline').value = "2 Days Urgent ⚡";
+      document.getElementById('reqClient').value = "";
+      document.getElementById('reqNotes').value = "";
+
+      document.getElementById('newLandReqModal').classList.remove('hidden');
+    }
+
+    function saveLandRequirement() {
+      const title = document.getElementById('reqTitle').value.trim();
+      const location = document.getElementById('reqLocation').value.trim() || 'Gujarat Industrial Belt';
+      const size = document.getElementById('reqSize').value.trim() || 'As specified';
+      const budget = document.getElementById('reqBudget').value.trim() || 'Market Rate';
+      const deadline = document.getElementById('reqDeadline').value.trim() || 'Urgent ⚡';
+      const assignee = document.getElementById('reqAssignee').value;
+      const client = document.getElementById('reqClient').value.trim() || 'Industrial Investor';
+      const notes = document.getElementById('reqNotes').value.trim() || 'Client ready with token payment.';
+
+      if (!title) {
+        showToast("Please enter requirement title!");
+        return;
+      }
+
+      const newReq = {
+        id: `req_${Date.now()}`,
+        title,
+        location,
+        size,
+        budget,
+        deadline,
+        assignee,
+        client,
+        postedBy: 'Me',
+        status: 'Pending Search',
+        notes,
+        date: 'Today'
+      };
+
+      landRequirements.unshift(newReq);
+
+      // Automatically create a high-priority business task for this requirement
+      tasks.unshift({
+        id: Date.now(),
+        projectId: 'site_ahu',
+        title: `URGENT LAND REQ: ${size} in ${location} for ${client} (${deadline})`,
+        assignee: assignee === 'All Partners' ? 'All Partners' : assignee,
+        priority: 'Urgent',
+        time: deadline,
+        done: false
+      });
+
+      // Post broadcast alert to active project/group chat
+      const alertMsg = `🚨 [URGENT LAND REQUIREMENT BROADCAST]\nTarget: ${size} in ${location}\nDeadline: ${deadline}\nBudget: ${budget}\nClient: ${client}\nTask Assigned: ${assignee}\nNotes: ${notes}\n👉 Please check contacts & inspect options.`;
+      const targetChat = activeChannel.id || 'site_ahu';
+      if (!chatHistories[targetChat]) chatHistories[targetChat] = [];
+      chatHistories[targetChat].push({
+        sender: 'Me',
+        senderId: 'me',
+        text: alertMsg,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isMe: true
+      });
+
+      closeModal('newLandReqModal');
+      renderLandRequirements();
+      renderDashboard();
+      renderTasks();
+      showToast("Urgent Land Requirement Broadcasted to Partners!");
+    }
+
+    // Direct link from Land Requirement to GPS Land Inspection tool
+    function fulfillLandRequirementWithInspection(reqId) {
+      const req = landRequirements.find(r => r.id === reqId);
+      if (!req) return;
+
+      // Open Land Survey modal pre-filled with this requirement context
+      openSurveyForSite();
+
+      // Prepopulate survey fields from requirement
+      const areaInput = document.getElementById('surveyArea');
+      const rateInput = document.getElementById('surveyRate');
+      const issuesInput = document.getElementById('surveyIssues');
+
+      if (areaInput) areaInput.value = req.size;
+      if (rateInput) rateInput.value = req.budget;
+      if (issuesInput) issuesInput.value = `Fulfilling urgent client requirement: ${req.client} (${req.title})`;
+
+      showToast(`Opening GPS Land Survey for: ${req.title}`);
+    }
+
+    // ================= TAB SWITCHING =================
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-page').forEach(page => page.classList.add('hidden'));
+      const activePage = document.getElementById(`tab-${tabId}`);
+      if (activePage) activePage.classList.remove('hidden');
+
+      // Update Bottom Nav Styling
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('text-[#2d1815]');
+        item.classList.add('text-stone-400');
+        const icon = item.querySelector('i');
+        if (icon) icon.classList.remove('text-[#c89d5c]');
+        const text = item.querySelector('span:not(.bg-rose-600):not(.bg-blue-600):not(.bg-[#2d1815])');
+        if (text) {
+          text.classList.remove('font-bold', 'text-[#2d1815]');
+          text.classList.add('font-medium');
+        }
+      });
+
+      const activeNav = document.getElementById(`nav-${tabId}`);
+      if (activeNav) {
+        activeNav.classList.remove('text-stone-400');
+        activeNav.classList.add('text-[#2d1815]');
+        const icon = activeNav.querySelector('i');
+        if (icon) icon.classList.add('text-[#c89d5c]');
+        const text = activeNav.querySelector('span:not(.bg-rose-600):not(.bg-blue-600):not(.bg-[#2d1815])');
+        if (text) {
+          text.classList.add('font-bold', 'text-[#2d1815]');
+          text.classList.remove('font-medium');
+        }
+      }
+
+      if (tabId === 'dashboard') renderDashboard();
+      if (tabId === 'leads') renderLeads();
+      if (tabId === 'landreq') renderLandRequirements();
+      if (tabId === 'chat') renderChat();
+      if (tabId === 'tasks') renderTasks();
+      if (tabId === 'sites') renderSitesTab();
+      if (tabId === 'files') renderFiles();
+      if (tabId === 'call') renderPartnerDirectory();
+    }
+
+    // Top Selector Bar
+    function renderGroupSelectorBar() {
+      const bar = document.getElementById('groupSelectorBar');
+      if (!bar) return;
+      bar.innerHTML = "";
+
+      // Projects / Sites Badges
+      projects.forEach(p => {
+        const isActive = (activeChannel.type === 'project' && activeChannel.id === p.id);
+        const btn = document.createElement('button');
+        btn.onclick = () => selectChannel('project', p.id);
+        btn.className = `px-2.5 py-1 rounded-lg shrink-0 flex items-center gap-1.5 transition text-[11px] ${
+          isActive 
+            ? 'bg-[#c89d5c] text-[#2d1815] font-bold shadow-sm' 
+            : 'bg-[#2b1714] text-stone-300 hover:bg-[#381f1b] border border-[#c89d5c]/20'
+        }`;
+        btn.innerHTML = `<i class="fa-solid fa-layer-group text-[9px]"></i> <span>${escapeHtml(p.name)}</span>`;
+        bar.appendChild(btn);
+      });
+
+      bar.insertAdjacentHTML('beforeend', `<span class="text-stone-600">|</span>`);
+
+      // 1-on-1 Partners Badges
+      partners.forEach(pt => {
+        const isActive = (activeChannel.type === 'direct' && activeChannel.id === pt.id);
+        const btn = document.createElement('button');
+        btn.onclick = () => selectChannel('direct', pt.id);
+        btn.className = `px-2.5 py-1 rounded-lg shrink-0 flex items-center gap-1.5 transition text-[11px] ${
+          isActive 
+            ? 'bg-white text-[#2d1815] font-bold shadow-sm' 
+            : 'bg-[#2b1714] text-stone-300 hover:bg-[#381f1b] border border-stone-700'
+        }`;
+        btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-[#c89d5c]"></span> <span>${escapeHtml(pt.name.split(' ')[0])}</span>`;
+        bar.appendChild(btn);
+      });
+    }
+
+    // ================= SITES, MEETINGS & LAND SURVEYS =================
+    function switchSitesSubTab(sub) {
+      currentSitesSubTab = sub;
+      ['sites', 'surveys', 'meetings'].forEach(s => {
+        const btn = document.getElementById(`subtab-${s}-btn`);
+        if (btn) {
+          if (s === sub) {
+            btn.className = "pb-2 border-b-2 border-[#c89d5c] text-[#2d1815] font-bold";
+          } else {
+            btn.className = "pb-2 text-stone-500 hover:text-stone-800 font-semibold";
+          }
+        }
+      });
+
+      const fab = document.getElementById('floatingAddSurveyBtn');
+      if (fab) {
+        if (sub === 'surveys') {
+          fab.classList.remove('hidden');
+        } else {
+          fab.classList.add('hidden');
+        }
+      }
+
+      renderSitesTab();
+    }
+
+    function renderSitesTab() {
+      const container = document.getElementById('sitesTabContent');
+      if (!container) return;
+      container.innerHTML = "";
+
+      if (currentSitesSubTab === 'sites') {
+        sites.forEach(site => {
+          const ptNames = site.partnerIds.map(pid => {
+            const p = partners.find(pt => pt.id === pid);
+            return p ? p.name.split(' ')[0] : '';
+          }).filter(Boolean).join(', ');
+
+          const card = document.createElement('div');
+          card.className = "bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs space-y-2";
+          card.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] uppercase px-2 py-0.5 rounded-md bg-[#2d1815] text-[#c89d5c] font-bold border border-[#c89d5c]/30 font-brand">
+                ${site.type}
+              </span>
+              <span class="text-[11px] font-bold text-[#c89d5c] flex items-center gap-1">
+                <i class="fa-solid fa-layer-group"></i> ${site.totalLand}
+              </span>
+            </div>
+            <h3 class="text-xs font-bold text-stone-900">${escapeHtml(site.name)}</h3>
+            <p class="text-[11px] text-stone-500 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot text-rose-600"></i> ${escapeHtml(site.location)}
+            </p>
+            <div class="pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
+              <span class="text-[10px] text-stone-500 font-medium">Partners: <b>Me, ${ptNames}</b></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="openSurveyForSite('${site.id}')" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 rounded-lg text-[10px] font-bold flex items-center gap-1">
+                  <i class="fa-solid fa-compass text-[9px] text-[#c89d5c]"></i> + Survey
+                </button>
+                <button onclick="selectChannel('project', '${site.id}'); switchTab('chat');" class="px-2 py-1 bg-[#2d1815] text-[#c89d5c] rounded-lg text-[10px] font-bold">
+                  Site Chat
+                </button>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } else if (currentSitesSubTab === 'surveys') {
+        const topAction = document.createElement('div');
+        topAction.className = "bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 p-3 rounded-2xl flex items-center justify-between shadow-xs mb-2";
+        topAction.innerHTML = `
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl bg-[#2d1815] text-[#c89d5c] flex items-center justify-center font-bold text-sm">
+              <i class="fa-solid fa-location-crosshairs"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-[#2d1815]">Inspect New Land Parcel</p>
+              <p class="text-[10px] text-stone-500">Auto GPS, Rate, Broker & 7-12 upload</p>
+            </div>
+          </div>
+          <button onclick="openSurveyForSite()" class="px-3 py-1.5 bg-[#2d1815] hover:bg-[#3d221e] text-[#c89d5c] border border-[#c89d5c]/40 font-bold text-xs rounded-xl shadow-xs active:scale-95 transition flex items-center gap-1">
+            <i class="fa-solid fa-plus text-[10px]"></i> Add Survey
+          </button>
+        `;
+        container.appendChild(topAction);
+
+        if (landSurveys.length === 0) {
+          container.insertAdjacentHTML('beforeend', `<div class="text-center py-12 text-stone-400 text-xs">No land surveys recorded yet. Click above to add!</div>`);
+          return;
+        }
+
+        landSurveys.forEach(survey => {
+          const card = document.createElement('div');
+          card.className = "bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs space-y-2 text-xs";
+          card.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] uppercase font-bold text-[#2d1815] bg-[#c89d5c]/20 px-2 py-0.5 rounded border border-[#c89d5c]/40 font-brand">
+                ${escapeHtml(survey.siteName)}
+              </span>
+              <span class="text-[9px] font-bold px-2 py-0.5 rounded-full ${survey.landType && survey.landType.includes('NA') ? 'bg-blue-100 text-blue-800 border border-blue-200' : 'bg-emerald-100 text-emerald-800 border border-emerald-200'}">
+                ${escapeHtml(survey.landType || 'Agriculture')}
+              </span>
+            </div>
+            <div class="space-y-1 mt-1">
+              <div class="flex items-center justify-between">
+                <p class="font-semibold text-stone-800 flex items-center gap-1 text-[11px] truncate max-w-[240px]">
+                  <i class="fa-solid fa-location-dot text-rose-600"></i> ${escapeHtml(survey.location)}
+                </p>
+                ${survey.mapUrl ? `
+                  <a href="${survey.mapUrl}" target="_blank" class="text-blue-700 bg-blue-50 px-2 py-0.5 rounded font-bold hover:underline shrink-0 text-[10px] flex items-center gap-1 border border-blue-200">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i> View Map
+                  </a>
+                ` : ''}
+              </div>
+              <div class="grid grid-cols-2 gap-2 bg-stone-50 p-2 rounded-xl border border-stone-200/70 text-[11px]">
+                <div><span class="text-stone-400">Total Area:</span> <b class="text-stone-800">${escapeHtml(survey.area)}</b></div>
+                <div><span class="text-stone-400">Rate:</span> <b class="text-emerald-700 font-bold">${escapeHtml(survey.rate)}</b></div>
+              </div>
+              <div class="bg-amber-50/50 p-2 rounded-xl border border-amber-200/50 text-[11px]">
+                <div class="flex items-center justify-between">
+                  <span>Broker: <b>${survey.hasBroker ? escapeHtml(survey.brokerName) : 'Direct Farmer / JV (No Broker)'}</b></span>
+                  ${survey.hasBroker && survey.brokerPhone ? `
+                    <div class="flex items-center gap-2">
+                      <a href="tel:${survey.brokerPhone}" class="text-[#2d1815] bg-stone-200 px-2 py-0.5 rounded font-bold hover:bg-stone-300"><i class="fa-solid fa-phone text-[9px]"></i> Call</a>
+                      <a href="https://wa.me/${survey.brokerPhone.replace(/[^0-9]/g, '')}" target="_blank" class="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded font-bold hover:bg-emerald-200"><i class="fa-brands fa-whatsapp text-[10px]"></i> WhatsApp</a>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+              <div class="text-[11px] bg-rose-50/50 p-2 rounded-xl border border-rose-200/50 flex items-start gap-1">
+                <i class="fa-solid fa-triangle-exclamation text-rose-600 mt-0.5"></i>
+                <div>
+                  <span class="text-stone-500">Problem / Dispute:</span>
+                  <span class="font-bold text-rose-800 ml-1">${escapeHtml(survey.issues || 'Clear Title / No Issue')}</span>
+                </div>
+              </div>
+              ${survey.docTitle ? `
+                <div class="flex items-center justify-between bg-stone-100 p-2 rounded-xl text-[10px]">
+                  <span class="flex items-center gap-1 text-stone-700 font-semibold"><i class="fa-solid fa-file-pdf text-[#c89d5c]"></i> ${escapeHtml(survey.docTitle)}</span>
+                  <span class="text-stone-500">By: <b class="text-[#2d1815]">${escapeHtml(survey.uploader || 'Partner')}</b></span>
+                </div>
+              ` : ''}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } else if (currentSitesSubTab === 'meetings') {
+        if (scheduledMeetings.length === 0) {
+          container.innerHTML = `<div class="text-center py-12 text-stone-400 text-xs">No meetings scheduled.</div>`;
+          return;
+        }
+
+        scheduledMeetings.forEach(m => {
+          const card = document.createElement('div');
+          card.className = "bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs space-y-2 text-xs";
+          card.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] uppercase px-2 py-0.5 rounded font-bold bg-[#2d1815] text-[#c89d5c]">
+                ${escapeHtml(m.siteName)}
+              </span>
+              <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${m.status}</span>
+            </div>
+            <h4 class="font-bold text-stone-900 text-xs">${escapeHtml(m.title)}</h4>
+            <div class="flex items-center gap-3 text-[11px] text-stone-600 bg-stone-50 p-2 rounded-xl">
+              <span><i class="fa-regular fa-calendar text-[#c89d5c]"></i> ${m.date}</span>
+              <span><i class="fa-regular fa-clock text-[#c89d5c]"></i> ${m.time}</span>
+            </div>
+            <p class="text-[11px] text-stone-500">Meeting with: <b class="text-stone-800">${escapeHtml(m.person)}</b></p>
+            <div class="flex items-center gap-2 pt-1">
+              <button onclick="shareMeetingToChat('${escapeHtml(m.title)}', '${m.date}', '${m.time}', '${m.siteId}')" class="flex-1 py-1.5 bg-[#2d1815] text-[#c89d5c] rounded-xl text-[10px] font-bold flex items-center justify-center gap-1">
+                <i class="fa-solid fa-bell"></i> Notify Partners in Chat
+              </button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+    }
+
+    // ================= NESTED FOLDERS & VAULT LOGIC =================
+    function changeVaultSite(siteId) {
+      currentVaultSite = siteId;
+      currentVaultFolderId = null;
+      renderFiles();
+    }
+
+    function openFolder(folderId) {
+      currentVaultFolderId = folderId;
+      renderFiles();
+    }
+
+    function goToParentFolder() {
+      if (!currentVaultFolderId) return;
+      const curFolder = folders.find(f => f.id === currentVaultFolderId);
+      currentVaultFolderId = curFolder ? curFolder.parentFolderId : null;
+      renderFiles();
+    }
+
+    function renderFiles() {
+      const siteSelect = document.getElementById('vaultSiteFilter');
+      if (siteSelect) {
+        siteSelect.innerHTML = `<option value="all">All Sites Vault</option>`;
+        sites.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.id;
+          opt.textContent = s.name;
+          if (currentVaultSite === s.id) opt.selected = true;
+          siteSelect.appendChild(opt);
+        });
+      }
+
+      const breadcrumbs = document.getElementById('vaultBreadcrumbs');
+      if (breadcrumbs) {
+        breadcrumbs.innerHTML = `
+          <button onclick="currentVaultFolderId=null; renderFiles();" class="text-stone-600 hover:text-[#2d1815] flex items-center gap-1">
+            <i class="fa-solid fa-house text-[#c89d5c]"></i> Root
+          </button>
+        `;
+
+        if (currentVaultFolderId) {
+          const path = [];
+          let cur = folders.find(f => f.id === currentVaultFolderId);
+          while (cur) {
+            path.unshift(cur);
+            cur = folders.find(f => f.id === cur.parentFolderId);
+          }
+          path.forEach(p => {
+            breadcrumbs.insertAdjacentHTML('beforeend', `
+              <span class="text-stone-400">/</span>
+              <button onclick="openFolder('${p.id}')" class="font-bold text-[#2d1815] truncate max-w-[100px]">${escapeHtml(p.name)}</button>
+            `);
+          });
+        }
+      }
+
+      const container = document.getElementById('filesContainer');
+      if (!container) return;
+      container.innerHTML = "";
+
+      let currentFolders = folders.filter(f => {
+        const matchSite = (currentVaultSite === 'all') || (f.siteId === currentVaultSite);
+        const matchParent = f.parentFolderId === currentVaultFolderId;
+        return matchSite && matchParent;
+      });
+
+      if (currentVaultFolderId) {
+        container.insertAdjacentHTML('beforeend', `
+          <button onclick="goToParentFolder()" class="w-full text-left p-2.5 rounded-xl border border-dashed border-stone-300 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left text-[#c89d5c]"></i> .. Back to Upper Folder
+          </button>
+        `);
+      }
+
+      currentFolders.forEach(folder => {
+        const site = sites.find(s => s.id === folder.siteId);
+        const fCard = document.createElement('div');
+        fCard.onclick = () => openFolder(folder.id);
+        fCard.className = "bg-white p-3 rounded-xl border border-stone-200 hover:border-[#c89d5c] shadow-xs flex items-center justify-between cursor-pointer transition";
+        fCard.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-[#2d1815] text-[#c89d5c] flex items-center justify-center">
+              <i class="fa-solid fa-folder text-base"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900">${escapeHtml(folder.name)}</h4>
+              <p class="text-[10px] text-stone-400">${site ? escapeHtml(site.name) : 'Gavan'}</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-stone-300 text-xs"></i>
+        `;
+        container.appendChild(fCard);
+      });
+
+      let currentFiles = files.filter(f => {
+        const matchSite = (currentVaultSite === 'all') || (f.siteId === currentVaultSite);
+        const matchFolder = f.folderId === currentVaultFolderId;
+        return matchSite && matchFolder;
+      });
+
+      if (currentFolders.length === 0 && currentFiles.length === 0) {
+        container.insertAdjacentHTML('beforeend', `
+          <div class="text-center py-12 text-stone-400 text-xs">
+            <i class="fa-solid fa-folder-open text-4xl text-stone-300 mb-2"></i>
+            <p>Folder is empty. Click "+ File" or "+ Folder" to add.</p>
+          </div>
+        `);
+        return;
+      }
+
+      currentFiles.forEach(file => {
+        const site = sites.find(s => s.id === file.siteId);
+        const card = document.createElement('div');
+        card.className = "bg-white p-3.5 rounded-xl border border-stone-200 shadow-xs flex items-start space-x-3";
+        card.innerHTML = `
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center bg-[#c89d5c]/20 text-[#2d1815] border border-stone-100">
+            <i class="fa-solid fa-file-contract text-sm"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[9px] uppercase px-1.5 py-0.2 rounded bg-[#2d1815] text-[#c89d5c] font-semibold">
+                  ${site ? escapeHtml(site.name) : 'Site File'}
+                </span>
+                <h4 class="text-xs font-bold text-stone-900 mt-1">${escapeHtml(file.title)}</h4>
+              </div>
+              <span class="text-[10px] text-stone-400">${file.date}</span>
+            </div>
+            <p class="text-[11px] text-stone-600 mt-1 bg-stone-50 p-2 rounded-lg border border-stone-200/60 font-medium">${escapeHtml(file.notes)}</p>
+            <div class="flex items-center justify-between mt-2 pt-1 border-t border-stone-100">
+              <span class="text-[10px] text-stone-500">By: <b>${escapeHtml(file.uploader || 'Partner')}</b></span>
+              <button onclick="sharePlanViaChat('${escapeHtml(file.title)}', '${file.siteId}')" class="text-[10px] text-[#996515] font-semibold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-share-nodes"></i> Share in Group
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function sharePlanViaChat(title, siteId) {
+      selectChannel('project', siteId);
+      switchTab('chat');
+      const text = `📑 GAVAN Vault Document: "${title}". Please review the blueprints/agreement.`;
+      const input = document.getElementById('chatInput');
+      input.value = text;
+      sendChatMessage();
+      showToast("Document posted to project chat!");
+    }
+
+    function openUploadModal() {
+      const siteSelect = document.getElementById('newFileProject');
+      siteSelect.innerHTML = "";
+      sites.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = s.name;
+        if (currentVaultSite === s.id) opt.selected = true;
+        siteSelect.appendChild(opt);
+      });
+      document.getElementById('fileModal').classList.remove('hidden');
+    }
+
+    function saveNewFile() {
+      const title = document.getElementById('newFileTitle').value.trim();
+      const siteId = document.getElementById('newFileProject').value;
+      const type = document.getElementById('newFileType').value;
+      const notes = document.getElementById('newFileNotes').value.trim() || 'GAVAN confidential document.';
+
+      if (!title) {
+        showToast("Please provide file title!");
+        return;
+      }
+
+      const uploaderName = prompt("કૃપા કરીને તમારું નામ દાખલ કરો (Uploaded by):", "Partner") || "Partner";
+
+      files.unshift({
+        id: Date.now(),
+        siteId: siteId,
+        folderId: currentVaultFolderId,
+        title: title,
+        type: type,
+        date: "Just now",
+        uploader: uploaderName,
+        notes: notes
+      });
+
+      document.getElementById('newFileTitle').value = "";
+      document.getElementById('newFileNotes').value = "";
+      closeModal('fileModal');
+      renderFiles();
+      showToast("Document saved to GAVAN Vault!");
+    }
+
+    function openCreateFolderModal() {
+      const siteSelect = document.getElementById('newFolderSite');
+      siteSelect.innerHTML = "";
+      sites.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = s.name;
+        if (currentVaultSite === s.id) opt.selected = true;
+        siteSelect.appendChild(opt);
+      });
+      document.getElementById('createFolderModal').classList.remove('hidden');
+    }
+
+    function saveNewFolder() {
+      const name = document.getElementById('newFolderName').value.trim();
+      const siteId = document.getElementById('newFolderSite').value;
+      if (!name) {
+        showToast("Please enter folder name!");
+        return;
+      }
+      folders.push({
+        id: `f_${Date.now()}`,
+        name: name,
+        siteId: siteId,
+        parentFolderId: currentVaultFolderId
+      });
+      document.getElementById('newFolderName').value = "";
+      closeModal('createFolderModal');
+      renderFiles();
+      showToast("Folder created in Vault!");
+    }
+
+    function openSurveyForSite(siteId = null) {
+      const siteSelect = document.getElementById('surveySiteSelect');
+      siteSelect.innerHTML = "";
+      
+      const newLandOpt = document.createElement('option');
+      newLandOpt.value = "new_standalone";
+      newLandOpt.textContent = "📍 New Land Parcel (તદ્દન નવી જમીન / Standalone)";
+      siteSelect.appendChild(newLandOpt);
+
+      sites.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = `${s.name} (${s.type})`;
+        if (siteId && s.id === siteId) opt.selected = true;
+        siteSelect.appendChild(opt);
+      });
+
+      if (!siteId) {
+        newLandOpt.selected = true;
+      }
+
+      document.getElementById('surveyArea').value = "";
+      document.getElementById('surveyRate').value = "";
+      document.getElementById('surveyBrokerName').value = "";
+      document.getElementById('surveyBrokerPhone').value = "";
+      document.getElementById('surveyIssues').value = "";
+      document.getElementById('surveyDocTitle').value = "";
+      document.getElementById('surveyUploaderName').value = "";
+
+      document.getElementById('landSurveyModal').classList.remove('hidden');
+      fetchCurrentGeoLocation(false);
+    }
+
+    function promptForNewSiteInSurvey() {
+      const siteName = prompt("નવી સાઇટ / પ્રોજેક્ટનું નામ દાખલ કરો (New Site Name):");
+      if (!siteName || !siteName.trim()) return;
+
+      const newId = `site_${Date.now()}`;
+      const newSiteObj = {
+        id: newId,
+        name: siteName.trim(),
+        type: 'Land Investment',
+        location: 'Gujarat Site Zone',
+        totalLand: 'New Survey In Progress',
+        partnerIds: ['p1', 'p2', 'p3']
+      };
+
+      sites.push(newSiteObj);
+      projects.push({
+        id: newId,
+        name: siteName.trim(),
+        partnerIds: ['p1', 'p2', 'p3']
+      });
+
+      renderGroupSelectorBar();
+
+      const siteSelect = document.getElementById('surveySiteSelect');
+      const opt = document.createElement('option');
+      opt.value = newId;
+      opt.textContent = `${siteName.trim()} (Land Investment)`;
+      opt.selected = true;
+      siteSelect.appendChild(opt);
+
+      showToast(`Site "${siteName.trim()}" added to survey!`);
+    }
+
+    function toggleBrokerFields(show) {
+      document.getElementById('brokerFields').style.display = show ? 'block' : 'none';
+    }
+
+    function fillBrokerFromDirectory(val) {
+      if (!val) return;
+      const parts = val.split('|');
+      document.getElementById('surveyBrokerName').value = parts[0] || '';
+      document.getElementById('surveyBrokerPhone').value = parts[1] || '';
+    }
+
+    // AUTOMATIC GPS CAPTURE
+    function fetchCurrentGeoLocation(isManual = false) {
+      const locInput = document.getElementById('surveyLocation');
+      const badge = document.getElementById('gpsStatusBadge');
+      const mapLink = document.getElementById('surveyMapLink');
+
+      locInput.value = "Acquiring live Google GPS coordinates...";
+      badge.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-amber-600"></i> Detecting satellite location...`;
+      badge.className = "flex items-center gap-1 text-amber-700 font-semibold";
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat = pos.coords.latitude.toFixed(6);
+            const lng = pos.coords.longitude.toFixed(6);
+            const accuracy = Math.round(pos.coords.accuracy);
+            const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`;
+
+            locInput.value = `GPS: ${lat}, ${lng} (±${accuracy}m accuracy)`;
+            locInput.dataset.mapUrl = mapsUrl;
+
+            badge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> Location Locked (Google Maps)`;
+            badge.className = "flex items-center gap-1 text-emerald-700 font-bold";
+
+            mapLink.href = mapsUrl;
+            mapLink.classList.remove('hidden');
+            if (isManual) showToast("Current Google Location Refreshed!");
+          },
+          (err) => {
+            console.warn("Geolocation fallback:", err);
+            const defaultLat = "20.3892";
+            const defaultLng = "72.9106";
+            const fallbackMap = `https://maps.google.com/?q=${defaultLat},${defaultLng}`;
+
+            locInput.value = `Site Location: Vapi-Mamakwada Industrial Belt (${defaultLat}, ${defaultLng})`;
+            locInput.dataset.mapUrl = fallbackMap;
+
+            badge.innerHTML = `<i class="fa-solid fa-location-crosshairs text-blue-600"></i> Site Pin Locked`;
+            badge.className = "flex items-center gap-1 text-blue-700 font-medium";
+
+            mapLink.href = fallbackMap;
+            mapLink.classList.remove('hidden');
+            if (isManual) showToast("Site pin applied.");
+          },
+          { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+        );
+      } else {
+        locInput.value = "GPS not supported on device. Manual location active.";
+      }
+    }
+
+    function saveLandSurvey() {
+      const siteId = document.getElementById('surveySiteSelect').value;
+      const site = sites.find(s => s.id === siteId);
+      const siteName = site ? site.name : 'New Land Parcel (નવી જમીન)';
+      const locInput = document.getElementById('surveyLocation');
+      const location = locInput.value.trim() || 'Site Area (Auto Pin)';
+      const mapUrl = locInput.dataset.mapUrl || (location.includes('http') ? location : `https://maps.google.com/?q=20.3892,72.9106`);
+      
+      const landType = document.getElementById('surveyLandType').value;
+      const area = document.getElementById('surveyArea').value.trim() || 'Area not specified';
+      const rate = document.getElementById('surveyRate').value.trim() || 'Price to be finalized';
+      const hasBroker = document.querySelector('input[name="hasBroker"]:checked').value === 'yes';
+      const brokerName = document.getElementById('surveyBrokerName').value.trim();
+      const brokerPhone = document.getElementById('surveyBrokerPhone').value.trim();
+      const issues = document.getElementById('surveyIssues').value.trim();
+      const docTitle = document.getElementById('surveyDocTitle').value.trim();
+      
+      let uploader = document.getElementById('surveyUploaderName').value.trim();
+      if (!uploader) {
+        uploader = prompt("દસ્તાવેજ અને વિગતો અપડેટ કરનારનું નામ દાખલ કરો (Your Name):", "Partner") || "Partner";
+      }
+
+      const surveyObj = {
+        id: `ls_${Date.now()}`,
+        siteId,
+        siteName,
+        landType,
+        location,
+        mapUrl,
+        area,
+        rate,
+        hasBroker,
+        brokerName,
+        brokerPhone,
+        issues: issues || 'Clear Title / No dispute',
+        docTitle,
+        uploader,
+        date: 'Today'
+      };
+
+      landSurveys.unshift(surveyObj);
+
+      if (docTitle) {
+        files.unshift({
+          id: Date.now(),
+          siteId: siteId === 'new_standalone' ? (sites[0] ? sites[0].id : 'all') : siteId,
+          folderId: null,
+          title: docTitle,
+          type: 'doc',
+          date: 'Today',
+          uploader: uploader,
+          notes: `${landType} | ${area} @ ${rate}. Broker: ${hasBroker ? brokerName : 'Direct'}. Problem: ${issues || 'None'}. Location: ${location}`
+        });
+      }
+
+      const chatMsg = `📍 [NEW LAND INSPECTION LOG]\nSite: ${siteName}\n🗺️ Type: ${landType}\n📌 Location: ${location}\n📐 Area: ${area} | 💰 Rate: ${rate}\n🤝 Broker: ${hasBroker ? (brokerName + ' - ' + brokerPhone) : 'Direct Farmer / JV'}\n⚠️ Problem / Disputes: ${issues || 'Clear Title'}\n${docTitle ? ('📄 Attached Doc: ' + docTitle + ' (Uploaded by ' + uploader + ')') : ''}\n🔗 Google Maps: ${mapUrl}`;
+
+      const targetChatId = siteId === 'new_standalone' ? (projects[0] ? projects[0].id : 'site_mamakwada') : siteId;
+      if (!chatHistories[targetChatId]) chatHistories[targetChatId] = [];
+      chatHistories[targetChatId].push({
+        sender: uploader,
+        senderId: 'me',
+        text: chatMsg,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isMe: true
+      });
+
+      closeModal('landSurveyModal');
+      renderDashboard();
+      switchTab('sites');
+      switchSitesSubTab('surveys');
+      showToast("Land inspection recorded & broadcasted to Group!");
+    }
+
+    function openScheduleMeetingModal() {
+      const siteSelect = document.getElementById('meetingSite');
+      siteSelect.innerHTML = "";
+      sites.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = s.name;
+        siteSelect.appendChild(opt);
+      });
+      document.getElementById('scheduleMeetingModal').classList.remove('hidden');
+    }
+
+    function saveScheduledMeeting() {
+      const title = document.getElementById('meetingTitle').value.trim();
+      const date = document.getElementById('meetingDate').value.trim() || 'Tomorrow';
+      const time = document.getElementById('meetingTime').value.trim() || '11:00 AM';
+      const siteId = document.getElementById('meetingSite').value;
+      const site = sites.find(s => s.id === siteId);
+      const person = document.getElementById('meetingPerson').value.trim() || 'Partners';
+
+      if (!title) {
+        showToast("Please enter meeting title!");
+        return;
+      }
+
+      scheduledMeetings.unshift({
+        id: `m_${Date.now()}`,
+        title,
+        siteId,
+        siteName: site ? site.name : 'Gavan Site',
+        date,
+        time,
+        person,
+        status: 'Scheduled'
+      });
+
+      closeModal('scheduleMeetingModal');
+      renderDashboard();
+      switchTab('sites');
+      switchSitesSubTab('meetings');
+      showToast("Meeting Scheduled & Notifications Triggered!");
+    }
+
+    function shareMeetingToChat(title, date, time, siteId) {
+      selectChannel('project', siteId);
+      switchTab('chat');
+      const text = `📅 Site Meeting Notice: "${title}" on ${date} at ${time}. Partners please be present on site.`;
+      const input = document.getElementById('chatInput');
+      input.value = text;
+      sendChatMessage();
+      showToast("Meeting notification sent to chat!");
+    }
+
+    function openAddSiteModal() {
+      document.getElementById('addSiteModal').classList.remove('hidden');
+    }
+
+    function saveNewSite() {
+      const name = document.getElementById('newSiteName').value.trim();
+      const location = document.getElementById('newSiteLocation').value.trim();
+      const type = document.getElementById('newSiteCategory').value;
+
+      if (!name) {
+        showToast("Please enter site name!");
+        return;
+      }
+
+      const newSiteId = `site_${Date.now()}`;
+      const newSite = {
+        id: newSiteId,
+        name,
+        type,
+        location: location || 'Vapi / Umargam Region',
+        totalLand: 'New Acquisition',
+        partnerIds: ['p1', 'p2', 'p3']
+      };
+
+      sites.push(newSite);
+      projects.push({
+        id: newSiteId,
+        name: name,
+        partnerIds: ['p1', 'p2', 'p3']
+      });
+
+      closeModal('addSiteModal');
+      renderGroupSelectorBar();
+      switchTab('sites');
+      switchSitesSubTab('sites');
+      showToast("New Site Added to Portfolio!");
+    }
+
+    function selectChannel(type, id) {
+      activeChannel = { type, id };
+      renderGroupSelectorBar();
+      updateHeaderAndChatInfo();
+      renderChat();
+      closeModal('drawerModal');
+    }
+
+    function updateHeaderAndChatInfo() {
+      const headerTitle = document.getElementById('partnerHeaderTitle');
+      const headerSubtitle = document.getElementById('headerSubtitle');
+      const activeBadge = document.getElementById('activeChatBadge');
+      const activeName = document.getElementById('activeChatName');
+      const activeParts = document.getElementById('activeChatParticipants');
+
+      if (activeChannel.type === 'project') {
+        const proj = projects.find(p => p.id === activeChannel.id) || projects[0];
+        const participantNames = proj.partnerIds.map(pid => {
+          const pt = partners.find(p => p.id === pid);
+          return pt ? pt.name.split(' ')[0] : '';
+        }).filter(Boolean);
+
+        headerTitle.textContent = proj.name;
+        headerSubtitle.textContent = `GAVAN Project • ${proj.partnerIds.length + 1} Partners`;
+        activeBadge.textContent = "GAVAN PROJECT";
+        activeBadge.className = "px-2 py-0.5 rounded-md bg-[#2d1815] text-[#c89d5c] font-bold text-[9px] tracking-wider border border-[#c89d5c]/30";
+        activeName.textContent = proj.name;
+        activeParts.textContent = `Me, ${participantNames.join(', ')}`;
+      } else {
+        const partner = partners.find(p => p.id === activeChannel.id) || partners[0];
+        headerTitle.textContent = partner.name;
+        headerSubtitle.textContent = `Private Partner Discussion • ${partner.role}`;
+        activeBadge.textContent = "1-ON-1 PARTNER";
+        activeBadge.className = "px-2 py-0.5 rounded-md bg-stone-800 text-amber-300 font-bold text-[9px] tracking-wider";
+        activeName.textContent = partner.name;
+        activeParts.textContent = `${partner.phone} • Strictly Confidential`;
+      }
+    }
+
+    function toggleGroupSidebar() {
+      const drawer = document.getElementById('drawerModal');
+      const projContainer = document.getElementById('drawerProjectsList');
+      const partnerContainer = document.getElementById('drawerPartnersList');
+
+      projContainer.innerHTML = "";
+      projects.forEach(p => {
+        const pCard = document.createElement('button');
+        pCard.onclick = () => selectChannel('project', p.id);
+        pCard.className = `w-full text-left p-2.5 rounded-xl border flex items-center justify-between text-xs transition ${
+          activeChannel.type === 'project' && activeChannel.id === p.id 
+            ? 'border-[#c89d5c] bg-[#2d1815]/5 font-bold text-[#2d1815]' 
+            : 'border-stone-200 hover:bg-stone-50 text-stone-800'
+        }`;
+        pCard.innerHTML = `
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-[#2d1815] text-[#c89d5c] flex items-center justify-center font-bold">
+              <i class="fa-solid fa-hotel text-xs"></i>
+            </div>
+            <div>
+              <p class="leading-none">${escapeHtml(p.name)}</p>
+              <span class="text-[10px] text-stone-400 font-normal">${p.partnerIds.length + 1} Partners active</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-[10px] text-stone-300"></i>
+        `;
+        projContainer.appendChild(pCard);
+      });
+
+      partnerContainer.innerHTML = "";
+      partners.forEach(pt => {
+        const ptCard = document.createElement('button');
+        ptCard.onclick = () => selectChannel('direct', pt.id);
+        ptCard.className = `w-full text-left p-2.5 rounded-xl border flex items-center justify-between text-xs transition ${
+          activeChannel.type === 'direct' && activeChannel.id === pt.id 
+            ? 'border-amber-600 bg-amber-50/50 font-bold text-amber-900' 
+            : 'border-stone-200 hover:bg-stone-50 text-stone-800'
+        }`;
+        ptCard.innerHTML = `
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-[#2d1815] text-[#c89d5c] flex items-center justify-center font-bold text-[10px]">
+              ${pt.initials}
+            </div>
+            <div>
+              <p class="leading-none">${escapeHtml(pt.name)}</p>
+              <span class="text-[10px] text-stone-400 font-normal">${escapeHtml(pt.role)}</span>
+            </div>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-[#c89d5c]"></span>
+        `;
+        partnerContainer.appendChild(ptCard);
+      });
+
+      drawer.classList.remove('hidden');
+    }
+
+    // ================= CHAT FUNCTIONS =================
+    function renderChat() {
+      const container = document.getElementById('chatMessages');
+      if (!container) return;
+      container.innerHTML = `
+        <div class="flex justify-center my-1">
+          <span class="bg-[#2d1815] text-[#c89d5c] text-[10px] font-semibold px-3 py-1 rounded-full shadow-xs flex items-center gap-1.5 border border-[#c89d5c]/30 font-brand tracking-wider">
+            <i class="fa-solid fa-crown text-[9px]"></i> GAVAN LUXURY CONFIDENTIAL LINE
+          </span>
+        </div>
+      `;
+
+      const list = chatHistories[activeChannel.id] || [];
+      list.forEach(msg => {
+        if (msg.isMe) {
+          container.insertAdjacentHTML('beforeend', `
+            <div class="flex items-end justify-end space-x-2 max-w-[85%] ml-auto animate-in fade-in">
+              <div class="relative bg-gradient-to-r from-[#2d1815] to-[#42231e] text-white px-3.5 py-2.5 rounded-2xl rounded-br-sm shadow-md text-xs bubble-tail-me border border-[#c89d5c]/30">
+                <p class="whitespace-pre-line">${escapeHtml(msg.text)}</p>
+                <div class="flex items-center justify-end space-x-1 text-[10px] text-[#e0cfb4] mt-1 font-medium">
+                  <span>${msg.time}</span>
+                  <i class="fa-solid fa-check-double text-[9px] text-[#c89d5c]"></i>
+                </div>
+              </div>
+            </div>
+          `);
+        } else {
+          container.insertAdjacentHTML('beforeend', `
+            <div class="flex items-end space-x-2 max-w-[85%] animate-in fade-in">
+              <div class="relative bg-white text-stone-800 px-3.5 py-2.5 rounded-2xl rounded-bl-sm shadow-xs text-xs bubble-tail-partner border border-stone-200">
+                <p class="font-bold text-[10px] text-[#996515] mb-0.5">${escapeHtml(msg.sender)}</p>
+                <p class="whitespace-pre-line">${escapeHtml(msg.text)}</p>
+                <div class="text-[10px] text-stone-400 text-right mt-1 font-medium">${msg.time}</div>
+              </div>
+            </div>
+          `);
+        }
+      });
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      if (!chatHistories[activeChannel.id]) chatHistories[activeChannel.id] = [];
+      chatHistories[activeChannel.id].push({
+        sender: 'Me',
+        senderId: 'me',
+        text: text,
+        time: timeStr,
+        isMe: true
+      });
+
+      input.value = "";
+      renderChat();
+
+      setTimeout(() => {
+        let replyingPartner = partners[0];
+        if (activeChannel.type === 'project') {
+          const proj = projects.find(p => p.id === activeChannel.id);
+          if (proj && proj.partnerIds.length > 0) {
+            const randomId = proj.partnerIds[Math.floor(Math.random() * proj.partnerIds.length)];
+            replyingPartner = partners.find(p => p.id === randomId) || partners[0];
+          }
+        } else {
+          replyingPartner = partners.find(p => p.id === activeChannel.id) || partners[0];
+        }
+
+        let reply = "Noted. Let's maintain GAVAN luxury standards on this milestone.";
+        const low = text.toLowerCase();
+        if (low.includes("call") || low.includes("meeting")) {
+          reply = "Available. Starting GAVAN Board standup call now.";
+        } else if (low.includes("doc") || low.includes("plan") || low.includes("file") || low.includes("vault")) {
+          reply = "Checked the documents in GAVAN Vault. Terms look excellent.";
+        } else if (low.includes("urgent") || low.includes("deal") || low.includes("survey")) {
+          reply = "Prioritizing right now. Will update the partners board.";
+        }
+
+        chatHistories[activeChannel.id].push({
+          sender: replyingPartner.name,
+          senderId: replyingPartner.id,
+          text: reply,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          isMe: false
+        });
+        renderChat();
+      }, 1000);
+    }
+
+    function sendQuickUrgentPing() {
+      const text = "👑 GAVAN Priority Notice: Important partner review session. Please check tasks in Vault.";
+      const input = document.getElementById('chatInput');
+      input.value = text;
+      sendChatMessage();
+      showToast("GAVAN Priority dispatched!");
+    }
+
+    function triggerFileShare() {
+      switchTab('files');
+      openUploadModal();
+    }
+
+    // ================= PROJECT TASKS =================
+    function renderTasks() {
+      const list = document.getElementById('taskList');
+      if (!list) return;
+      list.innerHTML = "";
+
+      let filtered = tasks;
+      if (currentFilter === 'pending') filtered = tasks.filter(t => !t.done);
+      if (currentFilter === 'completed') filtered = tasks.filter(t => t.done);
+      if (currentFilter === 'mine') filtered = tasks.filter(t => t.assignee === 'Me');
+
+      const pendingCount = tasks.filter(t => !t.done).length;
+      const badge = document.getElementById('taskBadge');
+      if (badge) {
+        if (pendingCount > 0) {
+          badge.textContent = pendingCount;
+          badge.classList.remove('hidden');
+        } else {
+          badge.classList.add('hidden');
+        }
+      }
+
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="text-center py-12 text-stone-400">
+            <i class="fa-solid fa-list-check text-4xl text-stone-300 mb-2"></i>
+            <p class="text-xs">No tasks found under this filter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(task => {
+        const proj = projects.find(p => p.id === task.projectId);
+        const projName = proj ? proj.name : 'Gavan Project';
+
+        let badgeColor = "bg-stone-100 text-stone-700 border border-stone-200";
+        if (task.priority === "High") badgeColor = "bg-amber-50 text-amber-900 border border-amber-300 font-semibold";
+        if (task.priority === "Urgent") badgeColor = "bg-rose-50 text-rose-800 border border-rose-300 font-bold";
+
+        const item = document.createElement('div');
+        item.className = `p-3.5 bg-white rounded-xl border ${task.done ? 'border-emerald-200 bg-emerald-50/20' : 'border-stone-200'} shadow-xs flex items-start space-x-3 transition`;
+        item.innerHTML = `
+          <button onclick="toggleTaskStatus(${task.id})" class="mt-0.5 w-5 h-5 rounded-md border-2 ${task.done ? 'bg-[#c89d5c] border-[#c89d5c] text-[#2d1815]' : 'border-stone-300 hover:border-[#c89d5c]'} flex items-center justify-center transition font-bold">
+            ${task.done ? '<i class="fa-solid fa-check text-[10px]"></i>' : ''}
+          </button>
+          <div class="flex-1">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-[#2d1815] text-[#c89d5c] font-bold border border-[#c89d5c]/30">
+                ${escapeHtml(projName)}
+              </span>
+            </div>
+            <p class="text-xs font-semibold ${task.done ? 'line-through text-stone-400' : 'text-stone-900'} leading-snug">${escapeHtml(task.title)}</p>
+            <div class="flex flex-wrap items-center gap-1.5 mt-2">
+              <span class="text-[10px] px-2 py-0.5 rounded ${badgeColor}">${task.priority}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded font-medium bg-stone-100 text-stone-800 border border-stone-300">
+                <i class="fa-solid fa-user-tag text-[9px] mr-1 text-[#c89d5c]"></i>${escapeHtml(task.assignee)}
+              </span>
+              <span class="text-[10px] text-stone-500 ml-auto flex items-center gap-1"><i class="fa-regular fa-clock"></i> ${task.time}</span>
+            </div>
+          </div>
+          <button onclick="deleteTask(${task.id})" class="text-stone-300 hover:text-rose-600 text-xs p-1">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function toggleTaskStatus(id) {
+      tasks = tasks.map(t => t.id === id ? { ...t, done: !t.done } : t);
+      renderTasks();
+      showToast("GAVAN task status updated!");
+    }
+
+    function deleteTask(id) {
+      tasks = tasks.filter(t => t.id !== id);
+      renderTasks();
+      showToast("Task removed from board");
+    }
+
+    function filterTasks(type) {
+      currentFilter = type;
+      document.querySelectorAll('.task-filter-btn').forEach(b => {
+        b.className = "task-filter-btn px-3 py-1 bg-white text-stone-600 rounded-lg border border-stone-200 hover:bg-stone-50 shrink-0";
+      });
+      event.target.className = "task-filter-btn px-3 py-1 bg-white font-semibold text-[#2d1815] rounded-lg shadow-xs border border-[#c89d5c] shrink-0";
+      renderTasks();
+    }
+
+    function openNewTaskModal() {
+      const projSelect = document.getElementById('newTaskProject');
+      projSelect.innerHTML = "";
+      projects.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = p.name;
+        if (activeChannel.type === 'project' && activeChannel.id === p.id) opt.selected = true;
+        projSelect.appendChild(opt);
+      });
+
+      const assigneeSelect = document.getElementById('newTaskAssignee');
+      assigneeSelect.innerHTML = `<option value="Me">Me (Self)</option><option value="All Partners">All Partners</option>`;
+      partners.forEach(pt => {
+        const opt = document.createElement('option');
+        opt.value = pt.name;
+        opt.textContent = pt.name;
+        assigneeSelect.appendChild(opt);
+      });
+
+      document.getElementById('taskModal').classList.remove('hidden');
+    }
+
+    function saveNewTask() {
+      const title = document.getElementById('newTaskTitle').value.trim();
+      const projectId = document.getElementById('newTaskProject').value;
+      const assignee = document.getElementById('newTaskAssignee').value;
+      const priority = document.getElementById('newTaskPriority').value;
+      const time = document.getElementById('newTaskTime').value.trim() || 'Today EOD';
+
+      if (!title) {
+        showToast("Please provide task description!");
+        return;
+      }
+
+      tasks.unshift({
+        id: Date.now(),
+        projectId,
+        title,
+        assignee,
+        priority,
+        time,
+        done: false
+      });
+
+      document.getElementById('newTaskTitle').value = "";
+      document.getElementById('newTaskTime').value = "";
+      closeModal('taskModal');
+      renderTasks();
+      renderDashboard();
+      showToast("GAVAN task created!");
+    }
+
+    // ================= PARTNERS DIRECTORY & CALLING =================
+    function renderPartnerDirectory() {
+      const container = document.getElementById('partnersListCards');
+      if (!container) return;
+      container.innerHTML = "";
+
+      partners.forEach(partner => {
+        const sharedSites = sites.filter(s => s.partnerIds.includes(partner.id)).map(s => s.name);
+
+        const card = document.createElement('div');
+        card.className = "bg-white p-3.5 rounded-xl border border-stone-200 shadow-xs flex items-center justify-between";
+        card.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-tr ${partner.avatarBg} text-[#c89d5c] border border-[#c89d5c]/40 flex items-center justify-center font-bold text-sm shadow-sm relative font-brand">
+              ${partner.initials}
+              <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900">${escapeHtml(partner.name)}</h4>
+              <p class="text-[11px] text-stone-500 font-medium">${escapeHtml(partner.role)}</p>
+              <div class="flex items-center gap-1 mt-1 text-[9px] text-[#996515] font-semibold">
+                <i class="fa-solid fa-crown text-[8px]"></i>
+                <span class="truncate max-w-[150px]">${sharedSites.length > 0 ? sharedSites.join(', ') : 'GAVAN Partner'}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-1.5">
+            <button onclick="startDirectCall('${partner.phone}')" title="Call directly" class="w-8 h-8 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 flex items-center justify-center active:scale-95 transition">
+              <i class="fa-solid fa-phone text-xs"></i>
+            </button>
+            <button onclick="openPartnerWhatsApp('${partner.phone}')" title="WhatsApp" class="w-8 h-8 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 flex items-center justify-center active:scale-95 transition">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+            </button>
+            <button onclick="selectChannel('direct', '${partner.id}'); switchTab('chat');" title="Private 1:1 Chat" class="w-8 h-8 rounded-lg bg-[#2d1815]/10 hover:bg-[#2d1815]/20 text-[#2d1815] flex items-center justify-center active:scale-95 transition">
+              <i class="fa-solid fa-message text-xs"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function startDirectCall(phone) {
+      window.location.href = `tel:${phone}`;
+    }
+
+    function openPartnerWhatsApp(phone) {
+      const clean = phone.replace(/[^0-9]/g, '');
+      window.open(`https://wa.me/${clean}`, '_blank');
+    }
+
+    function startCall(type) {
+      const overlay = document.getElementById('callOverlay');
+      const targetName = document.getElementById('callTargetName');
+      const statusText = document.getElementById('callStatusText');
+
+      if (activeChannel.type === 'project') {
+        const proj = projects.find(p => p.id === activeChannel.id);
+        targetName.textContent = proj ? `${proj.name} Board Call` : "GAVAN Board Conference";
+      } else {
+        const partner = partners.find(p => p.id === activeChannel.id);
+        targetName.textContent = partner ? partner.name : "Partner Call";
+      }
+
+      statusText.textContent = type === 'video' ? 'Connecting Encrypted Video Board...' : 'Dialing Multi-Partner Line...';
+      overlay.classList.remove('hidden');
+
+      setTimeout(() => {
+        statusText.textContent = "Connected • GAVAN Encrypted HD Room (00:01)";
+        statusText.classList.remove('text-[#c89d5c]');
+        statusText.classList.add('text-emerald-400');
+      }, 1500);
+    }
+
+    function endCall() {
+      document.getElementById('callOverlay').classList.add('hidden');
+      showToast("Call ended");
+    }
+
+    function toggleCallMute(btn) {
+      btn.classList.toggle('bg-[#c89d5c]');
+      btn.classList.toggle('text-[#2d1815]');
+      const icon = btn.querySelector('i');
+      if (icon.classList.contains('fa-microphone')) {
+        icon.className = "fa-solid fa-microphone-slash";
+        showToast("Muted");
+      } else {
+        icon.className = "fa-solid fa-microphone";
+        showToast("Unmuted");
+      }
+    }
+
+    function toggleCallSpeaker(btn) {
+      btn.classList.toggle('bg-[#c89d5c]');
+      btn.classList.toggle('text-[#2d1815]');
+      showToast("Speakerphone toggled");
+    }
+
+    function openAddPartnerModal() {
+      document.getElementById('addPartnerModal').classList.remove('hidden');
+    }
+
+    function saveNewPartner() {
+      const name = document.getElementById('newPartnerName').value.trim();
+      const role = document.getElementById('newPartnerRole').value.trim() || 'GAVAN Partner';
+      const phone = document.getElementById('newPartnerPhone').value.trim() || '+91 98765 00000';
+
+      if (!name) {
+        showToast("Please enter partner name!");
+        return;
+      }
+
+      const words = name.split(" ");
+      let initials = "GP";
+      if (words.length >= 2) {
+        initials = (words[0][0] + words[1][0]).toUpperCase();
+      } else if (words.length === 1 && words[0].length > 0) {
+        initials = words[0].substring(0, 2).toUpperCase();
+      }
+
+      const newId = `p_${Date.now()}`;
+      partners.push({
+        id: newId,
+        name,
+        role,
+        phone,
+        initials,
+        avatarBg: 'from-[#3a201b] to-[#20100d]'
+      });
+
+      document.getElementById('newPartnerName').value = "";
+      document.getElementById('newPartnerRole').value = "";
+      document.getElementById('newPartnerPhone').value = "";
+      closeModal('addPartnerModal');
+      renderPartnerDirectory();
+      renderGroupSelectorBar();
+      showToast("Partner added to GAVAN Council!");
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    window.onload = function() {
+      renderDashboard();
+      renderGroupSelectorBar();
+      updateHeaderAndChatInfo();
+      renderLeads();
+      renderLandRequirements();
+      renderTasks();
+      renderFiles();
+      renderPartnerDirectory();
+      switchTab('dashboard');
+    };
+  </script>
+</body>
+</html>
