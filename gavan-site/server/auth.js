@@ -80,7 +80,12 @@ function verifyPassword(pw, stored) {
   const h = crypto.scryptSync(pw, salt, 64);
   return crypto.timingSafeEqual(h, Buffer.from(hash, 'hex'));
 }
+// DEMO_MODE (serverless hosting): stateless signed tokens so any instance accepts the login
+const DEMO = process.env.DEMO_MODE === '1';
+const SECRET = process.env.SESSION_SECRET || 'gavan-demo-secret';
+const sign = (s) => crypto.createHmac('sha256', SECRET).update(s).digest('base64url');
 function createSession(userId) {
+  if (DEMO) { const body = `${userId}.${Date.now() + 7 * 864e5}`; return `d.${body}.${sign(body)}`; }
   const token = crypto.randomBytes(32).toString('hex');
   const exp = new Date(Date.now() + 30 * 864e5).toISOString();
   run('INSERT INTO sessions(token,user_id,expires_at) VALUES(?,?,?)', token, userId, exp);
@@ -96,8 +101,15 @@ function authMiddleware(req, res, next) {
   const h = req.headers.authorization || '';
   const token = h.startsWith('Bearer ') ? h.slice(7) : (req.query.token || '');
   if (!token) return res.status(401).json({ error: 'Login required' });
-  const s = get('SELECT * FROM sessions WHERE token=?', token);
-  if (!s || s.expires_at < new Date().toISOString()) return res.status(401).json({ error: 'Session expired, please login again' });
+  let s;
+  if (DEMO && token.startsWith('d.')) {
+    const [, uid, exp, sig] = token.split('.');
+    if (sig !== sign(`${uid}.${exp}`) || Number(exp) < Date.now()) return res.status(401).json({ error: 'Session expired, please login again' });
+    s = { user_id: Number(uid) };
+  } else {
+    s = get('SELECT * FROM sessions WHERE token=?', token);
+    if (!s || s.expires_at < new Date().toISOString()) return res.status(401).json({ error: 'Session expired, please login again' });
+  }
   const u = get('SELECT * FROM users WHERE id=?', s.user_id);
   if (!u || !u.active) return res.status(401).json({ error: 'Account deactivated' });
   delete u.password_hash;

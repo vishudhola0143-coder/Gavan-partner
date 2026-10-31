@@ -17,9 +17,17 @@ function renderLogin(msg) {
         <button class="btn primary big full">${t('sign_in')}</button>
       </form>
       <div class="lang-switch">${['en', 'hi', 'gu'].map(l => html`<button data-l="${l}" class="${(localStorage.getItem('gs_lang') || 'en') === l ? 'on' : ''}">${{ en: 'English', hi: 'हिन्दी', gu: 'ગુજરાતી' }[l]}</button>`)}</div>
+      <div id="demoNote"></div>
     </div>
   </div>`);
   document.querySelectorAll('.lang-switch button').forEach(b => { b.onclick = () => { localStorage.setItem('gs_lang', b.dataset.l); renderLogin(); }; });
+  fetch('/api/public/branding').then(r => r.json()).then(b => {
+    if (!b.demo) return;
+    const logins = [['director', 'Director (all access)'], ['demo.pm', 'Project Manager'], ['demo.supervisor', 'Site Supervisor'], ['demo.engineer', 'Site Engineer'], ['demo.contractor', 'Contractor'], ['demo.structural', 'Structural Engineer'], ['demo.purchase', 'Purchase'], ['demo.accounts', 'Accounts']];
+    const box = document.getElementById('demoNote');
+    box.innerHTML = String(html`<div class="info-box warn" style="text-align:left;margin-top:16px"><b>DEMO version</b> — data is temporary and may reset. Password for all: <b>demo1234</b>. Tap a role to login:<div class="checks" style="margin-top:8px">${logins.map(([l, n]) => html`<button type="button" class="btn small ghost" data-demo="${l}">${n}</button>`)}</div></div>`);
+    box.querySelectorAll('[data-demo]').forEach(x => { x.onclick = () => { const f = document.getElementById('loginForm'); f.login.value = x.dataset.demo; f.password.value = 'demo1234'; f.requestSubmit(); }; });
+  }).catch(() => {});
   document.getElementById('loginForm').onsubmit = async (e) => {
     e.preventDefault();
     const f = e.target; const btn = f.querySelector('button'); btn.disabled = true;

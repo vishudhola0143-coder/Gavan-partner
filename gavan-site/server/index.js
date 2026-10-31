@@ -24,7 +24,7 @@ app.get('/api/public/logo/:id', (req, res) => {
 });
 app.get('/api/public/branding', (req, res) => {
   const { setting } = require('./db');
-  res.json({ logo: setting('logo_url', '/logo.jpg'), company: setting('company_name', 'GAVAN GROUP') });
+  res.json({ logo: setting('logo_url', '/logo.jpg'), company: setting('company_name', 'GAVAN GROUP'), demo: process.env.DEMO_MODE === '1' });
 });
 
 const core = require('./routes/core');

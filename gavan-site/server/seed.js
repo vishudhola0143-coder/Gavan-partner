@@ -18,7 +18,7 @@ function initial() {
   return tx(() => {
     insert('companies', { name: 'GAVAN GROUP' });
     const pw = process.env.ADMIN_PASSWORD || crypto.randomBytes(6).toString('base64url') + '9a';
-    const dir = insert('users', { name: 'Gavan Director', login: 'director', role: 'director', company_id: 1, password_hash: hashPassword(pw), must_change_password: 1 });
+    const dir = insert('users', { name: 'Gavan Director', login: 'director', role: 'director', company_id: 1, password_hash: hashPassword(pw), must_change_password: process.env.DEMO_MODE === '1' ? 0 : 1 });
     const anPw = crypto.randomBytes(6).toString('base64url') + '7b';
     const anushka = insert('users', { name: 'Anushka', login: 'anushka', role: 'admin', department: 'Coordination', company_id: 1, password_hash: hashPassword(anPw), must_change_password: 1 });
     for (const [name, type, code] of LIVE_PROJECTS) {
