@@ -288,6 +288,28 @@
                 <span class="text-[10px] text-stone-500">Visit with Satishbhai</span>
               </div>
             </button>
+            <button onclick="openNewFundModal()" class="col-span-2 p-3 rounded-xl bg-gradient-to-r from-[#2d1815] to-[#42221b] border border-[#c89d5c]/50 shadow-xs flex items-center gap-2.5 text-left active:scale-95 transition">
+              <div class="w-9 h-9 rounded-lg bg-[#c89d5c] text-[#2d1815] flex items-center justify-center shrink-0 shadow-xs">
+                <i class="fa-solid fa-sack-dollar text-sm"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#c89d5c] block leading-tight">Fund Requirement</span>
+                <span class="text-[10px] text-[#e0cfb4]/80 font-medium">Ketlu fund, kona mate, deadline & party</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fund Planning Snapshot -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+              <i class="fa-solid fa-sack-dollar text-[#c89d5c]"></i> Fund Planning
+            </h3>
+            <button onclick="switchTab('fund')" class="text-[10px] font-bold text-[#996515] hover:underline">View All</button>
+          </div>
+          <div id="dashFundSection">
+            <!-- Populated via JS -->
           </div>
         </div>
 
@@ -456,6 +478,53 @@
         <!-- Land Requirements List -->
         <div id="landReqContainer" class="flex-1 p-3.5 overflow-y-auto custom-scroll space-y-3">
           <!-- Populated via JS -->
+        </div>
+      </section>
+
+      <!-- ================= 3B. FUND PLANNING TAB ================= -->
+      <section id="tab-fund" class="tab-page hidden flex-1 flex flex-col h-full bg-[#f8f6f2] overflow-hidden">
+        <div class="bg-white p-3.5 border-b border-stone-200 shadow-xs z-10 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-xs font-bold text-[#2d1815] uppercase tracking-wider flex items-center gap-1.5 font-brand">
+                <i class="fa-solid fa-sack-dollar text-[#c89d5c]"></i> Fund Planning
+              </h2>
+              <p class="text-[10px] text-stone-500">Ketlu fund joiye, kona mate, deadline & daily target</p>
+            </div>
+            <button onclick="openNewFundModal()" class="px-2.5 py-1 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-bold text-[11px] rounded-lg shadow-xs flex items-center gap-1 active:scale-95 transition">
+              <i class="fa-solid fa-plus text-[10px]"></i> New Fund
+            </button>
+          </div>
+
+          <!-- Fund Totals -->
+          <div id="fundSummaryStrip" class="grid grid-cols-3 gap-2 text-center">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Filters -->
+          <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll text-[10px] pb-0.5">
+            <button onclick="filterFunds('all')" data-fund-filter="all" class="fund-filter-btn px-2.5 py-1 rounded-lg shrink-0">All</button>
+            <button onclick="filterFunds('active')" data-fund-filter="active" class="fund-filter-btn px-2.5 py-1 rounded-lg shrink-0">Active</button>
+            <button onclick="filterFunds('soon')" data-fund-filter="soon" class="fund-filter-btn px-2.5 py-1 rounded-lg shrink-0">Due Soon</button>
+            <button onclick="filterFunds('overdue')" data-fund-filter="overdue" class="fund-filter-btn px-2.5 py-1 rounded-lg shrink-0">Overdue</button>
+            <button onclick="filterFunds('done')" data-fund-filter="done" class="fund-filter-btn px-2.5 py-1 rounded-lg shrink-0">Completed</button>
+            <select id="fundSiteFilter" onchange="renderFunds()" class="ml-auto border border-stone-300 rounded-lg px-2 py-1 bg-white outline-none text-[10px] font-semibold shrink-0 max-w-[130px]">
+              <option value="all">All Sites</option>
+              <!-- Injected via JS -->
+            </select>
+          </div>
+        </div>
+
+        <div class="flex-1 p-3.5 overflow-y-auto custom-scroll space-y-3">
+          <!-- Aaj no Daily Plan -->
+          <div id="fundDailyPlan">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Fund Requirement Cards -->
+          <div id="fundListContainer" class="space-y-3">
+            <!-- Populated via JS -->
+          </div>
         </div>
       </section>
 
@@ -640,6 +709,14 @@
           <span id="landReqBadge" class="hidden absolute -top-1 -right-2 bg-rose-600 text-white text-[8px] px-1 rounded-full font-bold">2</span>
         </div>
         <span class="text-[9px] font-medium mt-0.5">Land Req</span>
+      </button>
+
+      <button onclick="switchTab('fund')" id="nav-fund" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
+        <div class="relative">
+          <i class="fa-solid fa-sack-dollar text-base"></i>
+          <span id="fundBadge" class="hidden absolute -top-1 -right-2 bg-amber-600 text-white text-[8px] px-1 rounded-full font-bold">0</span>
+        </div>
+        <span class="text-[9px] font-medium mt-0.5">Fund</span>
       </button>
 
       <button onclick="switchTab('chat')" id="nav-chat" class="nav-item flex flex-col items-center text-stone-400 hover:text-stone-600 transition flex-1 py-0.5">
@@ -1057,6 +1134,142 @@
 
           <button onclick="saveLandRequirement()" class="w-full py-2.5 bg-rose-800 hover:bg-rose-900 text-white font-semibold rounded-xl shadow-md transition">
             Publish Requirement & Alert Partners
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Fund Requirement Modal -->
+    <div id="newFundModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl max-h-[90vh] overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-sack-dollar text-[#c89d5c]"></i>
+            <h3 class="font-bold text-[#2d1815] text-sm">New Fund Requirement</h3>
+          </div>
+          <button onclick="closeModal('newFundModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+
+        <div class="mt-4 space-y-3 text-xs">
+          <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 leading-tight">
+            <b>Example:</b> "Mamakwada land token mate ₹50 Lakh joiye, 10 divas ma, Amitbhai aapse, Satishbhai (seller) lese."
+          </div>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Fund Sena Mate Joiye? (Purpose)</label>
+            <input type="text" id="fundPurpose" placeholder="e.g. Mamakwada land token payment" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-bold text-stone-900">
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Ketlu Fund Joiye (₹)</label>
+              <input type="number" id="fundAmount" min="1" inputmode="numeric" placeholder="e.g. 5000000" oninput="updateFundAmountHint()" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-bold text-emerald-800">
+              <p id="fundAmountHint" class="text-[10px] text-stone-400 mt-0.5"></p>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Deadline</label>
+              <input type="date" id="fundDeadline" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-bold text-rose-700 bg-white">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Kai Site Mate</label>
+              <select id="fundSite" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white font-semibold">
+                <!-- Injected via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Category</label>
+              <select id="fundCategory" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+                <option>Land Payment</option>
+                <option>Token / Advance</option>
+                <option>Construction</option>
+                <option>NA / Legal / Stamp Duty</option>
+                <option>Broker Commission</option>
+                <option>Loan / EMI</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Aapnar Party (Kon Aapse)</label>
+              <input type="text" id="fundGiver" list="fundPartyList" placeholder="e.g. Amit Shah / HDFC Bank" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Lenar Party (Kone Aapvanu)</label>
+              <input type="text" id="fundReceiver" list="fundPartyList" placeholder="e.g. Satishbhai (Seller)" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+          </div>
+          <datalist id="fundPartyList">
+            <!-- Injected via JS -->
+          </datalist>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Responsible Partner (Arrange Karse)</label>
+            <select id="fundAssignee" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white font-semibold">
+              <!-- Injected via JS -->
+            </select>
+          </div>
+
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Notes</label>
+            <textarea id="fundNotes" rows="2" placeholder="Cheque / RTGS, installment details, conditions..." class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none"></textarea>
+          </div>
+
+          <button onclick="saveFundRequirement()" class="w-full py-2.5 bg-[#2d1815] hover:bg-[#3e221d] text-[#c89d5c] border border-[#c89d5c]/40 font-semibold rounded-xl shadow-md transition">
+            Save Fund Plan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Fund Payment / Daily Entry Modal -->
+    <div id="fundPaymentModal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl max-h-[90vh] overflow-y-auto custom-scroll">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-indian-rupee-sign text-emerald-700"></i>
+            <h3 class="font-bold text-[#2d1815] text-sm">Add Fund Entry</h3>
+          </div>
+          <button onclick="closeModal('fundPaymentModal')" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="mt-3 space-y-3 text-xs">
+          <input type="hidden" id="fundPayFundId">
+          <div id="fundPayContext" class="p-2.5 bg-stone-50 border border-stone-200 rounded-xl text-[11px] text-stone-700"></div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Amount (₹)</label>
+              <input type="number" id="fundPayAmount" min="1" inputmode="numeric" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none font-bold text-emerald-800">
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Date</label>
+              <input type="date" id="fundPayDate" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Kone Aapya</label>
+              <input type="text" id="fundPayFrom" list="fundPartyList" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+            </div>
+            <div>
+              <label class="font-semibold text-stone-700 block mb-1">Mode</label>
+              <select id="fundPayMode" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none bg-white">
+                <option>Bank / RTGS</option>
+                <option>Cheque</option>
+                <option>Cash</option>
+                <option>UPI</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="font-semibold text-stone-700 block mb-1">Note</label>
+            <input type="text" id="fundPayNote" placeholder="e.g. 1st installment, cheque no. 004512" class="w-full border border-stone-300 rounded-xl px-3 py-2 outline-none">
+          </div>
+          <button onclick="saveFundPayment()" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl shadow-md transition">
+            Save Entry
           </button>
         </div>
       </div>
@@ -1610,6 +1823,92 @@
     ];
 
     // State: Urgent Land Buying Requirements
+    let landRequirements = [
+      {
+        id: 'req_1',
+        title: 'Ahu GIDC belt me 10 Acre Industrial Land urgent',
+        location: 'Ahu Industrial Belt, Umargam',
+        size: '10 Acre',
+        budget: '₹15-20 Lakh per Vigha',
+        deadline: '2 Days Urgent ⚡',
+        assignee: 'Rajesh Mehta',
+        client: 'Ready Industrial Buyer',
+        postedBy: 'Amit Shah',
+        status: 'Pending Search',
+        notes: 'Road touch required, client ready with 50L token.',
+        date: 'Today'
+      },
+      {
+        id: 'req_2',
+        title: 'Sanjan / Anklash ma 5 Vigha warehouse land',
+        location: 'Anklash GIDC Bypass, Sanjan',
+        size: '5 Vigha',
+        budget: '₹12 Lakh per Vigha',
+        deadline: '1 Week',
+        assignee: 'All Partners',
+        client: 'Logistics Company',
+        postedBy: 'Nilesh Vora',
+        status: 'Pending Search',
+        notes: '30 ft road minimum, NA eligible preferred.',
+        date: 'Yesterday'
+      }
+    ];
+
+    // State: Fund Planning (amounts in ₹, dates as YYYY-MM-DD)
+    let currentFundFilter = 'all';
+    let fundRequirements = [
+      {
+        id: 'fund_1',
+        purpose: 'Mamakwada 18 Vigha land token payment',
+        siteId: 'site_mamakwada',
+        category: 'Token / Advance',
+        amount: 5000000,
+        deadline: addDaysIso(todayIso(), 6),
+        giver: 'Amit Shah',
+        receiver: 'Satishbhai Parmar (Seller side)',
+        assignee: 'Amit Shah',
+        notes: 'Token against 7-12 verification. RTGS preferred.',
+        createdBy: 'Rajesh Mehta',
+        createdAt: addDaysIso(todayIso(), -4),
+        payments: [
+          { id: 'fp_1', date: addDaysIso(todayIso(), -3), amount: 1500000, from: 'Amit Shah', mode: 'Bank / RTGS', note: '1st part' },
+          { id: 'fp_2', date: addDaysIso(todayIso(), -1), amount: 500000, from: 'Nilesh Vora', mode: 'Cheque', note: 'Cheque no. 004512' }
+        ]
+      },
+      {
+        id: 'fund_2',
+        purpose: 'Ahu boundary wall & gate final bill',
+        siteId: 'site_ahu',
+        category: 'Construction',
+        amount: 850000,
+        deadline: addDaysIso(todayIso(), 2),
+        giver: 'Partners Pool',
+        receiver: 'Civil Contractor (Sanjaybhai team)',
+        assignee: 'Sanjay Patel',
+        notes: 'Wall 80% done, final payment on completion.',
+        createdBy: 'Sanjay Patel',
+        createdAt: addDaysIso(todayIso(), -6),
+        payments: [
+          { id: 'fp_3', date: addDaysIso(todayIso(), -2), amount: 300000, from: 'Partners Pool', mode: 'UPI', note: '' }
+        ]
+      },
+      {
+        id: 'fund_3',
+        purpose: 'Gavan Homes NA conversion & stamp duty',
+        siteId: 'site_homes',
+        category: 'NA / Legal / Stamp Duty',
+        amount: 1200000,
+        deadline: addDaysIso(todayIso(), 20),
+        giver: 'HDFC Bank (OD limit)',
+        receiver: 'Collector Office / Sub-Registrar',
+        assignee: 'Nilesh Vora',
+        notes: 'Bank OD sanction pending.',
+        createdBy: 'Nilesh Vora',
+        createdAt: addDaysIso(todayIso(), -1),
+        payments: []
+      }
+    ];
+
     // ================= AUTHENTICATION LOGIC =================
     function setAuthMode(mode) {
       const partnerForm = document.getElementById('partnerLoginForm');
@@ -2304,6 +2603,583 @@
       showToast(`Opening GPS Land Survey for: ${req.title}`);
     }
 
+    // ================= FUND PLANNING FUNCTIONS =================
+    function todayIso() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function addDaysIso(iso, days) {
+      const [y, m, d] = iso.split('-').map(Number);
+      const dt = new Date(y, m - 1, d + days);
+      return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
+    }
+
+    // Whole days from today to iso date (negative = past)
+    function daysUntil(iso) {
+      const [y, m, d] = iso.split('-').map(Number);
+      const target = Date.UTC(y, m - 1, d);
+      const now = new Date();
+      const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+      return Math.round((target - today) / 86400000);
+    }
+
+    function formatIsoDate(iso) {
+      const [y, m, d] = iso.split('-').map(Number);
+      return new Date(y, m - 1, d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function formatINR(n) {
+      return '₹' + Math.round(n).toLocaleString('en-IN');
+    }
+
+    // Short form: ₹1.25 Cr / ₹12.5 L / ₹45,000
+    function formatINRShort(n) {
+      if (n >= 10000000) return '₹' + (n / 10000000).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+      if (n >= 100000) return '₹' + (n / 100000).toFixed(2).replace(/\.?0+$/, '') + ' L';
+      return formatINR(n);
+    }
+
+    function getFundStats(fund) {
+      const paid = fund.payments.reduce((sum, p) => sum + p.amount, 0);
+      const remaining = Math.max(fund.amount - paid, 0);
+      const daysLeft = daysUntil(fund.deadline);
+      const percent = fund.amount > 0 ? Math.min(100, Math.round((paid / fund.amount) * 100)) : 0;
+      let status = 'active';
+      if (remaining === 0) status = 'done';
+      else if (daysLeft < 0) status = 'overdue';
+      else if (daysLeft <= 3) status = 'soon';
+      // Daily target: spread the remaining amount over the days left, counting today
+      const perDay = status === 'done' ? 0 : (status === 'overdue' ? remaining : remaining / (daysLeft + 1));
+      const paidToday = fund.payments.filter(p => p.date === todayIso()).reduce((sum, p) => sum + p.amount, 0);
+      return { paid, remaining, daysLeft, percent, status, perDay, paidToday };
+    }
+
+    function getSiteName(siteId) {
+      const site = sites.find(s => s.id === siteId);
+      return site ? site.name : 'General / Office';
+    }
+
+    function filterFunds(type) {
+      currentFundFilter = type;
+      renderFunds();
+    }
+
+    function renderFunds() {
+      const container = document.getElementById('fundListContainer');
+      if (!container) return;
+
+      document.querySelectorAll('.fund-filter-btn').forEach(btn => {
+        const active = btn.dataset.fundFilter === currentFundFilter;
+        btn.className = `fund-filter-btn px-2.5 py-1 rounded-lg shrink-0 ${active ? 'bg-[#2d1815] text-[#c89d5c] font-bold' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`;
+      });
+
+      const siteSelect = document.getElementById('fundSiteFilter');
+      const selectedSite = siteSelect.value || 'all';
+      siteSelect.innerHTML = `<option value="all">All Sites</option><option value="general">General / Office</option>` +
+        sites.map(s => `<option value="${s.id}">${escapeHtml(s.name)}</option>`).join('');
+      siteSelect.value = selectedSite;
+
+      const siteFunds = fundRequirements.filter(f => selectedSite === 'all' || f.siteId === selectedSite);
+
+      // Totals strip (for selected site)
+      let totalNeed = 0, totalPaid = 0;
+      siteFunds.forEach(f => {
+        const st = getFundStats(f);
+        totalNeed += f.amount;
+        totalPaid += Math.min(st.paid, f.amount);
+      });
+      document.getElementById('fundSummaryStrip').innerHTML = `
+        <div class="bg-stone-50 rounded-xl p-2 border border-stone-200">
+          <span class="text-sm font-extrabold text-[#2d1815] block">${formatINRShort(totalNeed)}</span>
+          <span class="text-[9px] text-stone-500 uppercase font-semibold tracking-wider">Total Joiye</span>
+        </div>
+        <div class="bg-emerald-50 rounded-xl p-2 border border-emerald-200">
+          <span class="text-sm font-extrabold text-emerald-700 block">${formatINRShort(totalPaid)}</span>
+          <span class="text-[9px] text-emerald-700/80 uppercase font-semibold tracking-wider">Arranged</span>
+        </div>
+        <div class="bg-rose-50 rounded-xl p-2 border border-rose-200">
+          <span class="text-sm font-extrabold text-rose-700 block">${formatINRShort(totalNeed - totalPaid)}</span>
+          <span class="text-[9px] text-rose-700/80 uppercase font-semibold tracking-wider">Baaki</span>
+        </div>
+      `;
+
+      renderFundDailyPlan(siteFunds);
+
+      const filtered = siteFunds
+        .map(f => ({ fund: f, stats: getFundStats(f) }))
+        .filter(({ stats }) => {
+          if (currentFundFilter === 'all') return true;
+          if (currentFundFilter === 'active') return stats.status !== 'done';
+          return stats.status === currentFundFilter;
+        })
+        .sort((a, b) => (a.stats.status === 'done') - (b.stats.status === 'done') || a.stats.daysLeft - b.stats.daysLeft);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-stone-400 text-xs">
+            <i class="fa-solid fa-sack-dollar text-3xl mb-2 text-stone-300"></i>
+            <p>No fund requirements here.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const statusStyles = {
+        active: { label: 'On Track', cls: 'bg-emerald-50 text-emerald-800 border-emerald-200', bar: 'bg-emerald-500' },
+        soon: { label: 'Due Soon', cls: 'bg-amber-50 text-amber-800 border-amber-300', bar: 'bg-amber-500' },
+        overdue: { label: 'Overdue', cls: 'bg-rose-50 text-rose-800 border-rose-300', bar: 'bg-rose-500' },
+        done: { label: 'Completed ✓', cls: 'bg-stone-100 text-stone-600 border-stone-300', bar: 'bg-[#c89d5c]' }
+      };
+
+      container.innerHTML = filtered.map(({ fund, stats }) => {
+        const style = statusStyles[stats.status];
+        let daysText;
+        if (stats.status === 'done') daysText = 'Fund complete';
+        else if (stats.daysLeft < 0) daysText = `${Math.abs(stats.daysLeft)} din late`;
+        else if (stats.daysLeft === 0) daysText = 'Aaje deadline';
+        else daysText = `${stats.daysLeft} din baaki`;
+
+        const historyHtml = fund.payments.length === 0
+          ? `<p class="text-[10px] text-stone-400">Haju koi entry nathi.</p>`
+          : fund.payments.slice().sort((a, b) => b.date.localeCompare(a.date)).map(p => `
+              <div class="flex items-center justify-between text-[10px] py-1 border-b border-stone-100 last:border-0">
+                <div class="min-w-0">
+                  <span class="text-stone-500">${formatIsoDate(p.date)}</span>
+                  <span class="text-stone-700 font-semibold"> • ${escapeHtml(p.from)}</span>
+                  <span class="text-stone-400"> (${escapeHtml(p.mode)})</span>
+                  ${p.note ? `<p class="text-stone-400 truncate">${escapeHtml(p.note)}</p>` : ''}
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                  <b class="text-emerald-700">+${formatINR(p.amount)}</b>
+                  <button onclick="deleteFundPayment('${fund.id}', '${p.id}')" title="Remove entry" class="text-stone-300 hover:text-rose-600"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </div>
+            `).join('');
+
+        return `
+          <div class="bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs space-y-2.5 text-xs">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[9px] uppercase font-bold px-2 py-0.5 rounded-full bg-[#2d1815] text-[#c89d5c] truncate">
+                <i class="fa-solid fa-location-dot text-[8px] mr-0.5"></i> ${escapeHtml(getSiteName(fund.siteId))}
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${style.cls}">${style.label}</span>
+            </div>
+
+            <div>
+              <h3 class="font-bold text-stone-900 text-xs leading-snug">${escapeHtml(fund.purpose)}</h3>
+              <p class="text-[10px] text-stone-400">${escapeHtml(fund.category)} • by ${escapeHtml(fund.createdBy)}</p>
+            </div>
+
+            <div>
+              <div class="flex items-end justify-between">
+                <span class="text-base font-extrabold text-[#2d1815]">${formatINR(fund.amount)}</span>
+                <span class="text-[10px] font-bold text-stone-500">${stats.percent}% arranged</span>
+              </div>
+              <div class="w-full h-2 bg-stone-100 rounded-full overflow-hidden mt-1">
+                <div class="h-full ${style.bar} rounded-full" style="width: ${stats.percent}%"></div>
+              </div>
+            </div>
+
+            <div class="bg-stone-50 p-2.5 rounded-xl border border-stone-200/80 grid grid-cols-2 gap-2 text-[11px]">
+              <div><span class="text-stone-400">Arranged:</span> <b class="text-emerald-700">${formatINR(stats.paid)}</b></div>
+              <div><span class="text-stone-400">Baaki:</span> <b class="text-rose-700">${formatINR(stats.remaining)}</b></div>
+              <div><span class="text-stone-400">Deadline:</span> <b class="text-stone-800">${formatIsoDate(fund.deadline)}</b></div>
+              <div><span class="text-stone-400">Time:</span> <b class="${stats.status === 'overdue' ? 'text-rose-700' : 'text-stone-800'}">${daysText}</b></div>
+              ${stats.status !== 'done' ? `
+              <div class="col-span-2 flex items-center justify-between bg-white rounded-lg px-2 py-1.5 border border-amber-200">
+                <span class="text-amber-900 font-semibold"><i class="fa-solid fa-calendar-day text-[#c89d5c] mr-1"></i>${stats.status === 'overdue' ? 'Turant joiye' : 'Daily target'}</span>
+                <b class="text-[#2d1815]">${formatINR(stats.perDay)}${stats.status === 'overdue' ? '' : ' / din'}</b>
+              </div>` : ''}
+            </div>
+
+            <div class="text-[11px] bg-amber-50/60 p-2 rounded-xl border border-amber-200/50 space-y-1">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-stone-500">Aapnar:</span> <b class="text-emerald-800">${escapeHtml(fund.giver)}</b>
+                <i class="fa-solid fa-arrow-right text-[9px] text-[#c89d5c]"></i>
+                <span class="text-stone-500">Lenar:</span> <b class="text-rose-800">${escapeHtml(fund.receiver)}</b>
+              </div>
+              <div><span class="text-stone-500">Responsible:</span> <b class="text-[#2d1815]">${escapeHtml(fund.assignee)}</b></div>
+              ${fund.notes ? `<p class="text-[10px] text-stone-500"><i class="fa-solid fa-circle-info text-[#c89d5c] mr-1"></i>${escapeHtml(fund.notes)}</p>` : ''}
+            </div>
+
+            <details class="bg-white rounded-xl border border-stone-200 px-2.5 py-1.5">
+              <summary class="text-[10px] font-bold text-stone-600 cursor-pointer">Daily entries (${fund.payments.length})</summary>
+              <div class="mt-1.5">${historyHtml}</div>
+            </details>
+
+            <div class="flex items-center justify-between pt-1 gap-2">
+              <div class="flex items-center gap-1.5">
+                <button onclick="deleteFundRequirement('${fund.id}')" title="Delete" class="w-8 h-8 rounded-lg bg-stone-100 hover:bg-rose-50 text-stone-400 hover:text-rose-600 flex items-center justify-center active:scale-95 transition">
+                  <i class="fa-solid fa-trash text-[11px]"></i>
+                </button>
+                <button onclick="shareFundToChat('${fund.id}')" title="Share in site chat" class="w-8 h-8 rounded-lg bg-[#2d1815]/10 hover:bg-[#2d1815]/20 text-[#2d1815] flex items-center justify-center active:scale-95 transition">
+                  <i class="fa-solid fa-share-nodes text-[11px]"></i>
+                </button>
+              </div>
+              ${stats.status !== 'done' ? `
+              <button onclick="openFundPaymentModal('${fund.id}')" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-[11px] flex items-center gap-1.5 shadow-sm active:scale-95 transition">
+                <i class="fa-solid fa-plus"></i> Add Fund Entry
+              </button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Today's collection plan across all open funds
+    function renderFundDailyPlan(fundList) {
+      const box = document.getElementById('fundDailyPlan');
+      if (!box) return;
+      const open = fundList.map(f => ({ fund: f, stats: getFundStats(f) })).filter(x => x.stats.status !== 'done');
+      const todayTarget = open.reduce((sum, x) => sum + x.stats.perDay, 0);
+      const todayCollected = fundList.reduce((sum, f) => sum + getFundStats(f).paidToday, 0);
+
+      if (open.length === 0) {
+        box.innerHTML = `
+          <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-3 text-xs text-emerald-800 flex items-center gap-2">
+            <i class="fa-solid fa-circle-check"></i> Badha fund complete chhe. Aaje kai arrange karvanu nathi.
+          </div>`;
+        return;
+      }
+
+      box.innerHTML = `
+        <div class="bg-gradient-to-br from-[#1c0f0d] via-[#2d1815] to-[#42221b] rounded-2xl p-3.5 text-white border border-[#c89d5c]/40 shadow-md">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-[#c89d5c] tracking-widest uppercase font-brand">Aaj no Fund Plan</span>
+            <span class="text-[10px] text-[#e0cfb4]/80">${formatIsoDate(todayIso())}</span>
+          </div>
+          <div class="flex items-end justify-between mt-1.5">
+            <div>
+              <span class="text-lg font-extrabold text-white">${formatINR(todayTarget)}</span>
+              <p class="text-[10px] text-[#e0cfb4]/80">Aaje arrange karvanu (target)</p>
+            </div>
+            <div class="text-right">
+              <span class="text-sm font-bold text-emerald-300">${formatINR(todayCollected)}</span>
+              <p class="text-[10px] text-[#e0cfb4]/80">Aaje aavya</p>
+            </div>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-white/10 space-y-1">
+            ${open.sort((a, b) => a.stats.daysLeft - b.stats.daysLeft).map(({ fund, stats }) => `
+              <div class="flex items-center justify-between text-[10px] gap-2">
+                <span class="truncate text-stone-200">${escapeHtml(fund.purpose)}</span>
+                <b class="shrink-0 ${stats.status === 'overdue' ? 'text-rose-300' : stats.status === 'soon' ? 'text-amber-300' : 'text-[#c89d5c]'}">${formatINRShort(stats.perDay)}</b>
+              </div>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function fillFundPartyOptions() {
+      const names = new Set(partners.map(p => p.name));
+      ['Partners Pool', 'HDFC Bank (OD limit)'].forEach(n => names.add(n));
+      fundRequirements.forEach(f => { names.add(f.giver); names.add(f.receiver); });
+      landSurveys.forEach(s => { if (s.brokerName) names.add(s.brokerName); });
+      document.getElementById('fundPartyList').innerHTML = [...names].map(n => `<option value="${escapeHtml(n)}"></option>`).join('');
+    }
+
+    function updateFundAmountHint() {
+      const val = Number(document.getElementById('fundAmount').value);
+      document.getElementById('fundAmountHint').textContent = val > 0 ? `${formatINR(val)} (${formatINRShort(val)})` : '';
+    }
+
+    function openNewFundModal() {
+      const siteSelect = document.getElementById('fundSite');
+      siteSelect.innerHTML = sites.map(s => `<option value="${s.id}">${escapeHtml(s.name)}</option>`).join('') +
+        `<option value="general">General / Office</option>`;
+      if (activeChannel.type === 'project') siteSelect.value = activeChannel.id;
+
+      const assigneeSelect = document.getElementById('fundAssignee');
+      assigneeSelect.innerHTML = `<option value="All Partners">All Partners (બધા પાર્ટનર્સ)</option>` +
+        partners.map(p => `<option value="${escapeHtml(p.name)}">${escapeHtml(p.name)} (${escapeHtml(p.role.split(' ')[0])})</option>`).join('');
+
+      fillFundPartyOptions();
+      document.getElementById('fundPurpose').value = "";
+      document.getElementById('fundAmount').value = "";
+      document.getElementById('fundAmountHint').textContent = "";
+      document.getElementById('fundDeadline').value = addDaysIso(todayIso(), 7);
+      document.getElementById('fundDeadline').min = todayIso();
+      document.getElementById('fundCategory').selectedIndex = 0;
+      document.getElementById('fundGiver').value = "";
+      document.getElementById('fundReceiver').value = "";
+      document.getElementById('fundNotes').value = "";
+
+      document.getElementById('newFundModal').classList.remove('hidden');
+    }
+
+    function saveFundRequirement() {
+      const purpose = document.getElementById('fundPurpose').value.trim();
+      const amount = Math.round(Number(document.getElementById('fundAmount').value));
+      const deadline = document.getElementById('fundDeadline').value;
+      const siteId = document.getElementById('fundSite').value;
+      const category = document.getElementById('fundCategory').value;
+      const giver = document.getElementById('fundGiver').value.trim() || 'Partners Pool';
+      const receiver = document.getElementById('fundReceiver').value.trim() || 'To be decided';
+      const assignee = document.getElementById('fundAssignee').value;
+      const notes = document.getElementById('fundNotes').value.trim();
+
+      if (!purpose) {
+        showToast("Fund sena mate joiye te lakho!");
+        return;
+      }
+      if (!(amount > 0)) {
+        showToast("Ketlu fund joiye te amount lakho!");
+        return;
+      }
+      if (!deadline) {
+        showToast("Deadline select karo!");
+        return;
+      }
+
+      const fund = {
+        id: `fund_${Date.now()}`,
+        purpose,
+        siteId,
+        category,
+        amount,
+        deadline,
+        giver,
+        receiver,
+        assignee,
+        notes,
+        createdBy: currentUser ? currentUser.name : 'Me',
+        createdAt: todayIso(),
+        payments: []
+      };
+      fundRequirements.unshift(fund);
+
+      // Track arranging the fund as a task for the responsible partner
+      tasks.unshift({
+        id: Date.now(),
+        projectId: siteId,
+        title: `FUND: ${formatINRShort(amount)} arrange karvu - ${purpose} (${giver} → ${receiver})`,
+        assignee,
+        priority: daysUntil(deadline) <= 3 ? 'Urgent' : 'High',
+        time: formatIsoDate(deadline),
+        done: false
+      });
+
+      closeModal('newFundModal');
+      renderFunds();
+      renderTasks();
+      renderDashboard();
+      showToast("Fund plan saved!");
+    }
+
+    function openFundPaymentModal(fundId) {
+      const fund = fundRequirements.find(f => f.id === fundId);
+      if (!fund) return;
+      const stats = getFundStats(fund);
+      fillFundPartyOptions();
+      document.getElementById('fundPayFundId').value = fundId;
+      document.getElementById('fundPayContext').innerHTML =
+        `<b class="text-[#2d1815]">${escapeHtml(fund.purpose)}</b><br>Baaki: <b class="text-rose-700">${formatINR(stats.remaining)}</b> • Daily target: <b>${formatINR(stats.perDay)}</b>`;
+      document.getElementById('fundPayAmount').value = Math.round(Math.min(stats.perDay, stats.remaining)) || '';
+      document.getElementById('fundPayDate').value = todayIso();
+      document.getElementById('fundPayFrom').value = fund.giver;
+      document.getElementById('fundPayMode').selectedIndex = 0;
+      document.getElementById('fundPayNote').value = "";
+      document.getElementById('fundPaymentModal').classList.remove('hidden');
+    }
+
+    function saveFundPayment() {
+      const fund = fundRequirements.find(f => f.id === document.getElementById('fundPayFundId').value);
+      if (!fund) return;
+      const amount = Math.round(Number(document.getElementById('fundPayAmount').value));
+      const date = document.getElementById('fundPayDate').value || todayIso();
+      if (!(amount > 0)) {
+        showToast("Amount lakho!");
+        return;
+      }
+
+      fund.payments.push({
+        id: `fp_${Date.now()}`,
+        date,
+        amount,
+        from: document.getElementById('fundPayFrom').value.trim() || fund.giver,
+        mode: document.getElementById('fundPayMode').value,
+        note: document.getElementById('fundPayNote').value.trim()
+      });
+
+      closeModal('fundPaymentModal');
+      renderFunds();
+      renderDashboard();
+      showToast(getFundStats(fund).status === 'done' ? "Fund complete thai gayu! ✓" : `${formatINR(amount)} entry saved`);
+    }
+
+    function deleteFundPayment(fundId, paymentId) {
+      const fund = fundRequirements.find(f => f.id === fundId);
+      if (!fund || !confirm("Aa entry delete karvi chhe?")) return;
+      fund.payments = fund.payments.filter(p => p.id !== paymentId);
+      renderFunds();
+      renderDashboard();
+    }
+
+    function deleteFundRequirement(fundId) {
+      if (!confirm("Aa fund plan delete karvo chhe?")) return;
+      fundRequirements = fundRequirements.filter(f => f.id !== fundId);
+      renderFunds();
+      renderDashboard();
+      showToast("Fund plan deleted");
+    }
+
+    function shareFundToChat(fundId) {
+      const fund = fundRequirements.find(f => f.id === fundId);
+      if (!fund) return;
+      const stats = getFundStats(fund);
+      const chatId = fund.siteId !== 'general' ? fund.siteId : activeChannel.id;
+      const msg = `💰 [FUND PLAN]\nKona mate: ${fund.purpose}\nSite: ${getSiteName(fund.siteId)}\nTotal: ${formatINR(fund.amount)} | Arranged: ${formatINR(stats.paid)} | Baaki: ${formatINR(stats.remaining)}\nDeadline: ${formatIsoDate(fund.deadline)}${stats.status !== 'done' ? ` | Daily: ${formatINR(stats.perDay)}` : ''}\nAapnar: ${fund.giver} → Lenar: ${fund.receiver}\nResponsible: ${fund.assignee}`;
+      if (!chatHistories[chatId]) chatHistories[chatId] = [];
+      chatHistories[chatId].push({
+        sender: 'Me',
+        senderId: 'me',
+        text: msg,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isMe: true
+      });
+      selectChannel(sites.some(s => s.id === chatId) ? 'project' : activeChannel.type, chatId);
+      switchTab('chat');
+      showToast("Fund plan shared in chat");
+    }
+
+    // ================= DASHBOARD =================
+    let currentReportPeriod = 'weekly';
+
+    function setReportPeriod(period) {
+      currentReportPeriod = period;
+      ['weekly', 'monthly', 'yearly'].forEach(p => {
+        const btn = document.getElementById(`rptBtn-${p}`);
+        if (!btn) return;
+        btn.className = p === period
+          ? 'px-2 py-0.5 rounded-md font-bold transition bg-[#2d1815] text-[#c89d5c] shadow-xs'
+          : 'px-2 py-0.5 rounded-md text-stone-600 font-medium hover:text-[#2d1815] transition';
+      });
+
+      const windowDays = { weekly: 7, monthly: 30, yearly: 365 }[period];
+      let collected = 0;
+      fundRequirements.forEach(f => f.payments.forEach(p => {
+        const age = -daysUntil(p.date);
+        if (age >= 0 && age < windowDays) collected += p.amount;
+      }));
+      const closedDeals = leads.filter(l => l.status === 'Closed Deal' || l.status === 'Token Received').length;
+      const doneTasks = tasks.filter(t => t.done).length;
+
+      document.getElementById('dashboardReportStats').innerHTML = `
+        <div class="bg-stone-50 rounded-xl p-2 border border-stone-200">
+          <span class="text-sm font-extrabold text-emerald-700 block">${formatINRShort(collected)}</span>
+          <span class="text-[9px] text-stone-500 uppercase font-semibold tracking-wider">Fund Aavyu</span>
+        </div>
+        <div class="bg-stone-50 rounded-xl p-2 border border-stone-200">
+          <span class="text-sm font-extrabold text-[#2d1815] block">${closedDeals}</span>
+          <span class="text-[9px] text-stone-500 uppercase font-semibold tracking-wider">Deals / Tokens</span>
+        </div>
+        <div class="bg-stone-50 rounded-xl p-2 border border-stone-200">
+          <span class="text-sm font-extrabold text-[#996515] block">${doneTasks}</span>
+          <span class="text-[9px] text-stone-500 uppercase font-semibold tracking-wider">Tasks Done</span>
+        </div>
+      `;
+    }
+
+    function setBadge(id, count) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = count;
+      el.classList.toggle('hidden', count === 0);
+    }
+
+    function renderDashboard() {
+      const pendingTasks = tasks.filter(t => !t.done);
+      const openLeads = leads.filter(l => l.status !== 'Closed Deal');
+      const fundStats = fundRequirements.map(f => ({ fund: f, stats: getFundStats(f) }));
+      const urgentFunds = fundStats.filter(x => x.stats.status === 'soon' || x.stats.status === 'overdue');
+
+      document.getElementById('dashCountSites').textContent = sites.length;
+      document.getElementById('dashCountLeads').textContent = openLeads.length;
+      document.getElementById('dashCountLandReq').textContent = landRequirements.length;
+      document.getElementById('dashCountTasks').textContent = pendingTasks.length;
+      setBadge('leadBadge', openLeads.length);
+      setBadge('landReqBadge', landRequirements.length);
+      setBadge('taskBadge', pendingTasks.length);
+      setBadge('fundBadge', urgentFunds.length);
+
+      setReportPeriod(currentReportPeriod);
+
+      // Fund snapshot
+      const open = fundStats.filter(x => x.stats.status !== 'done');
+      const totalRemaining = open.reduce((sum, x) => sum + x.stats.remaining, 0);
+      const todayTarget = open.reduce((sum, x) => sum + x.stats.perDay, 0);
+      const nextFund = open.slice().sort((a, b) => a.stats.daysLeft - b.stats.daysLeft)[0];
+      document.getElementById('dashFundSection').innerHTML = open.length === 0
+        ? `<div onclick="switchTab('fund')" class="cursor-pointer bg-white p-3 rounded-xl border border-stone-200 text-xs text-stone-500">Koi pending fund requirement nathi.</div>`
+        : `
+          <div onclick="switchTab('fund')" class="cursor-pointer bg-white p-3 rounded-xl border border-[#c89d5c]/40 shadow-xs text-xs space-y-2 active:scale-[0.99] transition">
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div><b class="text-sm text-rose-700 block">${formatINRShort(totalRemaining)}</b><span class="text-[9px] text-stone-500 uppercase font-semibold">Baaki Fund</span></div>
+              <div><b class="text-sm text-[#2d1815] block">${formatINRShort(todayTarget)}</b><span class="text-[9px] text-stone-500 uppercase font-semibold">Aaj no Target</span></div>
+              <div><b class="text-sm ${urgentFunds.length ? 'text-amber-700' : 'text-emerald-700'} block">${urgentFunds.length}</b><span class="text-[9px] text-stone-500 uppercase font-semibold">Urgent</span></div>
+            </div>
+            ${nextFund ? `
+            <div class="flex items-center justify-between bg-amber-50/70 border border-amber-200/60 rounded-lg px-2 py-1.5 text-[11px] gap-2">
+              <span class="truncate"><i class="fa-solid fa-clock text-[#c89d5c] mr-1"></i>${escapeHtml(nextFund.fund.purpose)}</span>
+              <b class="shrink-0 ${nextFund.stats.daysLeft < 0 ? 'text-rose-700' : 'text-[#2d1815]'}">${nextFund.stats.daysLeft < 0 ? 'Overdue' : formatIsoDate(nextFund.fund.deadline)}</b>
+            </div>` : ''}
+          </div>`;
+
+      // Urgent land requirements
+      document.getElementById('dashUrgentLandReqSection').innerHTML = landRequirements.length === 0
+        ? `<div class="bg-white p-3 rounded-xl border border-stone-200 text-xs text-stone-500">No urgent land requirements.</div>`
+        : landRequirements.slice(0, 2).map(req => `
+          <div onclick="switchTab('landreq')" class="cursor-pointer bg-white p-3 rounded-xl border border-rose-200 shadow-xs text-xs flex items-center justify-between gap-2 active:scale-[0.99] transition">
+            <div class="min-w-0">
+              <p class="font-bold text-stone-900 truncate">${escapeHtml(req.title)}</p>
+              <p class="text-[10px] text-stone-500 truncate">${escapeHtml(req.location)} • ${escapeHtml(req.budget)}</p>
+            </div>
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-rose-700 text-white shrink-0">${escapeHtml(req.deadline)}</span>
+          </div>`).join('');
+
+      // Next meeting
+      const nextMeeting = scheduledMeetings[0];
+      document.getElementById('dashUpcomingMeetingSection').innerHTML = nextMeeting ? `
+        <div class="bg-[#c89d5c]/15 p-3 rounded-xl border border-[#c89d5c]/40 text-xs flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-lg bg-[#2d1815] text-[#c89d5c] flex items-center justify-center shrink-0"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="min-w-0">
+            <p class="font-bold text-[#2d1815] truncate">${escapeHtml(nextMeeting.title)}</p>
+            <p class="text-[10px] text-stone-600">${escapeHtml(nextMeeting.date)} • ${escapeHtml(nextMeeting.time)} • ${escapeHtml(nextMeeting.person)}</p>
+          </div>
+        </div>` : '';
+
+      // Sites ribbon
+      document.getElementById('dashSitesScroll').innerHTML = sites.map(site => `
+        <div onclick="selectChannel('project', '${site.id}'); switchTab('chat');" class="cursor-pointer shrink-0 w-36 bg-white p-2.5 rounded-xl border border-stone-200 shadow-xs text-xs active:scale-95 transition">
+          <p class="font-bold text-[#2d1815] truncate">${escapeHtml(site.name)}</p>
+          <p class="text-[10px] text-stone-500 truncate">${escapeHtml(site.location)}</p>
+          <p class="text-[10px] text-[#996515] font-semibold truncate mt-0.5">${escapeHtml(site.type)}</p>
+        </div>`).join('');
+
+      // Recent surveys
+      document.getElementById('dashRecentSurveys').innerHTML = landSurveys.slice(0, 2).map(s => `
+        <div class="bg-white p-3 rounded-xl border border-stone-200 shadow-xs text-xs">
+          <div class="flex items-center justify-between gap-2">
+            <p class="font-bold text-stone-900 truncate">${escapeHtml(s.siteName)}</p>
+            <span class="text-[10px] text-stone-400 shrink-0">${escapeHtml(s.date)}</span>
+          </div>
+          <p class="text-[10px] text-stone-500">${escapeHtml(s.area)} • <b class="text-emerald-700">${escapeHtml(s.rate)}</b></p>
+        </div>`).join('');
+
+      // Priority tasks
+      const priorityTasks = pendingTasks.filter(t => t.priority === 'Urgent' || t.priority === 'High').slice(0, 3);
+      document.getElementById('dashUrgentTasks').innerHTML = priorityTasks.length === 0
+        ? `<div class="bg-white p-3 rounded-xl border border-stone-200 text-xs text-stone-500">No priority tasks pending.</div>`
+        : priorityTasks.map(t => `
+          <div onclick="switchTab('tasks')" class="cursor-pointer bg-white p-3 rounded-xl border border-stone-200 shadow-xs text-xs flex items-center justify-between gap-2">
+            <div class="min-w-0">
+              <p class="font-semibold text-stone-900 truncate">${escapeHtml(t.title)}</p>
+              <p class="text-[10px] text-stone-500">${escapeHtml(t.assignee)} • ${escapeHtml(t.time)}</p>
+            </div>
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full shrink-0 ${t.priority === 'Urgent' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800'}">${escapeHtml(t.priority)}</span>
+          </div>`).join('');
+    }
+
     // ================= TAB SWITCHING =================
     function switchTab(tabId) {
       document.querySelectorAll('.tab-page').forEach(page => page.classList.add('hidden'));
@@ -2316,7 +3192,7 @@
         item.classList.add('text-stone-400');
         const icon = item.querySelector('i');
         if (icon) icon.classList.remove('text-[#c89d5c]');
-        const text = item.querySelector('span:not(.bg-rose-600):not(.bg-blue-600):not(.bg-[#2d1815])');
+        const text = item.querySelector(':scope > span');
         if (text) {
           text.classList.remove('font-bold', 'text-[#2d1815]');
           text.classList.add('font-medium');
@@ -2329,7 +3205,7 @@
         activeNav.classList.add('text-[#2d1815]');
         const icon = activeNav.querySelector('i');
         if (icon) icon.classList.add('text-[#c89d5c]');
-        const text = activeNav.querySelector('span:not(.bg-rose-600):not(.bg-blue-600):not(.bg-[#2d1815])');
+        const text = activeNav.querySelector(':scope > span');
         if (text) {
           text.classList.add('font-bold', 'text-[#2d1815]');
           text.classList.remove('font-medium');
@@ -2339,6 +3215,7 @@
       if (tabId === 'dashboard') renderDashboard();
       if (tabId === 'leads') renderLeads();
       if (tabId === 'landreq') renderLandRequirements();
+      if (tabId === 'fund') renderFunds();
       if (tabId === 'chat') renderChat();
       if (tabId === 'tasks') renderTasks();
       if (tabId === 'sites') renderSitesTab();
@@ -3593,6 +4470,7 @@
       renderGroupSelectorBar();
       updateHeaderAndChatInfo();
       renderLeads();
+      renderFunds();
       renderLandRequirements();
       renderTasks();
       renderFiles();
