@@ -401,3 +401,6 @@ img.hero__mark{opacity:.07;object-fit:contain;filter:saturate(.8)}
   .feat--rev{grid-template-columns:1fr 1.35fr}
   .feat--rev .feat__media{order:2}
 }
+.feat__title{display:flex;align-items:center;gap:.9rem;margin-top:.4rem}
+.feat__title .h3{margin:0}
+.feat__logo{width:64px;height:64px;object-fit:contain;border-radius:14px;border:1px solid var(--line);background:#fff;padding:4px;flex:none}

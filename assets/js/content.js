@@ -103,7 +103,31 @@ window.GAVAN = {
       ] },
     { name: 'Gavan Vraj Dynasty', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
     { name: 'Gavan Flow', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
-    { name: 'Gavan Shivaay Industrial Park', logo: 'assets/img/shivaay.jpg', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' } }
+    { name: 'Gavan Shivaay Industrial Park', logo: 'assets/img/shivaay.jpg', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', featured: true,
+      type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' },
+      tagline: { en: 'Master-planned industrial parks across three South Gujarat locations — with a landmark entrance plaza, an admin building, wide internal roads and ready plots.',
+                 hi: 'दक्षिण गुजरात की तीन लोकेशन पर मास्टर-प्लान्ड इंडस्ट्रियल पार्क — भव्य प्रवेश प्लाज़ा, एडमिन बिल्डिंग, चौड़ी अंदरूनी सड़कें और तैयार प्लॉट।',
+                 gu: 'દક્ષિણ ગુજરાતના ત્રણ લોકેશન પર માસ્ટર-પ્લાન્ડ ઇન્ડસ્ટ્રીયલ પાર્ક — ભવ્ય પ્રવેશ પ્લાઝા, એડમિન બિલ્ડિંગ, પહોળા આંતરિક રસ્તા અને તૈયાર પ્લોટ.' },
+      amenities: [
+        { en: 'Landmark entrance plaza', hi: 'भव्य प्रवेश प्लाज़ा', gu: 'ભવ્ય પ્રવેશ પ્લાઝા' },
+        { en: 'Admin / office building', hi: 'एडमिन / ऑफिस बिल्डिंग', gu: 'એડમિન / ઓફિસ બિલ્ડિંગ' },
+        { en: 'Master-planned plot layout', hi: 'मास्टर-प्लान्ड प्लॉट लेआउट', gu: 'માસ્ટર-પ્લાન્ડ પ્લોટ લેઆઉટ' },
+        { en: 'Wide internal roads', hi: 'चौड़ी अंदरूनी सड़कें', gu: 'પહોળા આંતરિક રસ્તા' },
+        { en: 'Landscaped greens & water bodies', hi: 'हरियाली और जल-स्रोत', gu: 'હરિયાળી અને જળાશય' },
+        { en: 'Visitor parking', hi: 'विज़िटर पार्किंग', gu: 'વિઝિટર પાર્કિંગ' },
+        { en: 'Ahu · Mamakwada · Anklash', hi: 'आहु · मामकवाडा · अंकलाश', gu: 'આહુ · મામકવાડા · અંકલાશ' }
+      ],
+      galleryPath: 'assets/img/shivaay/',
+      gallery: [
+        { src: '01-entrance-plaza.jpg', cap: { en: 'Entrance plaza', hi: 'प्रवेश प्लाज़ा', gu: 'પ્રવેશ પ્લાઝા' } },
+        { src: '02-gavan-shivaay-signage.jpg', cap: { en: 'Gavan | Shivaay signage', hi: 'गवन | शिवाय साइनेज', gu: 'ગવન | શિવાય સાઇનેજ' } },
+        { src: '03-entrance-admin.jpg', cap: { en: 'Entrance & admin building', hi: 'प्रवेश और एडमिन बिल्डिंग', gu: 'પ્રવેશ અને એડમિન બિલ્ડિંગ' } },
+        { src: '04-master-plan.jpg', cap: { en: 'Master plan — plot layout', hi: 'मास्टर प्लान — प्लॉट लेआउट', gu: 'માસ્ટર પ્લાન — પ્લોટ લેઆઉટ' } },
+        { src: '05-admin-building.jpg', cap: { en: 'Admin building', hi: 'एडमिन बिल्डिंग', gu: 'એડમિન બિલ્ડિંગ' } },
+        { src: '06-admin-sunset.jpg', cap: { en: 'Admin building at sunset', hi: 'सूर्यास्त में एडमिन बिल्डिंग', gu: 'સૂર્યાસ્ત સમયે એડમિન બિલ્ડિંગ' } },
+        { src: '07-parking.jpg', cap: { en: 'Visitor parking', hi: 'विज़िटर पार्किंग', gu: 'વિઝિટર પાર્કિંગ' } },
+        { src: '08-landscaped-drive.jpg', cap: { en: 'Landscaped driveway', hi: 'लैंडस्केप ड्राइववे', gu: 'લેન્ડસ્કેપ ડ્રાઇવવે' } }
+      ] }
   ],
 
   /* ---------- STARTUPS (radiology & medical field) ---------- */

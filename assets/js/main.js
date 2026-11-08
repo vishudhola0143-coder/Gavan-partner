@@ -195,7 +195,7 @@
       '</div>' +
       '<div class="feat__txt">' +
         '<span class="badge">' + L('Featured project', 'मुख्य प्रोजेक्ट', 'ફીચર્ડ પ્રોજેક્ટ') + '</span>' +
-        '<h3 class="h3">' + esc(p.name) + '</h3>' +
+        '<div class="feat__title">' + (p.logo ? '<img class="feat__logo" src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo">' : '') + '<h3 class="h3">' + esc(p.name) + '</h3></div>' +
         '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + ' · ' + esc(t(p.type)) + '</p>' +
         '<p class="feat__tag">' + esc(t(p.tagline)) + '</p>' +
         '<ul class="feat__am">' + (p.amenities || []).map(function (a) { return '<li>' + esc(t(a)) + '</li>'; }).join('') + '</ul>' +
