@@ -180,7 +180,7 @@ html:not([lang="en"]) .pillars b{font-family:inherit}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
 
 /* people */
-.people{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.people{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
 .person{border:1px solid var(--line);border-radius:var(--r);padding:2rem 1.6rem;background:#fff;text-align:center;display:grid;justify-items:center;gap:.25rem}
 .person__av{width:76px;height:76px;font-size:1.3rem;margin-bottom:.8rem;box-shadow:0 0 0 6px var(--cream)}
 .person b{font-family:var(--serif);font-size:1.15rem;font-weight:600}
@@ -288,7 +288,7 @@ html:not([lang="en"]) .road h3,html:not([lang="en"]) .proj__body h3,html:not([la
   .burger{display:block}
   .world,.contact{grid-template-columns:1fr;gap:3rem}
   .road{grid-template-columns:repeat(2,1fr);row-gap:2rem}
-  .people{grid-template-columns:repeat(2,1fr)}
+  .people{grid-template-columns:repeat(3,1fr)}
   .road::before{display:none}
 }
 @media (max-width:820px){
@@ -556,3 +556,7 @@ img.hero__mark{opacity:.07;object-fit:contain;filter:saturate(.8)}
 .soc__ig{color:var(--gold-d);font-weight:600;font-size:.82rem}
 .su__f{display:flex;align-items:center;gap:.4em;color:var(--gold-2)!important;font-weight:700;font-size:.85rem;margin-bottom:.4rem}
 .su__site{margin-left:1rem}
+
+.person{padding:1.8rem 1.1rem}
+@media (max-width:820px){.people{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.people{grid-template-columns:1fr}}
