@@ -214,6 +214,29 @@ window.GAVAN = {
       text: { en: 'The Gavan Grand Fest 2025 celebrated the Gavan family, partners and community.', hi: 'गवन ग्रैंड फेस्ट 2025 में गवन परिवार, पार्टनर्स और कम्युनिटी का उत्सव मनाया गया।', gu: 'ગવન ગ્રાન્ડ ફેસ્ટ 2025માં ગવન પરિવાર, પાર્ટનર્સ અને કોમ્યુનિટીની ઉજવણી થઈ.' } }
   ],
 
+  /* ---------- GAVAN FOUNDATION — work on ground ----------
+     Add photos to gallery (first = cover). video is optional (mp4). */
+  foundation: {
+    name: 'Gavan Foundation',
+    title: { en: 'Ration kit distribution drive', hi: 'राशन किट वितरण अभियान', gu: 'રાશન કિટ વિતરણ અભિયાન' },
+    text: { en: 'Gavan Foundation volunteers reached families in need with ration kits — atta and daily essentials — delivered hand to hand.',
+            hi: 'गवन फाउंडेशन के स्वयंसेवकों ने ज़रूरतमंद परिवारों तक राशन किट — आटा और रोज़ की ज़रूरी चीज़ें — हाथों-हाथ पहुँचाईं।',
+            gu: 'ગવન ફાઉન્ડેશનના સ્વયંસેવકોએ જરૂરિયાતમંદ પરિવારો સુધી રાશન કિટ — લોટ અને રોજિંદી જરૂરી વસ્તુઓ — હાથોહાથ પહોંચાડી.' },
+    video: 'assets/img/foundation/drive.mp4', poster: 'assets/img/foundation/drive-poster.jpg',
+    galleryPath: 'assets/img/foundation/',
+    gallery: [
+        { src: '01-seva.jpg', cap: { en: "Ration kits handed to families", hi: "परिवारों को राशन किट वितरण", gu: "પરિવારોને રાશન કિટ વિતરણ" } },
+        { src: '02-seva.jpg', cap: { en: "A smile for every family", hi: "हर परिवार के चेहरे पर मुस्कान", gu: "દરેક પરિવારના ચહેરા પર સ્મિત" } },
+        { src: '03-seva.jpg', cap: { en: "Seva, hand to hand", hi: "हाथों-हाथ सेवा", gu: "હાથોહાથ સેવા" } },
+        { src: '04-seva.jpg', cap: { en: "Volunteers distributing kits", hi: "स्वयंसेवक किट बाँटते हुए", gu: "સ્વયંસેવકો કિટ વહેંચતા" } },
+        { src: '05-seva.jpg', cap: { en: "Atta & essentials for every home", hi: "हर घर के लिए आटा और ज़रूरी सामान", gu: "દરેક ઘર માટે લોટ અને જરૂરી સામાન" } },
+        { src: '06-seva.jpg', cap: { en: "Meeting families in person", hi: "परिवारों से व्यक्तिगत मुलाक़ात", gu: "પરિવારોને રૂબરૂ મળવું" } },
+        { src: '07-seva.jpg', cap: { en: "Every bag counts", hi: "हर थैला मायने रखता है", gu: "દરેક થેલી મહત્ત્વની" } },
+        { src: '08-seva.jpg', cap: { en: "Together for the community", hi: "समाज के लिए साथ मिलकर", gu: "સમાજ માટે સાથે મળીને" } },
+        { src: '09-seva.jpg', cap: { en: "The Gavan Foundation team on ground", hi: "मैदान पर गवन फाउंडेशन टीम", gu: "મેદાન પર ગવન ફાઉન્ડેશન ટીમ" } }
+    ]
+  },
+
   /* ---------- FUTURE ROADMAP ---------- */
   roadmap: [
     { when: { en: 'Now', hi: 'अभी', gu: 'હાલ' }, title: { en: 'Gavan Radio Centre, Vapi', hi: 'गवन रेडियो सेंटर, वापी', gu: 'ગવન રેડિયો સેન્ટર, વાપી' }, text: { en: 'Launching a modern radiology & diagnostic centre for the region.', hi: 'क्षेत्र के लिए आधुनिक रेडियोलॉजी और डायग्नोस्टिक सेंटर।', gu: 'પ્રદેશ માટે આધુનિક રેડિયોલોજી અને ડાયગ્નોસ્ટિક સેન્ટર.' } },

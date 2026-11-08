@@ -154,6 +154,19 @@
     '<button class="link upd__all" data-gal="' + esc(u.name) + '" data-i="0">' + L('View event photos', 'इवेंट की फ़ोटो देखें', 'ઇવેન્ટના ફોટા જુઓ') + ' (' + u.gallery.length + ')<svg><use href="#i-arrow"/></svg></button>';
   }
 
+  function renderFoundation() {
+    var g = $('#foundWork'), f = D.foundation; if (!g || !f || !f.gallery) return;
+    var base = f.galleryPath || '';
+    g.innerHTML = '<div class="fw reveal is-in">' +
+      '<div class="fw__head"><span class="badge badge--live">' + L('On ground', 'ज़मीनी काम', 'મેદાન પરનું કામ') + '</span>' +
+      '<h3 class="h3">' + esc(t(f.title)) + '</h3><p>' + esc(t(f.text)) + '</p></div>' +
+      '<div class="fw__grid">' +
+      (f.video ? '<div class="fw__vid"><video src="' + esc(f.video) + '" poster="' + esc(f.poster || '') + '" muted loop playsinline autoplay controls preload="metadata"></video></div>' : '') +
+      f.gallery.map(function (im, i) {
+        return '<button data-gal="' + esc(f.name) + '" data-i="' + i + '"><img loading="lazy" src="' + esc(base + 'thumb/' + im.src) + '" alt="' + esc(t(im.cap)) + '"></button>';
+      }).join('') + '</div></div>';
+  }
+
   function renderUpdates() {
     var g = $('#updateList'); if (!g) return;
     var list = (D.updates || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
@@ -187,7 +200,7 @@
   }
 
   /* ---------- Featured project showcase + gallery ---------- */
-  function findProject(name) { return (D.projects || []).concat(D.updates || []).filter(function (p) { return p.name === name && p.gallery; })[0]; }
+  function findProject(name) { return (D.projects || []).concat(D.updates || [], D.foundation ? [D.foundation] : []).filter(function (p) { return p.name === name && p.gallery; })[0]; }
   function renderFeatured() {
     var g = $('#featured'); if (!g) return;
     var fs = (D.projects || []).filter(function (x) { return x.featured && x.gallery && x.gallery.length && inFilter(x); });
@@ -248,7 +261,7 @@
   });
 
   function renderAll() {
-    renderFeatured(); renderProjects(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
+    renderFeatured(); renderProjects(); renderFoundation(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
   }
 
   /* ---------- Project filter ---------- */
