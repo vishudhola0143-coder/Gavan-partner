@@ -182,7 +182,7 @@
 
   function renderUpdates() {
     var g = $('#updateList'); if (!g) return;
-    var list = (D.updates || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+    var list = (D.updates || []).slice();
     g.innerHTML = list.map(function (u, i) {
       var ds = String(u.date || ''), big, small = '';
       if (/^\d{4}$/.test(ds)) { big = ds; }
@@ -193,7 +193,7 @@
       }
       var tag = t(tagT[u.tag] || u.tag);
       return '<article class="upd' + (i === 0 ? ' upd--first' : '') + '"><div class="upd__d' + (small ? '' : ' upd__d--y') + '"><b>' + esc(big) + '</b>' + (small ? '<small>' + esc(small) + '</small>' : '') + '</div>' +
-        '<div><span class="badge">' + esc(tag) + '</span><h3>' + esc(t(u.title)) + '</h3><p>' + esc(t(u.text)) + '</p>' + updGallery(u) + '</div></article>';
+        '<div><span class="badge">' + esc(tag) + '</span><h3>' + esc(t(u.title)) + '</h3>' + (u.where ? '<p class="upd__where"><svg><use href="#i-pin"/></svg>' + esc(u.where) + '</p>' : '') + '<p>' + esc(t(u.text)) + '</p>' + updGallery(u) + '</div></article>';
     }).join('');
   }
 

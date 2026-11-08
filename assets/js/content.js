@@ -190,7 +190,7 @@ window.GAVAN = {
   /* ---------- EVENTS & UPDATES ----------
      date: 'YYYY-MM-DD' for a full date, or just 'YYYY' for a year.
      tag: 'Event' | 'Update' | 'Milestone' | 'Foundation' | 'Launch'
-     Newest is shown first and highlighted. */
+     Keep the newest at the TOP of this list — it is shown first and highlighted. */
   updates: [
     { date: '2026', tag: 'Event', name: 'Pre-Diwali 2026',
       title: { en: 'Pre-Diwali 2026 — Staff Celebration & Welfare', hi: 'प्री-दिवाली 2026 — स्टाफ सेलिब्रेशन और वेलफ़ेयर', gu: 'પ્રી-દિવાળી 2026 — સ્ટાફ સેલિબ્રેશન અને વેલફેર' },
@@ -210,7 +210,7 @@ window.GAVAN = {
         { src: '09-diwali.jpg', cap: { en: "Garba & dance", hi: "गरबा और डांस", gu: "ગરબા અને ડાન્સ" } },
         { src: '10-diwali.jpg', cap: { en: "Gifts and smiles", hi: "उपहार और मुस्कान", gu: "ભેટ અને સ્મિત" } }
       ] },
-    { date: '2026', tag: 'Event', name: 'CPLP 2026',
+    { date: '2026-10-27', tag: 'Event', name: 'CPLP 2026', where: 'Fortune Park Galaxy, Vapi',
       title: { en: 'CP Meet 2026 — Channel Partner Legacy Program (CPLP)', hi: 'CP मीट 2026 — चैनल पार्टनर लेगेसी प्रोग्राम (CPLP)', gu: 'CP મીટ 2026 — ચેનલ પાર્ટનર લેગસી પ્રોગ્રામ (CPLP)' },
       text: { en: 'Presented by The Coastal Era — Gavan and Shivaay brought hundreds of channel partners together to share the vision for South Gujarat\'s coastal industrial corridor, felicitate partners and celebrate the legacy ahead.',
               hi: 'द कोस्टल एरा द्वारा प्रस्तुत — गवन और शिवाय ने सैकड़ों चैनल पार्टनर्स को एक साथ लाकर दक्षिण गुजरात के तटीय इंडस्ट्रियल कॉरिडोर का विज़न साझा किया, पार्टनर्स का सम्मान किया और आगे की विरासत का जश्न मनाया।',
