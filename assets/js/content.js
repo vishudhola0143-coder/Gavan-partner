@@ -21,10 +21,11 @@ window.GAVAN = {
     mapQuery: 'Vapi, Gujarat'
   },
 
-  /* ---------- SOCIAL MEDIA ---------- */
+  /* ---------- SOCIAL MEDIA ----------
+     Follower counts checked on Instagram: 8 Nov 2026 */
   social: [
-    { name: 'Vishal Dhola', handle: { en: 'Co-Founder · Personal page', hi: 'को-फाउंडर · पर्सनल पेज', gu: 'કો-ફાઉન્ડર · પર્સનલ પેજ' }, followers: 24000, display: '24K', url: 'https://www.instagram.com/_vishal_dhola_' },
-    { name: 'VRT — Vishal Realty Talk', handle: { en: 'Real estate knowledge & market talk', hi: 'रियल एस्टेट ज्ञान और मार्केट की बातें', gu: 'રિયલ એસ્ટેટ જ્ઞાન અને માર્કેટ વાતો' }, followers: 10500, display: '10K–11K', url: 'https://www.instagram.com/vishalrealtytalk' },
+    { name: 'Vishal Dhola', handle: { en: 'Co-Founder · Personal page', hi: 'को-फाउंडर · पर्सनल पेज', gu: 'કો-ફાઉન્ડર · પર્સનલ પેજ' }, followers: 24600, display: '24.6K', url: 'https://www.instagram.com/_vishal_dhola_' },
+    { name: 'VRT — Vishal Realty Talk', handle: { en: 'Real estate knowledge & market talk', hi: 'रियल एस्टेट ज्ञान और मार्केट की बातें', gu: 'રિયલ એસ્ટેટ જ્ઞાન અને માર્કેટ વાતો' }, followers: 10200, display: '10.2K', url: 'https://www.instagram.com/vishalrealtytalk' },
     { name: 'Gavan Group', handle: { en: 'Official page · @gavanhomes', hi: 'ऑफिशियल पेज · @gavanhomes', gu: 'ઓફિશિયલ પેજ · @gavanhomes' }, followers: 4900, display: '4.9K', url: 'https://www.instagram.com/gavanhomes' }
   ],
 
