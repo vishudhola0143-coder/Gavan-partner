@@ -127,7 +127,26 @@ window.GAVAN = {
         { src: '07-clubhouse.jpg', cap: { en: 'Clubhouse', hi: 'क्लबहाउस', gu: 'ક્લબહાઉસ' } },
         { src: '08-balcony.jpg', cap: { en: 'Balcony view', hi: 'बालकनी व्यू', gu: 'બાલ્કની વ્યૂ' } }
       ] },
-    { name: 'Gavan Flow', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
+    { name: 'Gavan Flow', location: '', category: 'residential', featured: true,
+      type: { en: 'Luxury High-Rise Residences', hi: 'लग्ज़री हाई-राइज़ रेसिडेंस', gu: 'લક્ઝરી હાઇ-રાઇઝ રેસિડેન્સ' },
+      tagline: { en: 'A landmark high-rise with sculpted, flowing balconies wrapped in greenery — luxury living with a grand glass entrance lobby.',
+                 hi: 'हरियाली से सजी लहरदार बालकनियों वाला एक लैंडमार्क हाई-राइज़ — भव्य ग्लास एंट्रेंस लॉबी के साथ लग्ज़री जीवन।',
+                 gu: 'હરિયાળીથી સજ્જ લહેરાતી બાલ્કનીઓ સાથેનો લેન્ડમાર્ક હાઇ-રાઇઝ — ભવ્ય ગ્લાસ એન્ટ્રન્સ લોબી સાથે લક્ઝરી જીવન.' },
+      amenities: [
+        { en: 'Iconic flowing façade', hi: 'आइकॉनिक लहरदार फ़्रंट', gu: 'આઇકોનિક લહેરાતો ફ્રન્ટ' },
+        { en: 'Wrap-around balconies', hi: 'चारों ओर बालकनी', gu: 'ચારે બાજુ બાલ્કની' },
+        { en: 'Green planters on every floor', hi: 'हर मंज़िल पर हरियाली', gu: 'દરેક માળ પર હરિયાળી' },
+        { en: 'Grand glass entrance lobby', hi: 'भव्य ग्लास एंट्रेंस लॉबी', gu: 'ભવ્ય ગ્લાસ એન્ટ્રન્સ લોબી' },
+        { en: 'Rooftop greens', hi: 'रूफटॉप हरियाली', gu: 'રૂફટોપ હરિયાળી' },
+        { en: 'Landscaped entrance', hi: 'लैंडस्केप एंट्रेंस', gu: 'લેન્ડસ્કેપ એન્ટ્રન્સ' }
+      ],
+      galleryPath: 'assets/img/flow/',
+      gallery: [
+        { src: '01-tower.jpg', cap: { en: 'Gavan Flow tower', hi: 'गवन फ्लो टावर', gu: 'ગવન ફ્લો ટાવર' } },
+        { src: '02-entrance.jpg', cap: { en: 'Entrance & signage', hi: 'प्रवेश और साइनेज', gu: 'પ્રવેશ અને સાઇનેજ' } },
+        { src: '03-tower-dusk.jpg', cap: { en: 'Tower at dusk', hi: 'शाम को टावर', gu: 'સાંજે ટાવર' } },
+        { src: '04-flowing-balconies.jpg', cap: { en: 'Flowing balconies', hi: 'लहरदार बालकनी', gu: 'લહેરાતી બાલ્કની' } }
+      ] },
     { name: 'Gavan Shivaay Industrial Park', logo: 'assets/img/shivaay.jpg', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', featured: true,
       type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' },
       tagline: { en: 'Master-planned industrial parks across three South Gujarat locations — with a landmark entrance plaza, an admin building, wide internal roads and ready plots.',

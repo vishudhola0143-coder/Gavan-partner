@@ -188,7 +188,7 @@
     return '<article class="feat reveal is-in' + (n % 2 ? ' feat--rev' : '') + '">' +
       '<div class="feat__media">' +
         '<button class="feat__main" data-gal="' + esc(p.name) + '" data-i="0"><img src="' + esc(base + hero.src) + '" alt="' + esc(p.name + ' — ' + t(hero.cap)) + '"></button>' +
-        '<div class="feat__side">' + side.map(function (im, i) {
+        '<div class="feat__side" style="grid-template-columns:repeat(' + side.length + ',1fr)">' + side.map(function (im, i) {
           var more = (i === side.length - 1 && p.gallery.length > 5) ? '<span class="feat__more">+' + (p.gallery.length - 5) + '</span>' : '';
           return '<button data-gal="' + esc(p.name) + '" data-i="' + (i + 1) + '"><img loading="lazy" src="' + esc(base + 'thumb/' + im.src) + '" alt="' + esc(t(im.cap)) + '">' + more + '</button>';
         }).join('') + '</div>' +
