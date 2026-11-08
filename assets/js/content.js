@@ -101,7 +101,32 @@ window.GAVAN = {
         { src: '13-kids-play.jpg', cap: { en: "Kids' play area", hi: 'बच्चों का प्ले एरिया', gu: 'બાળકો માટે પ્લે એરિયા' } },
         { src: '14-entrance-dusk.jpg', cap: { en: 'Entrance at dusk', hi: 'शाम को प्रवेश द्वार', gu: 'સાંજે પ્રવેશદ્વાર' } }
       ] },
-    { name: 'Gavan Vraj Dynasty', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
+    { name: 'Gavan Vraj Dynasty', location: '', category: 'residential', featured: true,
+      type: { en: 'Classic Row Houses', hi: 'क्लासिक रो हाउस', gu: 'ક્લાસિક રો હાઉસ' },
+      tagline: { en: 'A gated community of classic, European-style row houses — arched façades, private terraces, a temple, a clubhouse and tree-lined streets.',
+                 hi: 'क्लासिक यूरोपियन-स्टाइल रो हाउस की गेटेड कम्युनिटी — आर्च वाले फ़्रंट, निजी टेरेस, मंदिर, क्लबहाउस और पेड़ों से सजी गलियाँ।',
+                 gu: 'ક્લાસિક યુરોપિયન-સ્ટાઇલ રો હાઉસની ગેટેડ કોમ્યુનિટી — કમાનવાળા ફ્રન્ટ, પ્રાઇવેટ ટેરેસ, મંદિર, ક્લબહાઉસ અને વૃક્ષોથી સજ્જ શેરીઓ.' },
+      amenities: [
+        { en: 'Grand entrance gate', hi: 'भव्य प्रवेश द्वार', gu: 'ભવ્ય એન્ટ્રન્સ ગેટ' },
+        { en: 'Security cabin', hi: 'सिक्योरिटी केबिन', gu: 'સિક્યોરિટી કેબિન' },
+        { en: 'Temple', hi: 'मंदिर', gu: 'મંદિર' },
+        { en: 'Clubhouse', hi: 'क्लबहाउस', gu: 'ક્લબહાઉસ' },
+        { en: 'Landscaped garden', hi: 'लैंडस्केप गार्डन', gu: 'લેન્ડસ્કેપ ગાર્ડન' },
+        { en: 'Private terraces & balconies', hi: 'निजी टेरेस और बालकनी', gu: 'પ્રાઇવેટ ટેરેસ અને બાલ્કની' },
+        { en: 'Parking at every home', hi: 'हर घर में पार्किंग', gu: 'દરેક ઘરમાં પાર્કિંગ' },
+        { en: 'Tree-lined internal roads', hi: 'पेड़ों से सजी अंदरूनी सड़कें', gu: 'વૃક્ષોથી સજ્જ આંતરિક રસ્તા' }
+      ],
+      galleryPath: 'assets/img/vraj/',
+      gallery: [
+        { src: '01-entrance-gate.jpg', cap: { en: 'Entrance gate', hi: 'प्रवेश द्वार', gu: 'પ્રવેશદ્વાર' } },
+        { src: '02-facade-dusk.jpg', cap: { en: 'Row houses at dusk', hi: 'शाम को रो हाउस', gu: 'સાંજે રો હાઉસ' } },
+        { src: '03-aerial-view.jpg', cap: { en: 'Aerial view', hi: 'एरियल व्यू', gu: 'એરિયલ વ્યૂ' } },
+        { src: '04-temple-garden.jpg', cap: { en: 'Temple & garden', hi: 'मंदिर और गार्डन', gu: 'મંદિર અને ગાર્ડન' } },
+        { src: '05-street-view.jpg', cap: { en: 'Street view', hi: 'स्ट्रीट व्यू', gu: 'સ્ટ્રીટ વ્યૂ' } },
+        { src: '06-top-view.jpg', cap: { en: 'Terraces & balconies', hi: 'टेरेस और बालकनी', gu: 'ટેરેસ અને બાલ્કની' } },
+        { src: '07-clubhouse.jpg', cap: { en: 'Clubhouse', hi: 'क्लबहाउस', gu: 'ક્લબહાઉસ' } },
+        { src: '08-balcony.jpg', cap: { en: 'Balcony view', hi: 'बालकनी व्यू', gu: 'બાલ્કની વ્યૂ' } }
+      ] },
     { name: 'Gavan Flow', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
     { name: 'Gavan Shivaay Industrial Park', logo: 'assets/img/shivaay.jpg', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', featured: true,
       type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' },
