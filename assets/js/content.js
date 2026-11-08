@@ -24,9 +24,27 @@ window.GAVAN = {
   /* ---------- SOCIAL MEDIA ----------
      Follower counts checked on Instagram: 8 Nov 2026 */
   social: [
-    { name: 'Vishal Dhola', handle: { en: 'Co-Founder · Personal page', hi: 'को-फाउंडर · पर्सनल पेज', gu: 'કો-ફાઉન્ડર · પર્સનલ પેજ' }, followers: 24600, display: '24.6K', url: 'https://www.instagram.com/_vishal_dhola_' },
-    { name: 'VRT — Vishal Realty Talk', handle: { en: 'Real estate knowledge & market talk', hi: 'रियल एस्टेट ज्ञान और मार्केट की बातें', gu: 'રિયલ એસ્ટેટ જ્ઞાન અને માર્કેટ વાતો' }, followers: 10200, display: '10.2K', url: 'https://www.instagram.com/vishalrealtytalk' },
-    { name: 'Gavan Group', handle: { en: 'Official page · @gavanhomes', hi: 'ऑफिशियल पेज · @gavanhomes', gu: 'ઓફિશિયલ પેજ · @gavanhomes' }, followers: 4900, display: '4.9K', url: 'https://www.instagram.com/gavanhomes' }
+    { name: 'Vishal Dhola', ig: '_vishal_dhola_', logo: 'assets/img/people/vishal-dhola.jpg',
+      handle: { en: 'Co-Founder · builder, creating homes and a legacy of trust', hi: 'को-फाउंडर · घर और भरोसे की विरासत बनाने वाले बिल्डर', gu: 'કો-ફાઉન્ડર · ઘર અને ભરોસાનો વારસો બનાવતા બિલ્ડર' },
+      followers: 24600, display: '24.6K', url: 'https://www.instagram.com/_vishal_dhola_' },
+    { name: 'UltraRad AI', ig: 'ultraradai', logo: 'assets/img/ultrarad.png',
+      handle: { en: 'Revolutionising radiodiagnosis with AI — 224 posts of radiology learning', hi: 'AI से रेडियोडायग्नोसिस में क्रांति — रेडियोलॉजी सीखने के 224 पोस्ट', gu: 'AI થી રેડિયોડાયગ્નોસિસમાં ક્રાંતિ — રેડિયોલોજી શીખવાના 224 પોસ્ટ' },
+      followers: 28100, display: '28.1K', url: 'https://www.instagram.com/ultraradai' },
+    { name: 'VRT — Vishal Realty Talk', ig: 'vishalrealtytalk', initials: 'VRT',
+      handle: { en: 'Real estate, simplified — South Gujarat market insights before you invest', hi: 'रियल एस्टेट आसान भाषा में — निवेश से पहले दक्षिण गुजरात की मार्केट जानकारी', gu: 'રિયલ એસ્ટેટ સરળ ભાષામાં — રોકાણ પહેલાં દક્ષિણ ગુજરાતની માર્કેટ સમજ' },
+      followers: 10200, display: '10.2K', url: 'https://www.instagram.com/vishalrealtytalk' },
+    { name: 'Gavan Group', ig: 'gavanhomes', logo: 'assets/img/gavan-mark.png',
+      handle: { en: 'Leading real estate company in Vapi — bungalows, flats & shops', hi: 'वापी की अग्रणी रियल एस्टेट कंपनी — बंगले, फ्लैट और दुकानें', gu: 'વાપીની અગ્રણી રિયલ એસ્ટેટ કંપની — બંગલો, ફ્લેટ અને દુકાનો' },
+      followers: 4900, display: '4.9K', url: 'https://www.instagram.com/gavanhomes' },
+    { name: 'Shivaay Industrial Park', ig: 'shivaay_industrialpark', logo: 'assets/img/shivaay.jpg',
+      handle: { en: 'Industrial parks in South Gujarat — by Shivaay Developers & Gavan', hi: 'दक्षिण गुजरात में इंडस्ट्रियल पार्क — शिवाय डेवलपर्स और गवन द्वारा', gu: 'દક્ષિણ ગુજરાતમાં ઇન્ડસ્ટ્રીયલ પાર્ક — શિવાય ડેવલપર્સ અને ગવન દ્વારા' },
+      followers: 68, display: '68', url: 'https://www.instagram.com/shivaay_industrialpark' },
+    { name: 'The Viewbox', ig: 'theviewbox.in', logo: 'assets/img/viewbox.png',
+      handle: { en: 'Your whole radiology training in one place — theviewbox.in', hi: 'आपकी पूरी रेडियोलॉजी ट्रेनिंग एक ही जगह — theviewbox.in', gu: 'તમારી આખી રેડિયોલોજી ટ્રેનિંગ એક જ જગ્યાએ — theviewbox.in' },
+      followers: 90, display: '90', url: 'https://www.instagram.com/theviewbox.in' },
+    { name: 'Contrast App', ig: 'contrast.app', logo: 'assets/img/contrast.png',
+      handle: { en: 'The next-gen radiology education platform', hi: 'नेक्स्ट-जेन रेडियोलॉजी एजुकेशन प्लेटफ़ॉर्म', gu: 'નેક્સ્ટ-જેન રેડિયોલોજી એજ્યુકેશન પ્લેટફોર્મ' },
+      followers: 44, display: '44', url: 'https://www.instagram.com/contrast.app' }
   ],
 
   /* ---------- PROJECTS ----------
@@ -176,14 +194,20 @@ window.GAVAN = {
 
   /* ---------- STARTUPS (radiology & medical field) ---------- */
   startups: [
-    { name: 'UltraRad AI', logo: 'assets/img/ultrarad.png', tag: { en: 'AI · Radiology', hi: 'AI · रेडियोलॉजी', gu: 'AI · રેડિયોલોજી' },
-      text: { en: 'An AI startup built for radiologists — bringing artificial intelligence into everyday radiology work.', hi: 'रेडियोलॉजिस्ट के लिए बना AI स्टार्टअप — रोज़ के रेडियोलॉजी काम में आर्टिफ़िशियल इंटेलिजेंस।', gu: 'રેડિયોલોજિસ્ટ માટેનું AI સ્ટાર્ટઅપ — રોજના રેડિયોલોજી કામમાં આર્ટિફિશિયલ ઇન્ટેલિજન્સ.' },
+    { name: 'UltraRad AI', logo: 'assets/img/ultrarad.png', followers: '28.1K', tag: { en: 'AI · Radiology', hi: 'AI · रेडियोलॉजी', gu: 'AI · રેડિયોલોજી' },
+      text: { en: 'Revolutionising radiodiagnosis with AI. A 28K+ community of radiologists learning chest, MSK, female pelvis, KUB & GU and more through visual, case-based posts.',
+              hi: 'AI से रेडियोडायग्नोसिस में क्रांति। 28K+ रेडियोलॉजिस्ट की कम्युनिटी — चेस्ट, MSK, फ़ीमेल पेल्विस, KUB और GU जैसे विषय विज़ुअल, केस-आधारित पोस्ट से।',
+              gu: 'AI થી રેડિયોડાયગ્નોસિસમાં ક્રાંતિ. 28K+ રેડિયોલોજિસ્ટની કોમ્યુનિટી — ચેસ્ટ, MSK, ફીમેલ પેલ્વિસ, KUB અને GU જેવા વિષયો વિઝ્યુઅલ, કેસ-આધારિત પોસ્ટથી.' },
       url: 'https://www.instagram.com/ultraradai' },
-    { name: 'View Box', logo: 'assets/img/viewbox.png', tag: { en: 'Radiology Education', hi: 'रेडियोलॉजी शिक्षा', gu: 'રેડિયોલોજી શિક્ષણ' },
-      text: { en: 'A complete education platform for radiologists — learning, practice and growth in one place.', hi: 'रेडियोलॉजिस्ट के लिए संपूर्ण शिक्षा प्लेटफ़ॉर्म — सीखना, अभ्यास और विकास एक ही जगह।', gu: 'રેડિયોલોજિસ્ટ માટેનું સંપૂર્ણ એજ્યુકેશન પ્લેટફોર્મ — શીખવું, પ્રેક્ટિસ અને વિકાસ એક જ જગ્યાએ.' },
-      url: '' },
-    { name: 'Contrast', logo: 'assets/img/contrast.png', tag: { en: 'Subscription · Education', hi: 'सब्सक्रिप्शन · शिक्षा', gu: 'સબ્સ્ક્રિપ્શન · શિક્ષણ' },
-      text: { en: 'A subscription-based learning startup for radiologists — fresh, focused radiology education every month.', hi: 'रेडियोलॉजिस्ट के लिए सब्सक्रिप्शन-आधारित लर्निंग स्टार्टअप — हर महीने नई, केंद्रित रेडियोलॉजी शिक्षा।', gu: 'રેડિયોલોજિસ્ટ માટે સબ્સ્ક્રિપ્શન આધારિત લર્નિંગ સ્ટાર્ટઅપ — દર મહિને નવું, ફોકસ્ડ રેડિયોલોજી શિક્ષણ.' },
+    { name: 'The Viewbox', logo: 'assets/img/viewbox.png', followers: '90', tag: { en: 'Radiology Training · Web & Android', hi: 'रेडियोलॉजी ट्रेनिंग · वेब और एंड्रॉइड', gu: 'રેડિયોલોજી ટ્રેનિંગ · વેબ અને એન્ડ્રોઇડ' },
+      text: { en: 'Your whole radiology training in one place — 1,400 FRCR MCQs, 340 OSCE stations, daily spotters, timed mocks and an interactive Anatomy Atlas. Used in 178 countries.',
+              hi: 'आपकी पूरी रेडियोलॉजी ट्रेनिंग एक ही जगह — 1,400 FRCR MCQ, 340 OSCE स्टेशन, डेली स्पॉटर, टाइम्ड मॉक और इंटरैक्टिव एनाटॉमी एटलस। 178 देशों में उपयोग।',
+              gu: 'તમારી આખી રેડિયોલોજી ટ્રેનિંગ એક જ જગ્યાએ — 1,400 FRCR MCQ, 340 OSCE સ્ટેશન, ડેઇલી સ્પોટર, ટાઇમ્ડ મૉક અને ઇન્ટરેક્ટિવ એનાટોમી એટલાસ. 178 દેશોમાં ઉપયોગ.' },
+      url: 'https://www.instagram.com/theviewbox.in', site: 'https://theviewbox.in' },
+    { name: 'Contrast App', logo: 'assets/img/contrast.png', followers: '44', tag: { en: 'Subscription · Education', hi: 'सब्सक्रिप्शन · शिक्षा', gu: 'સબ્સ્ક્રિપ્શન · શિક્ષણ' },
+      text: { en: 'The next-gen radiology education platform — subscription-based learning for radiologists. Now hiring content writers and radiology faculty.',
+              hi: 'नेक्स्ट-जेन रेडियोलॉजी एजुकेशन प्लेटफ़ॉर्म — रेडियोलॉजिस्ट के लिए सब्सक्रिप्शन-आधारित लर्निंग। अभी कंटेंट राइटर और रेडियोलॉजी फ़ैकल्टी की भर्ती चल रही है।',
+              gu: 'નેક્સ્ટ-જેન રેડિયોલોજી એજ્યુકેશન પ્લેટફોર્મ — રેડિયોલોજિસ્ટ માટે સબ્સ્ક્રિપ્શન આધારિત લર્નિંગ. અત્યારે કન્ટેન્ટ રાઇટર અને રેડિયોલોજી ફેકલ્ટીની ભરતી ચાલુ છે.' },
       url: 'https://www.instagram.com/contrast.app' }
   ],
 

@@ -127,7 +127,7 @@
         : '<button class="link" data-ask="I want to know more about ' + esc(s.name) + ' (Gavan startup)." data-ask-hi="' + esc(s.name) + ' (गवन स्टार्टअप) के बारे में और जानना है।" data-ask-gu="' + esc(s.name) + ' (ગવન સ્ટાર્ટઅપ) વિશે વધુ જાણવું છે.">' + L('Know more', 'और जानें', 'વધુ જાણો') + '<svg><use href="#i-arrow"/></svg></button>';
       return '<article class="su reveal is-in"><div class="su__logo' + (s.logo ? ' su__logo--img' : '') + '">' +
         (s.logo ? '<img src="' + esc(s.logo) + '" alt="' + esc(s.name) + ' logo">' : esc(initials)) + '</div>' +
-        '<span class="badge">' + esc(t(s.tag)) + '</span><h3>' + esc(s.name) + '</h3><p>' + esc(t(s.text)) + '</p>' + cta + '</article>';
+        '<span class="badge">' + esc(t(s.tag)) + '</span><h3>' + esc(s.name) + '</h3>' + (s.followers ? '<p class="su__f"><svg><use href="#i-ig"/></svg>' + esc(s.followers) + ' ' + L('followers', 'फॉलोअर्स', 'ફોલોઅર્સ') + '</p>' : '') + '<p>' + esc(t(s.text)) + '</p>' + cta + (s.site ? '<a class="link su__site" href="' + esc(s.site) + '" target="_blank" rel="noopener">' + esc(s.site.replace(/^https?:\/\//, '')) + '<svg><use href="#i-arrow"/></svg></a>' : '') + '</article>';
     }).join('');
   }
 
@@ -141,9 +141,10 @@
       var follow = s.url
         ? '<a class="btn btn--gold btn--sm" href="' + esc(s.url) + '" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>' + L('Follow', 'फॉलो करें', 'ફોલો કરો') + '</a>'
         : '';
-      return '<article class="soc"><div class="soc__top"><svg><use href="#i-ig"/></svg><span class="badge">' + L('Followers', 'फॉलोअर्स', 'ફોલોઅર્સ') + '</span></div>' +
+      var av = s.logo ? '<img src="' + esc(s.logo) + '" alt="">' : '<em>' + esc(s.initials || s.name.slice(0, 2)) + '</em>';
+      return '<article class="soc"><div class="soc__top"><span class="soc__av">' + av + '</span><span class="badge">' + L('Followers', 'फॉलोअर्स', 'ફોલોઅર્સ') + '</span></div>' +
         '<div class="soc__n">' + esc(s.display || fmtK(s.followers)) + '</div>' +
-        '<b>' + esc(s.name) + '</b><span>' + esc(t(s.handle)) + '</span>' +
+        '<b>' + esc(s.name) + '</b>' + (s.ig ? '<small class="soc__ig">@' + esc(s.ig) + '</small>' : '') + '<span>' + esc(t(s.handle)) + '</span>' +
         '<div class="soc__bar"><i data-w="' + Math.round((s.followers / max) * 100) + '"></i></div>' + follow + '</article>';
     }).join('');
     observeBars();
