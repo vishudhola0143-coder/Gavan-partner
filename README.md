@@ -15,12 +15,12 @@ All changing content lives in **`assets/js/content.js`**:
 | WhatsApp number, phone, email, address | `contact` |
 | Instagram links & follower counts | `social` |
 | Projects (residential / commercial / industrial) | `projects` |
-| Startups (Contrast, View Box, Real Estate Solution) | `startups` |
+| Startups (UltraRad AI, View Box, Contrast) | `startups` |
 | Events & news (shown as "Live updates") | `updates` |
 | Future plans | `roadmap` |
 
-Any text can be written as `'English'` or `{ en: 'English', gu: 'ગુજરાતી' }`.
-The site has an EN / ગુ language switch in the header.
+Any text can be written as `'English'` or `{ en: 'English', hi: 'हिन्दी', gu: 'ગુજરાતી' }`.
+The site opens in English, with an EN / हिं / ગુ language switch in the header.
 
 ## Files
 - `index.html` — page structure and fixed text

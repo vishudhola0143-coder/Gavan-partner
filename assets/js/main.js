@@ -8,6 +8,7 @@
 
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var L = function (en, hi, gu) { return lang === 'hi' ? hi : lang === 'gu' ? gu : en; };
   var t = function (v) { return v == null ? '' : (typeof v === 'string' ? v : (v[lang] || v.en || '')); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
 
@@ -18,9 +19,8 @@
     window.open(url, '_blank', 'noopener');
   }
   function ask(el) {
-    var msg = (lang === 'gu' && el.getAttribute('data-ask-gu')) || el.getAttribute('data-ask');
-    var hi = lang === 'gu' ? 'નમસ્તે ગવન ગ્રુપ 🙏\n' : 'Hello Gavan Group 🙏\n';
-    wa(hi + msg);
+    var msg = (lang !== 'en' && el.getAttribute('data-ask-' + lang)) || el.getAttribute('data-ask');
+    wa(L('Hello Gavan Group 🙏\n', 'नमस्ते गवन ग्रुप 🙏\n', 'નમસ્તે ગવન ગ્રુપ 🙏\n') + msg);
   }
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-ask]');
@@ -48,43 +48,51 @@
     root.lang = lang;
     $$('[data-gu]').forEach(function (el) {
       if (!el.hasAttribute('data-en')) el.setAttribute('data-en', getText(el));
-      setText(el, el.getAttribute(lang === 'gu' ? 'data-gu' : 'data-en'));
+      setText(el, el.getAttribute('data-' + lang) || el.getAttribute('data-en'));
     });
     renderAll();
   }
-  $('#langBtn').addEventListener('click', function () {
-    lang = lang === 'en' ? 'gu' : 'en';
-    try { localStorage.setItem('gavan-lang', lang); } catch (e) {}
-    applyLang();
+  if (['en', 'hi', 'gu'].indexOf(lang) < 0) lang = 'en';
+  $$('.lang [data-l]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      lang = b.getAttribute('data-l');
+      try { localStorage.setItem('gavan-lang', lang); } catch (e) {}
+      applyLang();
+    });
   });
 
   /* ---------- Renderers ---------- */
   var catIcon = { residential: 'i-home', commercial: 'i-shop', industrial: 'i-factory' };
   var catName = {
-    residential: { en: 'Residential', gu: 'રેસિડેન્શિયલ' },
-    commercial: { en: 'Commercial', gu: 'કોમર્શિયલ' },
-    industrial: { en: 'Industrial', gu: 'ઇન્ડસ્ટ્રીયલ' }
+    residential: { en: 'Residential', hi: 'रेसिडेंशियल', gu: 'રેસિડેન્શિયલ' },
+    commercial: { en: 'Commercial', hi: 'कमर्शियल', gu: 'કોમર્શિયલ' },
+    industrial: { en: 'Industrial', hi: 'इंडस्ट्रियल', gu: 'ઇન્ડસ્ટ્રીયલ' }
   };
-  var statusGu = { 'Ongoing': 'ચાલુ', 'Upcoming': 'આગામી', 'Completed': 'પૂર્ણ', 'Booking Open': 'બુકિંગ શરૂ' };
+  var statusT = {
+    'Ongoing': { en: 'Ongoing', hi: 'चालू', gu: 'ચાલુ' }, 'Upcoming': { en: 'Upcoming', hi: 'आगामी', gu: 'આગામી' },
+    'Completed': { en: 'Completed', hi: 'पूर्ण', gu: 'પૂર્ણ' }, 'Booking Open': { en: 'Booking Open', hi: 'बुकिंग शुरू', gu: 'બુકિંગ શરૂ' }
+  };
   var filter = 'all';
 
   function renderProjects() {
     var g = $('#projectGrid'); if (!g) return;
     var list = (D.projects || []).filter(function (p) { return filter === 'all' || p.category === filter; });
     g.innerHTML = list.map(function (p) {
-      var st = lang === 'gu' ? (statusGu[p.status] || p.status) : p.status;
-      var askEn = 'I would like details about ' + p.name + ' (' + p.location + ').';
-      var askGu = p.name + ' (' + p.location + ') વિશે માહિતી જોઈએ છે.';
+      var st = p.status ? t(statusT[p.status] || p.status) : '';
+      var where = p.location ? ' (' + p.location + ')' : '';
+      var askEn = 'I would like details about ' + p.name + where + '.';
+      var askHi = p.name + where + ' के बारे में जानकारी चाहिए।';
+      var askGu = p.name + where + ' વિશે માહિતી જોઈએ છે.';
       return '<article class="proj">' +
-        '<div class="proj__art"><span class="proj__cat">' + esc(t(catName[p.category])) + '</span>' +
-        (p.status ? '<span class="proj__status">' + esc(st) + '</span>' : '') +
-        '<svg><use href="#' + (catIcon[p.category] || 'i-home') + '"/></svg></div>' +
+        '<div class="proj__art"><span class="proj__cat">' + esc(catName[p.category] ? t(catName[p.category]) : 'Gavan') + '</span>' +
+        (st ? '<span class="proj__status">' + esc(st) + '</span>' : '') +
+        '<svg><use href="#' + (catIcon[p.category] || 'logo') + '"/></svg></div>' +
         '<div class="proj__body"><h3>' + esc(p.name) + '</h3>' +
-        '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location) + '</p>' +
-        '<div class="proj__foot"><span><b>' + esc(t(p.type)) + '</b><br>' + esc(p.size || '') + '</span>' +
-        '<button data-ask="' + esc(askEn) + '" data-ask-gu="' + esc(askGu) + '">' + (lang === 'gu' ? 'વિગત' : 'Enquire') + '<svg><use href="#i-arrow"/></svg></button></div>' +
+        '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + '</p>' +
+        '<div class="proj__foot"><span><b>' + esc(t(p.type)) + '</b>' + (p.size ? '<br>' + esc(t(p.size)) : '') + '</span>' +
+        '<button data-ask="' + esc(askEn) + '" data-ask-hi="' + esc(askHi) + '" data-ask-gu="' + esc(askGu) + '">' + L('Enquire', 'जानकारी', 'વિગત') + '<svg><use href="#i-arrow"/></svg></button></div>' +
         '</div></article>';
-    }).join('') || '<p>' + (lang === 'gu' ? 'જલ્દી આવી રહ્યું છે.' : 'Coming soon.') + '</p>';
+    }).join('') || '<p>' + L('Coming soon.', 'जल्द आ रहा है।', 'જલ્દી આવી રહ્યું છે.') + '</p>';
   }
 
   function renderStartups() {
@@ -92,8 +100,8 @@
     g.innerHTML = (D.startups || []).map(function (s) {
       var initials = s.name.split(/\s+/).map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
       var cta = s.url
-        ? '<a class="link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + (lang === 'gu' ? 'વધુ જાણો' : 'Know more') + '<svg><use href="#i-arrow"/></svg></a>'
-        : '<button class="link" data-ask="I want to know more about ' + esc(s.name) + ' (Gavan startup)." data-ask-gu="' + esc(s.name) + ' (ગવન સ્ટાર્ટઅપ) વિશે વધુ જાણવું છે.">' + (lang === 'gu' ? 'વધુ જાણો' : 'Know more') + '<svg><use href="#i-arrow"/></svg></button>';
+        ? '<a class="link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + L('Visit on Instagram', 'Instagram पर देखें', 'Instagram પર જુઓ') + '<svg><use href="#i-arrow"/></svg></a>'
+        : '<button class="link" data-ask="I want to know more about ' + esc(s.name) + ' (Gavan startup)." data-ask-hi="' + esc(s.name) + ' (गवन स्टार्टअप) के बारे में और जानना है।" data-ask-gu="' + esc(s.name) + ' (ગવન સ્ટાર્ટઅપ) વિશે વધુ જાણવું છે.">' + L('Know more', 'और जानें', 'વધુ જાણો') + '<svg><use href="#i-arrow"/></svg></button>';
       return '<article class="su reveal is-in"><div class="su__logo">' + esc(initials) + '</div>' +
         '<span class="badge">' + esc(t(s.tag)) + '</span><h3>' + esc(s.name) + '</h3><p>' + esc(t(s.text)) + '</p>' + cta + '</article>';
     }).join('');
@@ -107,9 +115,9 @@
     var max = Math.max.apply(null, list.map(function (s) { return s.followers || 0; }).concat([1]));
     g.innerHTML = list.map(function (s) {
       var follow = s.url
-        ? '<a class="btn btn--gold btn--sm" href="' + esc(s.url) + '" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>' + (lang === 'gu' ? 'ફોલો કરો' : 'Follow') + '</a>'
+        ? '<a class="btn btn--gold btn--sm" href="' + esc(s.url) + '" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>' + L('Follow', 'फॉलो करें', 'ફોલો કરો') + '</a>'
         : '';
-      return '<article class="soc"><div class="soc__top"><svg><use href="#i-ig"/></svg><span class="badge">' + (lang === 'gu' ? 'ફોલોઅર્સ' : 'Followers') + '</span></div>' +
+      return '<article class="soc"><div class="soc__top"><svg><use href="#i-ig"/></svg><span class="badge">' + L('Followers', 'फॉलोअर्स', 'ફોલોઅર્સ') + '</span></div>' +
         '<div class="soc__n">' + esc(s.display || fmtK(s.followers)) + '</div>' +
         '<b>' + esc(s.name) + '</b><span>' + esc(t(s.handle)) + '</span>' +
         '<div class="soc__bar"><i data-w="' + Math.round((s.followers / max) * 100) + '"></i></div>' + follow + '</article>';
@@ -124,30 +132,40 @@
     }).join('');
   }
 
-  var tagGu = { Event: 'ઇવેન્ટ', Update: 'અપડેટ', Milestone: 'માઇલસ્ટોન', Foundation: 'ફાઉન્ડેશન', Launch: 'લોન્ચ' };
+  var tagT = {
+    Event: { en: 'Event', hi: 'इवेंट', gu: 'ઇવેન્ટ' }, Update: { en: 'Update', hi: 'अपडेट', gu: 'અપડેટ' },
+    Milestone: { en: 'Milestone', hi: 'माइलस्टोन', gu: 'માઇલસ્ટોન' }, Foundation: { en: 'Foundation', hi: 'फाउंडेशन', gu: 'ફાઉન્ડેશન' },
+    Launch: { en: 'Launch', hi: 'लॉन्च', gu: 'લોન્ચ' }
+  };
   function renderUpdates() {
     var g = $('#updateList'); if (!g) return;
     var list = (D.updates || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
     g.innerHTML = list.map(function (u, i) {
-      var d = new Date(u.date + 'T00:00:00');
-      var mon = d.toLocaleString(lang === 'gu' ? 'gu-IN' : 'en-IN', { month: 'short' });
-      var tag = lang === 'gu' ? (tagGu[u.tag] || u.tag) : u.tag;
-      return '<article class="upd' + (i === 0 ? ' upd--first' : '') + '"><div class="upd__d"><b>' + d.getDate() + '</b><small>' + esc(mon) + ' ' + d.getFullYear() + '</small></div>' +
+      var ds = String(u.date || ''), big, small = '';
+      if (/^\d{4}$/.test(ds)) { big = ds; }
+      else {
+        var d = new Date(ds + 'T00:00:00');
+        big = d.getDate();
+        small = d.toLocaleString(L('en-IN', 'hi-IN', 'gu-IN'), { month: 'short' }) + ' ' + d.getFullYear();
+      }
+      var tag = t(tagT[u.tag] || u.tag);
+      return '<article class="upd' + (i === 0 ? ' upd--first' : '') + '"><div class="upd__d' + (small ? '' : ' upd__d--y') + '"><b>' + esc(big) + '</b>' + (small ? '<small>' + esc(small) + '</small>' : '') + '</div>' +
         '<div><span class="badge">' + esc(tag) + '</span><h3>' + esc(t(u.title)) + '</h3><p>' + esc(t(u.text)) + '</p></div></article>';
     }).join('');
   }
 
   function renderContact() {
     var g = $('#contactInfo'); if (!g) return;
-    var L = lang === 'gu'
-      ? { a: 'ઓફિસ', p: 'ફોન', e: 'ઇમેઇલ', h: 'સમય', w: 'WhatsApp', wv: 'તરત ચેટ કરો' }
-      : { a: 'Office', p: 'Phone', e: 'Email', h: 'Hours', w: 'WhatsApp', wv: 'Chat with us instantly' };
+    var T = {
+      a: L('Office', 'ऑफिस', 'ઓફિસ'), p: L('Phone', 'फ़ोन', 'ફોન'), e: L('Email', 'ईमेल', 'ઇમેઇલ'),
+      h: L('Hours', 'समय', 'સમય'), w: 'WhatsApp', wv: L('Chat with us instantly', 'तुरंत चैट करें', 'તરત ચેટ કરો')
+    };
     var rows = [];
-    rows.push('<li><svg><use href="#i-pin"/></svg><div><small>' + L.a + '</small><a href="https://www.google.com/maps/search/' + encodeURIComponent(C.mapQuery || 'Vapi, Gujarat') + '" target="_blank" rel="noopener">' + esc(t(C.address)) + '</a></div></li>');
-    if (C.phone) rows.push('<li><svg><use href="#i-phone"/></svg><div><small>' + L.p + '</small><a href="tel:' + esc(C.phone.replace(/\s/g, '')) + '">' + esc(C.phone) + '</a></div></li>');
-    if (C.email) rows.push('<li><svg><use href="#i-mail"/></svg><div><small>' + L.e + '</small><a href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a></div></li>');
-    rows.push('<li><svg><use href="#i-wa"/></svg><div><small>' + L.w + '</small><button data-ask="I would like to connect with Gavan Group." data-ask-gu="મારે ગવન ગ્રુપ સાથે વાત કરવી છે.">' + L.wv + '</button></div></li>');
-    if (C.hours) rows.push('<li><svg><use href="#i-clock"/></svg><div><small>' + L.h + '</small>' + esc(t(C.hours)) + '</div></li>');
+    rows.push('<li><svg><use href="#i-pin"/></svg><div><small>' + T.a + '</small><a href="https://www.google.com/maps/search/' + encodeURIComponent(C.mapQuery || 'Vapi, Gujarat') + '" target="_blank" rel="noopener">' + esc(t(C.address)) + '</a></div></li>');
+    if (C.phone) rows.push('<li><svg><use href="#i-phone"/></svg><div><small>' + T.p + '</small><a href="tel:' + esc(C.phone.replace(/\s/g, '')) + '">' + esc(C.phone) + '</a></div></li>');
+    if (C.email) rows.push('<li><svg><use href="#i-mail"/></svg><div><small>' + T.e + '</small><a href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a></div></li>');
+    rows.push('<li><svg><use href="#i-wa"/></svg><div><small>' + T.w + '</small><button data-ask="I would like to connect with Gavan Group." data-ask-hi="मुझे गवन ग्रुप से बात करनी है।" data-ask-gu="મારે ગવન ગ્રુપ સાથે વાત કરવી છે.">' + T.wv + '</button></div></li>');
+    if (C.hours) rows.push('<li><svg><use href="#i-clock"/></svg><div><small>' + T.h + '</small>' + esc(t(C.hours)) + '</div></li>');
     g.innerHTML = rows.join('');
   }
 
@@ -172,16 +190,19 @@
     if (!name || phone.replace(/\D/g, '').length < 10) { err.hidden = false; return; }
     err.hidden = true;
     var interest = f.interest.options[f.interest.selectedIndex].text;
-    var msg = lang === 'gu'
-      ? 'નમસ્તે ગવન ગ્રુપ 🙏\nનામ: ' + name + '\nમોબાઇલ: ' + phone + '\nરસ: ' + interest + (f.msg.value.trim() ? '\nસંદેશ: ' + f.msg.value.trim() : '')
-      : 'Hello Gavan Group 🙏\nName: ' + name + '\nMobile: ' + phone + '\nInterested in: ' + interest + (f.msg.value.trim() ? '\nMessage: ' + f.msg.value.trim() : '');
+    var note = f.msg.value.trim();
+    var msg = L('Hello Gavan Group 🙏', 'नमस्ते गवन ग्रुप 🙏', 'નમસ્તે ગવન ગ્રુપ 🙏') +
+      '\n' + L('Name', 'नाम', 'નામ') + ': ' + name +
+      '\n' + L('Mobile', 'मोबाइल', 'મોબાઇલ') + ': ' + phone +
+      '\n' + L('Interested in', 'रुचि', 'રસ') + ': ' + interest +
+      (note ? '\n' + L('Message', 'संदेश', 'સંદેશ') + ': ' + note : '');
     wa(msg);
   });
 
   /* ---------- FAB ---------- */
   $('#fab').addEventListener('click', function (e) {
     e.preventDefault();
-    wa(lang === 'gu' ? 'નમસ્તે ગવન ગ્રુપ 🙏 મારે માહિતી જોઈએ છે.' : 'Hello Gavan Group 🙏 I would like some information.');
+    wa(L('Hello Gavan Group 🙏 I would like some information.', 'नमस्ते गवन ग्रुप 🙏 मुझे जानकारी चाहिए।', 'નમસ્તે ગવન ગ્રુપ 🙏 મારે માહિતી જોઈએ છે.'));
   });
 
   /* ---------- Nav ---------- */

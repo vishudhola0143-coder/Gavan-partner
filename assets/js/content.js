@@ -4,66 +4,72 @@
    વેબસાઇટ અપડેટ કરવા માટે ફક્ત આ ફાઇલ edit કરો.
    Edit ONLY this file to update the website — no coding needed.
 
-   Text can be a plain string, or { en: '...', gu: '...' } for both
-   English and Gujarati. If Gujarati is missing, English is shown.
+   Text can be a plain string, or { en: '...', hi: '...', gu: '...' }
+   for English, Hindi and Gujarati. If a language is missing, English
+   is shown.
    ===================================================================== */
 
 window.GAVAN = {
 
-  /* ---------- CONTACT (fill these in) ---------- */
+  /* ---------- CONTACT ---------- */
   contact: {
-    // WhatsApp number with country code, digits only. e.g. '919800000000'
-    // Leave empty and WhatsApp will ask the visitor to pick a chat.
-    whatsapp: '',
-    phone: '',                 // e.g. '+91 98000 00000'
-    email: '',                 // e.g. 'hello@gavangroup.in'
-    address: { en: 'Vapi, Valsad District, South Gujarat', gu: 'વાપી, વલસાડ જિલ્લો, દક્ષિણ ગુજરાત' },
-    hours: { en: 'Mon – Sat · 10:00 AM – 7:00 PM', gu: 'સોમ – શનિ · સવારે 10 – સાંજે 7' },
+    whatsapp: '918200039897',          // country code + number, digits only
+    phone: '+91 82000 39897',
+    email: 'gavangroup@gmail.com',
+    address: { en: 'Vapi, Gujarat', hi: 'वापी, गुजरात', gu: 'વાપી, ગુજરાત' },
+    hours: { en: 'Mon – Sat · 10:00 AM – 7:00 PM', hi: 'सोम – शनि · सुबह 10 – शाम 7', gu: 'સોમ – શનિ · સવારે 10 – સાંજે 7' },
     mapQuery: 'Vapi, Gujarat'
   },
 
   /* ---------- SOCIAL MEDIA ---------- */
-  // url: paste the profile link. If empty, the "Follow" button is hidden.
   social: [
-    { name: 'Vishal Dhola', handle: { en: 'Founder · Personal page', gu: 'ફાઉન્ડર · પર્સનલ પેજ' }, followers: 24000, display: '24K', url: '' },
-    { name: 'VRT — Vishal Realty Talk', handle: { en: 'Real estate knowledge & market talk', gu: 'રિયલ એસ્ટેટ જ્ઞાન અને માર્કેટ વાતો' }, followers: 10500, display: '10K–11K', url: '' },
-    { name: 'Gavan Group', handle: { en: 'Official group page', gu: 'ઓફિશિયલ ગ્રુપ પેજ' }, followers: 4900, display: '4.9K', url: '' }
+    { name: 'Vishal Dhola', handle: { en: 'Co-Founder · Personal page', hi: 'को-फाउंडर · पर्सनल पेज', gu: 'કો-ફાઉન્ડર · પર્સનલ પેજ' }, followers: 24000, display: '24K', url: 'https://www.instagram.com/_vishal_dhola_' },
+    { name: 'VRT — Vishal Realty Talk', handle: { en: 'Real estate knowledge & market talk', hi: 'रियल एस्टेट ज्ञान और मार्केट की बातें', gu: 'રિયલ એસ્ટેટ જ્ઞાન અને માર્કેટ વાતો' }, followers: 10500, display: '10K–11K', url: 'https://www.instagram.com/vishalrealtytalk' },
+    { name: 'Gavan Group', handle: { en: 'Official page · @gavanhomes', hi: 'ऑफिशियल पेज · @gavanhomes', gu: 'ઓફિશિયલ પેજ · @gavanhomes' }, followers: 4900, display: '4.9K', url: 'https://www.instagram.com/gavanhomes' }
   ],
 
   /* ---------- PROJECTS ----------
      category: 'residential' | 'commercial' | 'industrial'
-     status:   'Ongoing' | 'Upcoming' | 'Completed' | 'Booking Open'  */
+               (leave '' if not decided — shows under "All" only)
+     location, size, status are optional.
+     status: 'Ongoing' | 'Upcoming' | 'Completed' | 'Booking Open'  */
   projects: [
-    { name: 'Gavan Homes', location: 'Tithal Road, Valsad', category: 'residential', type: { en: 'Luxury Apartments', gu: 'લક્ઝરી એપાર્ટમેન્ટ' }, size: '3.5 Vigha Township', status: 'Ongoing' },
-    { name: 'Moksh Villa', location: 'Dharampur Road, Valsad', category: 'residential', type: { en: 'Luxury Bungalows', gu: 'લક્ઝરી બંગલો' }, size: '12 Bungalows · NA Clear', status: 'Ongoing' },
-    { name: 'Gavan Arena Park', location: 'NH 48 Highway, Vapi', category: 'commercial', type: { en: 'Commercial Hub', gu: 'કોમર્શિયલ હબ' }, size: '45,000 Sq.Ft', status: 'Booking Open' },
-    { name: 'Shivay Industrial Park — Mamakwada', location: 'Vapi–Daman Road', category: 'industrial', type: { en: 'Industrial Plotting', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: '18 Vigha', status: 'Ongoing' },
-    { name: 'Shivay Industrial Park — Ahu', location: 'Ahu Industrial Belt, Umargam', category: 'industrial', type: { en: 'Heavy Industrial Plots', gu: 'હેવી ઇન્ડસ્ટ્રીયલ પ્લોટ' }, size: '25 Vigha', status: 'Ongoing' },
-    { name: 'Shivay Industrial Park — Anklash', location: 'Anklash GIDC Bypass, Sanjan', category: 'industrial', type: { en: 'Engineering Zone', gu: 'એન્જિનિયરિંગ ઝોન' }, size: '32 Vigha', status: 'Upcoming' },
-    { name: 'Shivay Industrial Park — Umarsadi', location: 'Umarsadi Coastal Road, Pardi', category: 'industrial', type: { en: 'Logistics Park', gu: 'લોજિસ્ટિક્સ પાર્ક' }, size: '40 Vigha', status: 'Upcoming' }
+    { name: 'Gavan Homes', location: 'Tithal Road, Valsad', category: 'residential', type: { en: 'Residential', hi: 'रेसिडेंशियल', gu: 'રેસિડેન્શિયલ' } },
+    { name: 'Gavan Arena Park', location: 'NH 48 Highway, Vapi', category: 'commercial', type: { en: 'Commercial Hub', hi: 'कमर्शियल हब', gu: 'કોમર્શિયલ હબ' } },
+    { name: 'Gavan Vraj Dynasty', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
+    { name: 'Gavan Flow', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
+    { name: 'Gavan Shivaay Industrial Park', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' } }
   ],
 
-  /* ---------- STARTUPS ---------- */
+  /* ---------- STARTUPS (radiology & medical field) ---------- */
   startups: [
-    { name: 'Contrast', tag: { en: 'Gavan Startup', gu: 'ગવન સ્ટાર્ટઅપ' }, text: { en: 'A new-age venture from the Gavan ecosystem, built to bring fresh ideas to how South Gujarat lives and works.', gu: 'ગવન ઇકોસિસ્ટમનું નવું વેન્ચર — દક્ષિણ ગુજરાતમાં નવા આઇડિયા લાવવા માટે.' }, url: '' },
-    { name: 'View Box', tag: { en: 'Gavan Startup', gu: 'ગવન સ્ટાર્ટઅપ' }, text: { en: 'A creative, visual-first startup that helps people see spaces and ideas clearly before they decide.', gu: 'વિઝ્યુઅલ-ફર્સ્ટ સ્ટાર્ટઅપ — નિર્ણય પહેલાં સ્પેસ અને આઇડિયા સ્પષ્ટ જોવા માટે.' }, url: '' },
-    { name: 'Real Estate Solution', tag: { en: 'Gavan Startup', gu: 'ગવન સ્ટાર્ટઅપ' }, text: { en: 'One window for property needs — buying, selling, documentation and guidance, handled with transparency.', gu: 'પ્રોપર્ટીની દરેક જરૂરિયાત માટે એક જ વિન્ડો — ખરીદી, વેચાણ, ડોક્યુમેન્ટેશન અને માર્ગદર્શન.' }, url: '' }
+    { name: 'UltraRad AI', tag: { en: 'AI · Radiology', hi: 'AI · रेडियोलॉजी', gu: 'AI · રેડિયોલોજી' },
+      text: { en: 'An AI startup built for radiologists — bringing artificial intelligence into everyday radiology work.', hi: 'रेडियोलॉजिस्ट के लिए बना AI स्टार्टअप — रोज़ के रेडियोलॉजी काम में आर्टिफ़िशियल इंटेलिजेंस।', gu: 'રેડિયોલોજિસ્ટ માટેનું AI સ્ટાર્ટઅપ — રોજના રેડિયોલોજી કામમાં આર્ટિફિશિયલ ઇન્ટેલિજન્સ.' },
+      url: 'https://www.instagram.com/ultraradai' },
+    { name: 'View Box', tag: { en: 'Radiology Education', hi: 'रेडियोलॉजी शिक्षा', gu: 'રેડિયોલોજી શિક્ષણ' },
+      text: { en: 'A complete education platform for radiologists — learning, practice and growth in one place.', hi: 'रेडियोलॉजिस्ट के लिए संपूर्ण शिक्षा प्लेटफ़ॉर्म — सीखना, अभ्यास और विकास एक ही जगह।', gu: 'રેડિયોલોજિસ્ટ માટેનું સંપૂર્ણ એજ્યુકેશન પ્લેટફોર્મ — શીખવું, પ્રેક્ટિસ અને વિકાસ એક જ જગ્યાએ.' },
+      url: '' },
+    { name: 'Contrast', tag: { en: 'Subscription · Education', hi: 'सब्सक्रिप्शन · शिक्षा', gu: 'સબ્સ્ક્રિપ્શન · શિક્ષણ' },
+      text: { en: 'A subscription-based learning startup for radiologists — fresh, focused radiology education every month.', hi: 'रेडियोलॉजिस्ट के लिए सब्सक्रिप्शन-आधारित लर्निंग स्टार्टअप — हर महीने नई, केंद्रित रेडियोलॉजी शिक्षा।', gu: 'રેડિયોલોજિસ્ટ માટે સબ્સ્ક્રિપ્શન આધારિત લર્નિંગ સ્ટાર્ટઅપ — દર મહિને નવું, ફોકસ્ડ રેડિયોલોજી શિક્ષણ.' },
+      url: 'https://www.instagram.com/contrast.app' }
   ],
 
-  /* ---------- EVENTS & UPDATES (newest first) ----------
-     tag: 'Event' | 'Update' | 'Milestone' | 'Foundation' | 'Launch' */
+  /* ---------- EVENTS & UPDATES ----------
+     date: 'YYYY-MM-DD' for a full date, or just 'YYYY' for a year.
+     tag: 'Event' | 'Update' | 'Milestone' | 'Foundation' | 'Launch'
+     Newest is shown first and highlighted. */
   updates: [
-    { date: '2026-11-01', tag: 'Milestone', title: { en: 'Gavan Radio Centre, Vapi — work in progress', gu: 'ગવન રેડિયો સેન્ટર, વાપી — કામ ચાલુ' }, text: { en: 'Our upcoming radiology centre in Vapi is taking shape, bringing advanced diagnostic imaging closer to home.', gu: 'વાપીમાં આપણું રેડિયોલોજી સેન્ટર આકાર લઈ રહ્યું છે — આધુનિક ડાયગ્નોસ્ટિક સુવિધા હવે ઘરની નજીક.' } },
-    { date: '2026-10-20', tag: 'Update', title: { en: 'Gavan Arena Park — commercial bookings open', gu: 'ગવન એરેના પાર્ક — કોમર્શિયલ બુકિંગ શરૂ' }, text: { en: 'Retail and office spaces on NH 48, Vapi are now open for enquiry.', gu: 'NH 48, વાપી પર રિટેલ અને ઓફિસ સ્પેસ માટે ઇન્ક્વાયરી શરૂ.' } },
-    { date: '2026-10-05', tag: 'Foundation', title: { en: 'Gavan Foundation community drive', gu: 'ગવન ફાઉન્ડેશન કોમ્યુનિટી ડ્રાઇવ' }, text: { en: 'Volunteers from across the Gavan family came together for a local community initiative.', gu: 'ગવન પરિવારના સ્વયંસેવકો સ્થાનિક સમાજ સેવા માટે એકઠા થયા.' } },
-    { date: '2026-09-15', tag: 'Event', title: { en: 'VRT live session: South Gujarat property outlook', gu: 'VRT લાઈવ સેશન: દક્ષિણ ગુજરાત પ્રોપર્ટી આઉટલૂક' }, text: { en: 'Vishal Dhola talked through where Valsad–Vapi–Umargam real estate is heading.', gu: 'વિશાલ ઢોલાએ વલસાડ–વાપી–ઉમરગામ રિયલ એસ્ટેટની દિશા વિશે વાત કરી.' } }
+    { date: '2026', tag: 'Event', title: { en: 'CP Meet 2026 — Channel Partner Meet', hi: 'CP मीट 2026 — चैनल पार्टनर मीट', gu: 'CP મીટ 2026 — ચેનલ પાર્ટનર મીટ' },
+      text: { en: 'Gavan Group brought its channel partners together for the CP Meet 2026.', hi: 'गवन ग्रुप ने CP मीट 2026 में अपने चैनल पार्टनर्स को एक साथ लाया।', gu: 'ગવન ગ્રુપે CP મીટ 2026માં પોતાના ચેનલ પાર્ટનર્સને એકસાથે ભેગા કર્યા.' } },
+    { date: '2025', tag: 'Event', title: { en: 'GGF 2025 — Gavan Grand Fest', hi: 'GGF 2025 — गवन ग्रैंड फेस्ट', gu: 'GGF 2025 — ગવન ગ્રાન્ડ ફેસ્ટ' },
+      text: { en: 'The Gavan Grand Fest 2025 celebrated the Gavan family, partners and community.', hi: 'गवन ग्रैंड फेस्ट 2025 में गवन परिवार, पार्टनर्स और कम्युनिटी का उत्सव मनाया गया।', gu: 'ગવન ગ્રાન્ડ ફેસ્ટ 2025માં ગવન પરિવાર, પાર્ટનર્સ અને કોમ્યુનિટીની ઉજવણી થઈ.' } }
   ],
 
   /* ---------- FUTURE ROADMAP ---------- */
   roadmap: [
-    { when: { en: 'Now', gu: 'હાલ' }, title: { en: 'Gavan Radio Centre, Vapi', gu: 'ગવન રેડિયો સેન્ટર, વાપી' }, text: { en: 'Launching a modern radiology & diagnostic centre for the region.', gu: 'પ્રદેશ માટે આધુનિક રેડિયોલોજી અને ડાયગ્નોસ્ટિક સેન્ટર.' } },
-    { when: { en: 'Next', gu: 'આગળ' }, title: { en: 'Industrial corridor expansion', gu: 'ઇન્ડસ્ટ્રીયલ કોરિડોર વિસ્તાર' }, text: { en: 'More ready-to-build industrial plots along the Vapi–Umargam belt.', gu: 'વાપી–ઉમરગામ પટ્ટામાં વધુ તૈયાર ઇન્ડસ્ટ્રીયલ પ્લોટ.' } },
-    { when: { en: 'Growing', gu: 'વિકાસ' }, title: { en: 'Scaling Gavan startups', gu: 'ગવન સ્ટાર્ટઅપનો વિસ્તાર' }, text: { en: 'Taking Contrast, View Box and Real Estate Solution to more people and cities.', gu: 'કોન્ટ્રાસ્ટ, વ્યૂ બોક્સ અને રિયલ એસ્ટેટ સોલ્યુશનને વધુ લોકો સુધી.' } },
-    { when: { en: 'Always', gu: 'હંમેશાં' }, title: { en: 'Gavan Foundation', gu: 'ગવન ફાઉન્ડેશન' }, text: { en: 'Growing our giving-back as the group grows.', gu: 'ગ્રુપ વધે તેમ સમાજ માટેનું યોગદાન પણ વધે.' } }
+    { when: { en: 'Now', hi: 'अभी', gu: 'હાલ' }, title: { en: 'Gavan Radio Centre, Vapi', hi: 'गवन रेडियो सेंटर, वापी', gu: 'ગવન રેડિયો સેન્ટર, વાપી' }, text: { en: 'Launching a modern radiology & diagnostic centre for the region.', hi: 'क्षेत्र के लिए आधुनिक रेडियोलॉजी और डायग्नोस्टिक सेंटर।', gu: 'પ્રદેશ માટે આધુનિક રેડિયોલોજી અને ડાયગ્નોસ્ટિક સેન્ટર.' } },
+    { when: { en: 'Next', hi: 'आगे', gu: 'આગળ' }, title: { en: 'Industrial corridor expansion', hi: 'इंडस्ट्रियल कॉरिडोर विस्तार', gu: 'ઇન્ડસ્ટ્રીયલ કોરિડોર વિસ્તાર' }, text: { en: 'More ready-to-build industrial plots along the Vapi–Umargam belt.', hi: 'वापी–उमरगाम बेल्ट में और तैयार इंडस्ट्रियल प्लॉट।', gu: 'વાપી–ઉમરગામ પટ્ટામાં વધુ તૈયાર ઇન્ડસ્ટ્રીયલ પ્લોટ.' } },
+    { when: { en: 'Growing', hi: 'विकास', gu: 'વિકાસ' }, title: { en: 'Scaling Gavan startups', hi: 'गवन स्टार्टअप्स का विस्तार', gu: 'ગવન સ્ટાર્ટઅપનો વિસ્તાર' }, text: { en: 'Taking UltraRad AI, View Box and Contrast to radiologists across India.', hi: 'UltraRad AI, View Box और Contrast को पूरे भारत के रेडियोलॉजिस्ट तक पहुँचाना।', gu: 'UltraRad AI, View Box અને Contrastને ભારતભરના રેડિયોલોજિસ્ટ સુધી પહોંચાડવા.' } },
+    { when: { en: 'Always', hi: 'हमेशा', gu: 'હંમેશાં' }, title: { en: 'Gavan Foundation', hi: 'गवन फाउंडेशन', gu: 'ગવન ફાઉન્ડેશન' }, text: { en: 'Growing our giving-back as the group grows.', hi: 'ग्रुप के बढ़ने के साथ समाज के लिए योगदान भी बढ़े।', gu: 'ગ્રુપ વધે તેમ સમાજ માટેનું યોગદાન પણ વધે.' } }
   ]
 };
