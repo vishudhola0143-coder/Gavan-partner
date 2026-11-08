@@ -435,3 +435,4 @@ img.hero__mark{opacity:.07;object-fit:contain;filter:saturate(.8)}
 .lead__av.has-photo{width:56px;height:56px;box-shadow:0 0 0 2px var(--gold)}
 .person__av.has-photo{width:104px;height:104px;box-shadow:0 0 0 3px var(--gold),0 0 0 9px var(--cream)}
 .person__av{width:104px;height:104px;font-size:1.6rem;box-shadow:0 0 0 3px var(--gold),0 0 0 9px var(--cream)}
+.person{align-content:start}
