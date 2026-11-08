@@ -714,3 +714,6 @@ html:not([lang="en"]) .off__t h3{font-family:inherit;font-weight:700}
 @media (max-width:360px){.brand__mark{width:auto;height:auto}.brand__mark img{width:34px;height:34px}}
 .nav__links a,.brand__txt small,.brand__txt b{white-space:nowrap}
 @media (min-width:1021px){.nav__links{gap:1.3rem}.nav__links a{font-size:.86rem}}
+/* GAVAN / GROUP wordmark */
+.brand__txt small{display:block!important;font-size:.7rem;letter-spacing:.62em;margin-top:.25rem;font-weight:600;color:var(--gold)}
+@media (max-width:360px){.brand__txt small{font-size:.6rem;letter-spacing:.5em}}
