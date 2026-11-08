@@ -197,6 +197,51 @@
     }).join('');
   }
 
+  /* ---------- Video portfolio ---------- */
+  var vfilter = 'all';
+  var vcat = { site: { en: 'Site', hi: 'साइट', gu: 'સાઇટ' }, work: { en: 'Work', hi: 'काम', gu: 'કામ' }, event: { en: 'Event', hi: 'इवेंट', gu: 'ઇવેન્ટ' },
+    foundation: { en: 'Foundation', hi: 'फाउंडेशन', gu: 'ફાઉન્ડેશન' }, edu: { en: 'Education', hi: 'शिक्षा', gu: 'શિક્ષણ' } };
+  function ytId(u) { var m = String(u || '').match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; }
+  function renderVideos() {
+    var g = $('#vidGrid'); if (!g) return;
+    var list = (D.videos || []).filter(function (v) { return vfilter === 'all' || v.cat === vfilter; });
+    if (!list.length) {
+      g.innerHTML = '<div class="vids__empty"><p>' + L('Videos for this category are coming soon.', 'इस श्रेणी के वीडियो जल्द आ रहे हैं।', 'આ કેટેગરીના વિડિયો જલ્દી આવી રહ્યા છે.') + '</p></div>';
+      return;
+    }
+    g.innerHTML = list.map(function (v) {
+      var i = (D.videos || []).indexOf(v);
+      var kind = v.src ? 'file' : v.youtube ? 'yt' : 'ig';
+      var src = kind === 'yt' ? 'YouTube' : kind === 'ig' ? 'Instagram' : L('Video', 'वीडियो', 'વિડિયો');
+      var poster = v.poster || (kind === 'yt' ? 'https://img.youtube.com/vi/' + ytId(v.youtube) + '/hqdefault.jpg' : '');
+      return '<button class="vid" data-vid="' + i + '">' +
+        '<span class="vid__img">' + (poster ? '<img loading="lazy" src="' + esc(poster) + '" alt="">' : '') +
+        '<span class="vid__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>' +
+        '<span class="vid__cat">' + esc(t(vcat[v.cat] || v.cat)) + '</span><span class="vid__src">' + esc(src) + '</span></span>' +
+        '<b>' + esc(t(v.title)) + '</b></button>';
+    }).join('');
+  }
+  var vlb = $('#vlb'), vbox = $('#vlbBox');
+  function closeV() { if (!vlb) return; vlb.hidden = true; vbox.innerHTML = ''; document.body.style.overflow = ''; }
+  function openV(v) {
+    if (v.instagram) { window.open(v.instagram, '_blank', 'noopener'); return; }
+    if (v.youtube) {
+      vbox.innerHTML = '<iframe src="https://www.youtube.com/embed/' + ytId(v.youtube) + '?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>' +
+        '<a class="link vlb__out" href="' + esc(v.youtube) + '" target="_blank" rel="noopener">' + L('Open on YouTube', 'YouTube पर खोलें', 'YouTube પર ખોલો') + '<svg><use href="#i-arrow"/></svg></a>';
+    } else {
+      vbox.innerHTML = '<video src="' + esc(v.src) + '"' + (v.poster ? ' poster="' + esc(v.poster) + '"' : '') + ' controls autoplay playsinline></video>';
+    }
+    $('#vlbCap').textContent = t(v.title);
+    vlb.hidden = false; document.body.style.overflow = 'hidden';
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-vid]'); if (b) { openV(D.videos[+b.getAttribute('data-vid')]); return; }
+    var f = e.target.closest('[data-vf]');
+    if (f) { vfilter = f.getAttribute('data-vf'); $$('[data-vf]').forEach(function (x) { x.classList.toggle('is-on', x === f); }); renderVideos(); }
+    if (vlb && !vlb.hidden && (e.target === vlb || e.target.closest('#vlbClose'))) closeV();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && vlb && !vlb.hidden) closeV(); });
+
   function renderFoundation() {
     var g = $('#foundWork'), f = D.foundation; if (!g || !f || !f.gallery) return;
     var base = f.galleryPath || '';
@@ -304,7 +349,7 @@
   });
 
   function renderAll() {
-    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderOffices(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact(); setDirect();
+    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderOffices(); renderVideos(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact(); setDirect();
   }
 
   /* ---------- Project filter ---------- */

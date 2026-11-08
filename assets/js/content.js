@@ -324,6 +324,26 @@ window.GAVAN = {
         { src: 'shivaay-office-2.jpg', cap: { en: 'Shivaay office — landscaped parking', hi: 'शिवाय ऑफिस — लैंडस्केप पार्किंग', gu: 'શિવાય ઓફિસ — લેન્ડસ્કેપ પાર્કિંગ' } } ] }
   ],
 
+  /* ---------- VIDEO PORTFOLIO ----------
+     cat: 'site' | 'work' | 'event' | 'foundation' | 'edu'
+     Use ONE of:
+       src:       'assets/video/name.mp4'        (video file in the website)
+       youtube:   'https://youtu.be/XXXXXXXX'    (YouTube link)
+       instagram: 'https://www.instagram.com/reel/XXXX/'  (opens Instagram)
+     poster: optional cover image. Newest first. */
+  videos: [
+    { cat: 'foundation', src: 'assets/img/foundation/drive.mp4', poster: 'assets/img/foundation/drive-poster.jpg',
+      title: { en: 'Gavan Foundation — ration kit drive', hi: 'गवन फाउंडेशन — राशन किट अभियान', gu: 'ગવન ફાઉન્ડેશન — રાશન કિટ અભિયાન' } },
+    { cat: 'edu', youtube: 'https://youtu.be/5QnTt-kfJkg', poster: 'assets/img/people/vishal-dhola.jpg',
+      title: { en: 'VRT — Real estate, simplified (YouTube)', hi: 'VRT — रियल एस्टेट आसान भाषा में (YouTube)', gu: 'VRT — રિયલ એસ્ટેટ સરળ ભાષામાં (YouTube)' } },
+    { cat: 'site', instagram: 'https://www.instagram.com/shivaay_industrialpark/', poster: 'assets/img/shivaay/01-entrance-plaza.jpg',
+      title: { en: 'Shivaay Industrial Park — site reels', hi: 'शिवाय इंडस्ट्रियल पार्क — साइट रील्स', gu: 'શિવાય ઇન્ડસ્ટ્રીયલ પાર્ક — સાઇટ રીલ્સ' } },
+    { cat: 'event', instagram: 'https://www.instagram.com/shivaay_industrialpark/', poster: 'assets/img/cpmeet/04-audience.jpg',
+      title: { en: 'CPLP 2026 — event reels', hi: 'CPLP 2026 — इवेंट रील्स', gu: 'CPLP 2026 — ઇવેન્ટ રીલ્સ' } },
+    { cat: 'work', instagram: 'https://www.instagram.com/gavan_interio/', poster: 'assets/img/interio/thumb/02-interior.jpg',
+      title: { en: 'Gavan Interio — work in progress reels', hi: 'गवन इंटीरियो — काम की रील्स', gu: 'ગવન ઇન્ટીરિયો — કામની રીલ્સ' } }
+  ],
+
   /* ---------- FUTURE ROADMAP ---------- */
   roadmap: [
     { when: { en: 'Now', hi: 'अभी', gu: 'હાલ' }, title: { en: 'Gavan Radio Centre, Vapi', hi: 'गवन रेडियो सेंटर, वापी', gu: 'ગવન રેડિયો સેન્ટર, વાપી' }, text: { en: 'Launching a modern radiology & diagnostic centre for the region.', hi: 'क्षेत्र के लिए आधुनिक रेडियोलॉजी और डायग्नोस्टिक सेंटर।', gu: 'પ્રદેશ માટે આધુનિક રેડિયોલોજી અને ડાયગ્નોસ્ટિક સેન્ટર.' } },

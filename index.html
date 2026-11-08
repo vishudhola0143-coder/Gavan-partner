@@ -49,6 +49,7 @@
       <a href="#startups" data-gu="સ્ટાર્ટઅપ્સ" data-hi="स्टार्टअप्स">Startups</a>
       <a href="#foundation" data-gu="ફાઉન્ડેશન" data-hi="फाउंडेशन">Foundation</a>
       <a href="#updates" data-gu="અપડેટ્સ" data-hi="अपडेट्स">Updates</a>
+      <a href="#videos" data-gu="વિડિયો" data-hi="वीडियो">Videos</a>
       <a href="#contact" class="nav__mcta" data-gu="સંપર્ક" data-hi="संपर्क">Contact</a>
     </nav>
     <div class="nav__act">
@@ -330,6 +331,32 @@
     <div class="updates" id="updateList"></div>
   </div>
 </section>
+
+<!-- ================= VIDEO PORTFOLIO ================= -->
+<section class="sec sec--dark" id="videos">
+  <div class="wrap">
+    <div class="head head--row">
+      <div>
+        <p class="eyebrow reveal" data-gu="વિડિયો પોર્ટફોલિયો" data-hi="वीडियो पोर्टफ़ोलियो">Video portfolio</p>
+        <h2 class="h2 reveal" data-gu="ગવનને કામ કરતું જુઓ" data-hi="गवन को काम करते देखें">Watch Gavan at work</h2>
+      </div>
+      <div class="filters filters--dark reveal" id="vidTabs">
+        <button class="filter is-on" data-vf="all" data-gu="બધા" data-hi="सभी">All</button>
+        <button class="filter" data-vf="site" data-gu="સાઇટ" data-hi="साइट">Site</button>
+        <button class="filter" data-vf="work" data-gu="કામ" data-hi="काम">Work</button>
+        <button class="filter" data-vf="event" data-gu="ઇવેન્ટ" data-hi="इवेंट">Events</button>
+        <button class="filter" data-vf="foundation" data-gu="ફાઉન્ડેશન" data-hi="फाउंडेशन">Foundation</button>
+        <button class="filter" data-vf="edu" data-gu="શિક્ષણ" data-hi="शिक्षा">Education</button>
+      </div>
+    </div>
+    <div class="vids" id="vidGrid"></div>
+  </div>
+</section>
+
+<div class="lb vlb" id="vlb" hidden role="dialog" aria-modal="true" aria-label="Video">
+  <button class="lb__x" id="vlbClose" aria-label="Close">&times;</button>
+  <figure class="lb__fig"><div class="vlb__box" id="vlbBox"></div><figcaption id="vlbCap"></figcaption></figure>
+</div>
 
 <!-- ================= CONTACT ================= -->
 <section class="sec sec--dark" id="contact">
