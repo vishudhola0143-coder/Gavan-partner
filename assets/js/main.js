@@ -144,6 +144,16 @@
     Milestone: { en: 'Milestone', hi: 'माइलस्टोन', gu: 'માઇલસ્ટોન' }, Foundation: { en: 'Foundation', hi: 'फाउंडेशन', gu: 'ફાઉન્ડેશન' },
     Launch: { en: 'Launch', hi: 'लॉन्च', gu: 'લોન્ચ' }
   };
+  function updGallery(u) {
+    if (!u.gallery || !u.gallery.length) return '';
+    var base = u.galleryPath || '', show = u.gallery.slice(0, 6);
+    return '<div class="upd__gal">' + show.map(function (im, i) {
+      var more = (i === show.length - 1 && u.gallery.length > show.length) ? '<span class="feat__more">+' + (u.gallery.length - show.length) + '</span>' : '';
+      return '<button data-gal="' + esc(u.name) + '" data-i="' + i + '"><img loading="lazy" src="' + esc(base + 'thumb/' + im.src) + '" alt="' + esc(t(im.cap)) + '">' + more + '</button>';
+    }).join('') + '</div>' +
+    '<button class="link upd__all" data-gal="' + esc(u.name) + '" data-i="0">' + L('View event photos', 'इवेंट की फ़ोटो देखें', 'ઇવેન્ટના ફોટા જુઓ') + ' (' + u.gallery.length + ')<svg><use href="#i-arrow"/></svg></button>';
+  }
+
   function renderUpdates() {
     var g = $('#updateList'); if (!g) return;
     var list = (D.updates || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
@@ -157,7 +167,7 @@
       }
       var tag = t(tagT[u.tag] || u.tag);
       return '<article class="upd' + (i === 0 ? ' upd--first' : '') + '"><div class="upd__d' + (small ? '' : ' upd__d--y') + '"><b>' + esc(big) + '</b>' + (small ? '<small>' + esc(small) + '</small>' : '') + '</div>' +
-        '<div><span class="badge">' + esc(tag) + '</span><h3>' + esc(t(u.title)) + '</h3><p>' + esc(t(u.text)) + '</p></div></article>';
+        '<div><span class="badge">' + esc(tag) + '</span><h3>' + esc(t(u.title)) + '</h3><p>' + esc(t(u.text)) + '</p>' + updGallery(u) + '</div></article>';
     }).join('');
   }
 
@@ -177,7 +187,7 @@
   }
 
   /* ---------- Featured project showcase + gallery ---------- */
-  function findProject(name) { return (D.projects || []).filter(function (p) { return p.name === name; })[0]; }
+  function findProject(name) { return (D.projects || []).concat(D.updates || []).filter(function (p) { return p.name === name && p.gallery; })[0]; }
   function renderFeatured() {
     var g = $('#featured'); if (!g) return;
     var fs = (D.projects || []).filter(function (x) { return x.featured && x.gallery && x.gallery.length && inFilter(x); });

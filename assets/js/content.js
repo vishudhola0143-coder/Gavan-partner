@@ -192,8 +192,24 @@ window.GAVAN = {
      tag: 'Event' | 'Update' | 'Milestone' | 'Foundation' | 'Launch'
      Newest is shown first and highlighted. */
   updates: [
-    { date: '2026', tag: 'Event', title: { en: 'CP Meet 2026 — Channel Partner Meet', hi: 'CP मीट 2026 — चैनल पार्टनर मीट', gu: 'CP મીટ 2026 — ચેનલ પાર્ટનર મીટ' },
-      text: { en: 'Gavan Group brought its channel partners together for the CP Meet 2026.', hi: 'गवन ग्रुप ने CP मीट 2026 में अपने चैनल पार्टनर्स को एक साथ लाया।', gu: 'ગવન ગ્રુપે CP મીટ 2026માં પોતાના ચેનલ પાર્ટનર્સને એકસાથે ભેગા કર્યા.' } },
+    { date: '2026', tag: 'Event', name: 'CPLP 2026',
+      title: { en: 'CP Meet 2026 — Channel Partner Legacy Program (CPLP)', hi: 'CP मीट 2026 — चैनल पार्टनर लेगेसी प्रोग्राम (CPLP)', gu: 'CP મીટ 2026 — ચેનલ પાર્ટનર લેગસી પ્રોગ્રામ (CPLP)' },
+      text: { en: 'Presented by The Coastal Era — Gavan and Shivaay brought hundreds of channel partners together to share the vision for South Gujarat\'s coastal industrial corridor, felicitate partners and celebrate the legacy ahead.',
+              hi: 'द कोस्टल एरा द्वारा प्रस्तुत — गवन और शिवाय ने सैकड़ों चैनल पार्टनर्स को एक साथ लाकर दक्षिण गुजरात के तटीय इंडस्ट्रियल कॉरिडोर का विज़न साझा किया, पार्टनर्स का सम्मान किया और आगे की विरासत का जश्न मनाया।',
+              gu: 'ધ કોસ્ટલ એરા દ્વારા પ્રસ્તુત — ગવન અને શિવાયે સેંકડો ચેનલ પાર્ટનર્સને એકસાથે ભેગા કરીને દક્ષિણ ગુજરાતના દરિયાકાંઠાના ઇન્ડસ્ટ્રીયલ કોરિડોરનું વિઝન રજૂ કર્યું, પાર્ટનર્સનું સન્માન કર્યું અને આગળની સફરની ઉજવણી કરી.' },
+      galleryPath: 'assets/img/cpmeet/',
+      gallery: [
+        { src: '01-venue.jpg', cap: { en: "CPLP 2026 venue", hi: "CPLP 2026 वेन्यू", gu: "CPLP 2026 વેન્યુ" } },
+        { src: '02-registration.jpg', cap: { en: "Partner registration", hi: "पार्टनर रजिस्ट्रेशन", gu: "પાર્ટનર રજિસ્ટ્રેશન" } },
+        { src: '03-keynote-coast.jpg', cap: { en: "Keynote: South Gujarat's coast — the next industrial address", hi: "कीनोट: दक्षिण गुजरात का तट — अगला इंडस्ट्रियल पता", gu: "કીનોટ: દક્ષિણ ગુજરાતનો દરિયાકાંઠો — આગામી ઇન્ડસ્ટ્રીયલ સરનામું" } },
+        { src: '04-audience.jpg', cap: { en: "A full house of channel partners", hi: "चैनल पार्टनर्स से भरा हॉल", gu: "ચેનલ પાર્ટનર્સથી ભરેલો હૉલ" } },
+        { src: '05-partners-move-first.jpg', cap: { en: "\"The partners who move first, win.\"", hi: "\"जो पार्टनर पहले कदम उठाते हैं, वही जीतते हैं।\"", gu: "\"જે પાર્ટનર પહેલું પગલું ભરે, એ જ જીતે.\"" } },
+        { src: '06-team.jpg', cap: { en: "The people behind the industrial parks", hi: "इंडस्ट्रियल पार्क के पीछे की टीम", gu: "ઇન્ડસ્ટ્રીયલ પાર્ક પાછળની ટીમ" } },
+        { src: '07-audience-cheer.jpg', cap: { en: "Partners cheering", hi: "उत्साहित पार्टनर्स", gu: "ઉત્સાહિત પાર્ટનર્સ" } },
+        { src: '08-partners-on-stage.jpg', cap: { en: "Partners on stage — 500 acres vision", hi: "मंच पर पार्टनर्स — 500 एकड़ विज़न", gu: "સ્ટેજ પર પાર્ટનર્સ — 500 એકર વિઝન" } },
+        { src: '09-celebration.jpg', cap: { en: "Celebrating together", hi: "साथ मिलकर जश्न", gu: "સાથે મળીને ઉજવણી" } },
+        { src: '10-cake-cutting.jpg', cap: { en: "Cake cutting", hi: "केक कटिंग", gu: "કેક કટિંગ" } }
+      ] },
     { date: '2025', tag: 'Event', title: { en: 'GGF 2025 — Gavan Grand Fest', hi: 'GGF 2025 — गवन ग्रैंड फेस्ट', gu: 'GGF 2025 — ગવન ગ્રાન્ડ ફેસ્ટ' },
       text: { en: 'The Gavan Grand Fest 2025 celebrated the Gavan family, partners and community.', hi: 'गवन ग्रैंड फेस्ट 2025 में गवन परिवार, पार्टनर्स और कम्युनिटी का उत्सव मनाया गया।', gu: 'ગવન ગ્રાન્ડ ફેસ્ટ 2025માં ગવન પરિવાર, પાર્ટનર્સ અને કોમ્યુનિટીની ઉજવણી થઈ.' } }
   ],

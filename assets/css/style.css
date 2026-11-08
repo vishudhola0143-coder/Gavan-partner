@@ -404,3 +404,9 @@ img.hero__mark{opacity:.07;object-fit:contain;filter:saturate(.8)}
 .feat__title{display:flex;align-items:center;gap:.9rem;margin-top:.4rem}
 .feat__title .h3{margin:0}
 .feat__logo{width:64px;height:64px;object-fit:contain;border-radius:14px;border:1px solid var(--line);background:#fff;padding:4px;flex:none}
+.upd__gal{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:1rem}
+.upd__gal button{position:relative;aspect-ratio:3/2;border-radius:10px;overflow:hidden}
+.upd__gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.upd__gal button:hover img{transform:scale(1.06)}
+.upd--first .upd__all{color:var(--gold-2)}
+@media (max-width:820px){.upd__gal{grid-template-columns:repeat(3,1fr)}}
