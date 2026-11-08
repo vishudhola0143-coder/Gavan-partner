@@ -32,24 +32,25 @@ window.GAVAN = {
      category: 'residential' | 'commercial' | 'industrial'
                (leave '' if not decided — shows under "All" only)
      location, size, status are optional.
-     status: 'Ongoing' | 'Upcoming' | 'Completed' | 'Booking Open'  */
+     status: 'Ongoing' | 'Upcoming' | 'Completed' | 'Booking Open'
+     logo: optional image path, e.g. 'assets/img/shivaay.jpg'  */
   projects: [
     { name: 'Gavan Homes', location: 'Tithal Road, Valsad', category: 'residential', type: { en: 'Residential', hi: 'रेसिडेंशियल', gu: 'રેસિડેન્શિયલ' } },
     { name: 'Gavan Arena Park', location: 'NH 48 Highway, Vapi', category: 'commercial', type: { en: 'Commercial Hub', hi: 'कमर्शियल हब', gu: 'કોમર્શિયલ હબ' } },
     { name: 'Gavan Vraj Dynasty', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
     { name: 'Gavan Flow', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
-    { name: 'Gavan Shivaay Industrial Park', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' } }
+    { name: 'Gavan Shivaay Industrial Park', logo: 'assets/img/shivaay.jpg', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' } }
   ],
 
   /* ---------- STARTUPS (radiology & medical field) ---------- */
   startups: [
-    { name: 'UltraRad AI', tag: { en: 'AI · Radiology', hi: 'AI · रेडियोलॉजी', gu: 'AI · રેડિયોલોજી' },
+    { name: 'UltraRad AI', logo: 'assets/img/ultrarad.png', tag: { en: 'AI · Radiology', hi: 'AI · रेडियोलॉजी', gu: 'AI · રેડિયોલોજી' },
       text: { en: 'An AI startup built for radiologists — bringing artificial intelligence into everyday radiology work.', hi: 'रेडियोलॉजिस्ट के लिए बना AI स्टार्टअप — रोज़ के रेडियोलॉजी काम में आर्टिफ़िशियल इंटेलिजेंस।', gu: 'રેડિયોલોજિસ્ટ માટેનું AI સ્ટાર્ટઅપ — રોજના રેડિયોલોજી કામમાં આર્ટિફિશિયલ ઇન્ટેલિજન્સ.' },
       url: 'https://www.instagram.com/ultraradai' },
-    { name: 'View Box', tag: { en: 'Radiology Education', hi: 'रेडियोलॉजी शिक्षा', gu: 'રેડિયોલોજી શિક્ષણ' },
+    { name: 'View Box', logo: 'assets/img/viewbox.png', tag: { en: 'Radiology Education', hi: 'रेडियोलॉजी शिक्षा', gu: 'રેડિયોલોજી શિક્ષણ' },
       text: { en: 'A complete education platform for radiologists — learning, practice and growth in one place.', hi: 'रेडियोलॉजिस्ट के लिए संपूर्ण शिक्षा प्लेटफ़ॉर्म — सीखना, अभ्यास और विकास एक ही जगह।', gu: 'રેડિયોલોજિસ્ટ માટેનું સંપૂર્ણ એજ્યુકેશન પ્લેટફોર્મ — શીખવું, પ્રેક્ટિસ અને વિકાસ એક જ જગ્યાએ.' },
       url: '' },
-    { name: 'Contrast', tag: { en: 'Subscription · Education', hi: 'सब्सक्रिप्शन · शिक्षा', gu: 'સબ્સ્ક્રિપ્શન · શિક્ષણ' },
+    { name: 'Contrast', logo: 'assets/img/contrast.png', tag: { en: 'Subscription · Education', hi: 'सब्सक्रिप्शन · शिक्षा', gu: 'સબ્સ્ક્રિપ્શન · શિક્ષણ' },
       text: { en: 'A subscription-based learning startup for radiologists — fresh, focused radiology education every month.', hi: 'रेडियोलॉजिस्ट के लिए सब्सक्रिप्शन-आधारित लर्निंग स्टार्टअप — हर महीने नई, केंद्रित रेडियोलॉजी शिक्षा।', gu: 'રેડિયોલોજિસ્ટ માટે સબ્સ્ક્રિપ્શન આધારિત લર્નિંગ સ્ટાર્ટઅપ — દર મહિને નવું, ફોકસ્ડ રેડિયોલોજી શિક્ષણ.' },
       url: 'https://www.instagram.com/contrast.app' }
   ],

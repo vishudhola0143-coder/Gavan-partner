@@ -86,7 +86,8 @@
       return '<article class="proj">' +
         '<div class="proj__art"><span class="proj__cat">' + esc(catName[p.category] ? t(catName[p.category]) : 'Gavan') + '</span>' +
         (st ? '<span class="proj__status">' + esc(st) + '</span>' : '') +
-        '<svg><use href="#' + (catIcon[p.category] || 'logo') + '"/></svg></div>' +
+        (p.logo ? '<span class="proj__logo"><img src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo" loading="lazy"></span>'
+          : '<svg><use href="#' + (catIcon[p.category] || 'i-home') + '"/></svg>') + '</div>' +
         '<div class="proj__body"><h3>' + esc(p.name) + '</h3>' +
         '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + '</p>' +
         '<div class="proj__foot"><span><b>' + esc(t(p.type)) + '</b>' + (p.size ? '<br>' + esc(t(p.size)) : '') + '</span>' +
@@ -102,7 +103,8 @@
       var cta = s.url
         ? '<a class="link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + L('Visit on Instagram', 'Instagram पर देखें', 'Instagram પર જુઓ') + '<svg><use href="#i-arrow"/></svg></a>'
         : '<button class="link" data-ask="I want to know more about ' + esc(s.name) + ' (Gavan startup)." data-ask-hi="' + esc(s.name) + ' (गवन स्टार्टअप) के बारे में और जानना है।" data-ask-gu="' + esc(s.name) + ' (ગવન સ્ટાર્ટઅપ) વિશે વધુ જાણવું છે.">' + L('Know more', 'और जानें', 'વધુ જાણો') + '<svg><use href="#i-arrow"/></svg></button>';
-      return '<article class="su reveal is-in"><div class="su__logo">' + esc(initials) + '</div>' +
+      return '<article class="su reveal is-in"><div class="su__logo' + (s.logo ? ' su__logo--img' : '') + '">' +
+        (s.logo ? '<img src="' + esc(s.logo) + '" alt="' + esc(s.name) + ' logo">' : esc(initials)) + '</div>' +
         '<span class="badge">' + esc(t(s.tag)) + '</span><h3>' + esc(s.name) + '</h3><p>' + esc(t(s.text)) + '</p>' + cta + '</article>';
     }).join('');
   }
