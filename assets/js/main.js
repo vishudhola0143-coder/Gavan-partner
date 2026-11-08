@@ -163,7 +163,8 @@
       '<div class="iw__grid">' + show.map(function (im, i) {
         var more = (i === show.length - 1 && rest > 0) ? '<span class="feat__more">+' + rest + '</span>' : '';
         return '<button data-gal="' + esc(f.name) + '" data-i="' + i + '"><img loading="lazy" src="' + esc(base + 'thumb/' + im.src) + '" alt="' + esc(t(im.cap)) + '">' + more + '</button>';
-      }).join('') + '</div></div>';
+      }).join('') + '</div>' +
+      '<button class="link iw__all" data-gal="' + esc(f.name) + '" data-i="0">' + L('Swipe or view all', 'स्वाइप करें या सभी देखें', 'સ્વાઇપ કરો અથવા બધા જુઓ') + ' (' + f.gallery.length + ')<svg><use href="#i-arrow"/></svg></button></div>';
   }
 
   function renderFoundation() {
