@@ -76,18 +76,21 @@
 
   function renderProjects() {
     var g = $('#projectGrid'); if (!g) return;
-    var list = (D.projects || []).filter(function (p) { return filter === 'all' || p.category === filter; });
+    var list = (D.projects || []).filter(function (p) { return !(p.featured && p.gallery) && (filter === 'all' || p.category === filter); });
     g.innerHTML = list.map(function (p) {
+      var cover = p.gallery && p.gallery.length ? (p.galleryPath || '') + 'thumb/' + p.gallery[0].src : '';
       var st = p.status ? t(statusT[p.status] || p.status) : '';
       var where = p.location ? ' (' + p.location + ')' : '';
       var askEn = 'I would like details about ' + p.name + where + '.';
       var askHi = p.name + where + ' के बारे में जानकारी चाहिए।';
       var askGu = p.name + where + ' વિશે માહિતી જોઈએ છે.';
       return '<article class="proj">' +
-        '<div class="proj__art"><span class="proj__cat">' + esc(catName[p.category] ? t(catName[p.category]) : 'Gavan') + '</span>' +
+        '<div class="proj__art' + (cover ? ' proj__art--photo' : '') + '"' + (cover ? ' style="background-image:url(\'' + esc(cover) + '\')"' : '') + '>' +
+        (cover ? '<button class="proj__gal" data-gal="' + esc(p.name) + '">' + L('View photos', 'फ़ोटो देखें', 'ફોટા જુઓ') + ' (' + p.gallery.length + ')</button>' : '') +
+        '<span class="proj__cat">' + esc(catName[p.category] ? t(catName[p.category]) : 'Gavan') + '</span>' +
         (st ? '<span class="proj__status">' + esc(st) + '</span>' : '') +
         (p.logo ? '<span class="proj__logo"><img src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo" loading="lazy"></span>'
-          : '<svg><use href="#' + (catIcon[p.category] || 'i-home') + '"/></svg>') + '</div>' +
+          : (cover ? '' : '<svg><use href="#' + (catIcon[p.category] || 'i-home') + '"/></svg>')) + '</div>' +
         '<div class="proj__body"><h3>' + esc(p.name) + '</h3>' +
         '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + '</p>' +
         '<div class="proj__foot"><span><b>' + esc(t(p.type)) + '</b>' + (p.size ? '<br>' + esc(t(p.size)) : '') + '</span>' +
@@ -171,8 +174,68 @@
     g.innerHTML = rows.join('');
   }
 
+  /* ---------- Featured project showcase + gallery ---------- */
+  function findProject(name) { return (D.projects || []).filter(function (p) { return p.name === name; })[0]; }
+  function renderFeatured() {
+    var g = $('#featured'); if (!g) return;
+    var p = (D.projects || []).filter(function (x) { return x.featured && x.gallery && x.gallery.length; })[0];
+    if (!p || (filter !== 'all' && filter !== p.category)) { g.innerHTML = ''; return; }
+    var base = p.galleryPath || '';
+    var hero = p.gallery[0], side = p.gallery.slice(1, 5);
+    var where = p.location ? ' (' + p.location + ')' : '';
+    g.innerHTML = '<article class="feat reveal is-in">' +
+      '<div class="feat__media">' +
+        '<button class="feat__main" data-gal="' + esc(p.name) + '" data-i="0"><img src="' + esc(base + hero.src) + '" alt="' + esc(p.name + ' — ' + t(hero.cap)) + '"></button>' +
+        '<div class="feat__side">' + side.map(function (im, i) {
+          var more = (i === side.length - 1 && p.gallery.length > 5) ? '<span class="feat__more">+' + (p.gallery.length - 5) + '</span>' : '';
+          return '<button data-gal="' + esc(p.name) + '" data-i="' + (i + 1) + '"><img loading="lazy" src="' + esc(base + 'thumb/' + im.src) + '" alt="' + esc(t(im.cap)) + '">' + more + '</button>';
+        }).join('') + '</div>' +
+      '</div>' +
+      '<div class="feat__txt">' +
+        '<span class="badge">' + L('Featured project', 'मुख्य प्रोजेक्ट', 'ફીચર્ડ પ્રોજેક્ટ') + '</span>' +
+        '<h3 class="h3">' + esc(p.name) + '</h3>' +
+        '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || '') + ' · ' + esc(t(p.type)) + '</p>' +
+        '<p class="feat__tag">' + esc(t(p.tagline)) + '</p>' +
+        '<ul class="feat__am">' + (p.amenities || []).map(function (a) { return '<li>' + esc(t(a)) + '</li>'; }).join('') + '</ul>' +
+        '<div class="feat__cta"><button class="btn btn--gold" data-ask="I would like details and pricing for ' + esc(p.name + where) + '." data-ask-hi="' + esc(p.name + where) + ' की जानकारी और कीमत चाहिए।" data-ask-gu="' + esc(p.name + where) + ' ની માહિતી અને કિંમત જોઈએ છે."><svg><use href="#i-wa"/></svg>' + L('Get details & price', 'जानकारी और कीमत पाएँ', 'માહિતી અને કિંમત મેળવો') + '</button>' +
+        '<button class="btn btn--ghost" data-gal="' + esc(p.name) + '" data-i="0">' + L('View all photos', 'सभी फ़ोटो देखें', 'બધા ફોટા જુઓ') + ' (' + p.gallery.length + ')</button></div>' +
+      '</div></article>';
+  }
+
+  var lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap'), cur = null, idx = 0;
+  function showLb() {
+    var im = cur.gallery[idx];
+    lbImg.src = (cur.galleryPath || '') + im.src;
+    lbImg.alt = cur.name + ' — ' + t(im.cap);
+    lbCap.textContent = cur.name + ' · ' + t(im.cap) + '  (' + (idx + 1) + '/' + cur.gallery.length + ')';
+  }
+  function openLb(name, i) {
+    cur = findProject(name); if (!cur || !cur.gallery) return;
+    idx = i || 0; showLb(); lb.hidden = false; document.body.style.overflow = 'hidden'; $('#lbClose').focus();
+  }
+  function closeLb() { lb.hidden = true; document.body.style.overflow = ''; }
+  function step(d) { idx = (idx + d + cur.gallery.length) % cur.gallery.length; showLb(); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-gal]');
+    if (b) { e.preventDefault(); openLb(b.getAttribute('data-gal'), +(b.getAttribute('data-i') || 0)); }
+  });
+  $('#lbClose').addEventListener('click', closeLb);
+  $('#lbPrev').addEventListener('click', function () { step(-1); });
+  $('#lbNext').addEventListener('click', function () { step(1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb(); else if (e.key === 'ArrowLeft') step(-1); else if (e.key === 'ArrowRight') step(1);
+  });
+  var tx = null;
+  lb.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+  });
+
   function renderAll() {
-    renderProjects(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
+    renderFeatured(); renderProjects(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
   }
 
   /* ---------- Project filter ---------- */
@@ -180,7 +243,7 @@
     b.addEventListener('click', function () {
       filter = b.getAttribute('data-f');
       $$('.filter').forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', x === b); });
-      renderProjects();
+      renderFeatured(); renderProjects();
     });
   });
 

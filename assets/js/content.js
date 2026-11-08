@@ -34,10 +34,43 @@ window.GAVAN = {
                (leave '' if not decided — shows under "All" only)
      location, size, status are optional.
      status: 'Ongoing' | 'Upcoming' | 'Completed' | 'Booking Open'
-     logo: optional image path, e.g. 'assets/img/shivaay.jpg'  */
+     logo: optional image path, e.g. 'assets/img/shivaay.jpg'
+     gallery + galleryPath: photos (first photo = card cover)
+     featured: true -> shown as the big showcase above the project list  */
   projects: [
     { name: 'Gavan Homes', location: 'Tithal Road, Valsad', category: 'residential', type: { en: 'Residential', hi: 'रेसिडेंशियल', gu: 'રેસિડેન્શિયલ' } },
-    { name: 'Gavan Arena Park', location: 'NH 48 Highway, Vapi', category: 'commercial', type: { en: 'Commercial Hub', hi: 'कमर्शियल हब', gu: 'કોમર્શિયલ હબ' } },
+    { name: 'Gavan Arena Park', location: 'Vapi', category: 'residential', featured: true,
+      type: { en: 'Premium Row Houses', hi: 'प्रीमियम रो हाउस', gu: 'પ્રીમિયમ રો હાઉસ' },
+      tagline: { en: 'A gated community of contemporary row houses — with a clubhouse, landscaped lawns, gazebo lounges and a kids\' play area.',
+                 hi: 'आधुनिक रो हाउस की गेटेड कम्युनिटी — क्लबहाउस, हरे-भरे लॉन, गज़ेबो लाउंज और बच्चों के खेलने की जगह के साथ।',
+                 gu: 'આધુનિક રો હાઉસની ગેટેડ કોમ્યુનિટી — ક્લબહાઉસ, લીલાછમ લૉન, ગઝેબો લાઉન્જ અને બાળકો માટે પ્લે એરિયા સાથે.' },
+      amenities: [
+        { en: 'Grand entrance gate', hi: 'भव्य प्रवेश द्वार', gu: 'ભવ્ય એન્ટ્રન્સ ગેટ' },
+        { en: 'Clubhouse', hi: 'क्लबहाउस', gu: 'ક્લબહાઉસ' },
+        { en: 'Central lawn', hi: 'सेंट्रल लॉन', gu: 'સેન્ટ્રલ લૉન' },
+        { en: 'Gazebo lounge', hi: 'गज़ेबो लाउंज', gu: 'ગઝેબો લાઉન્જ' },
+        { en: 'Sit-out decks', hi: 'सिट-आउट डेक', gu: 'સિટ-આઉટ ડેક' },
+        { en: "Kids' play area", hi: 'बच्चों का प्ले एरिया', gu: 'બાળકો માટે પ્લે એરિયા' },
+        { en: 'Private balconies', hi: 'निजी बालकनी', gu: 'પ્રાઇવેટ બાલ્કની' },
+        { en: 'Tree-lined internal roads', hi: 'पेड़ों से सजी अंदरूनी सड़कें', gu: 'વૃક્ષોથી સજ્જ આંતરિક રસ્તા' }
+      ],
+      galleryPath: 'assets/img/arena/',
+      gallery: [
+        { src: '01-entrance.jpg', cap: { en: 'Main entrance', hi: 'मुख्य प्रवेश द्वार', gu: 'મુખ્ય પ્રવેશદ્વાર' } },
+        { src: '02-facade.jpg', cap: { en: 'Row house façade', hi: 'रो हाउस का फ़्रंट', gu: 'રો હાઉસનો ફ્રન્ટ' } },
+        { src: '03-row-houses-dusk.jpg', cap: { en: 'Row houses at dusk', hi: 'शाम के समय रो हाउस', gu: 'સાંજના સમયે રો હાઉસ' } },
+        { src: '04-street.jpg', cap: { en: 'Tree-lined streets', hi: 'पेड़ों से सजी गलियाँ', gu: 'વૃક્ષોથી સજ્જ શેરીઓ' } },
+        { src: '05-internal-road.jpg', cap: { en: 'Internal roads', hi: 'अंदरूनी सड़कें', gu: 'આંતરિક રસ્તા' } },
+        { src: '06-balcony.jpg', cap: { en: 'Private balcony', hi: 'निजी बालकनी', gu: 'પ્રાઇવેટ બાલ્કની' } },
+        { src: '07-clubhouse-entrance.jpg', cap: { en: 'Clubhouse entrance', hi: 'क्लबहाउस प्रवेश', gu: 'ક્લબહાઉસ એન્ટ્રન્સ' } },
+        { src: '08-clubhouse.jpg', cap: { en: 'Clubhouse', hi: 'क्लबहाउस', gu: 'ક્લબહાઉસ' } },
+        { src: '09-central-lawn.jpg', cap: { en: 'Central lawn', hi: 'सेंट्रल लॉन', gu: 'સેન્ટ્રલ લૉન' } },
+        { src: '10-garden-gazebo.jpg', cap: { en: 'Garden & gazebo', hi: 'गार्डन और गज़ेबो', gu: 'ગાર્ડન અને ગઝેબો' } },
+        { src: '11-gazebo-lounge.jpg', cap: { en: 'Gazebo lounge', hi: 'गज़ेबो लाउंज', gu: 'ગઝેબો લાઉન્જ' } },
+        { src: '12-sit-out-deck.jpg', cap: { en: 'Sit-out deck', hi: 'सिट-आउट डेक', gu: 'સિટ-આઉટ ડેક' } },
+        { src: '13-kids-play.jpg', cap: { en: "Kids' play area", hi: 'बच्चों का प्ले एरिया', gu: 'બાળકો માટે પ્લે એરિયા' } },
+        { src: '14-entrance-dusk.jpg', cap: { en: 'Entrance at dusk', hi: 'शाम को प्रवेश द्वार', gu: 'સાંજે પ્રવેશદ્વાર' } }
+      ] },
     { name: 'Gavan Vraj Dynasty', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
     { name: 'Gavan Flow', location: '', category: '', type: { en: 'Gavan Project', hi: 'गवन प्रोजेक्ट', gu: 'ગવન પ્રોજેક્ટ' } },
     { name: 'Gavan Shivaay Industrial Park', logo: 'assets/img/shivaay.jpg', location: 'Ahu · Mamakwada · Anklash', category: 'industrial', type: { en: 'Industrial Plotting', hi: 'इंडस्ट्रियल प्लॉटिंग', gu: 'ઇન્ડસ્ટ્રીયલ પ્લોટિંગ' }, size: { en: '3 locations', hi: '3 लोकेशन', gu: '3 લોકેશન' } }

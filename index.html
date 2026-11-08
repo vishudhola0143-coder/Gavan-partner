@@ -63,6 +63,7 @@
 <!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero__bg" aria-hidden="true">
+    <div class="hero__photo"></div>
     <div class="hero__glow"></div>
     <img class="hero__mark" src="assets/img/gavan-mark.png" alt="">
     <div class="hero__grid"></div>
@@ -199,6 +200,7 @@
         <button class="filter" data-f="industrial" data-gu="ઇન્ડસ્ટ્રીયલ" data-hi="इंडस्ट्रियल">Industrial</button>
       </div>
     </div>
+    <div id="featured"></div>
     <div class="projects" id="projectGrid"></div>
 
     <article class="coastal reveal">
@@ -341,6 +343,13 @@
     <p class="foot__c">© <span id="yr"></span> Gavan Group · <span data-gu="દક્ષિણ ગુજરાત" data-hi="दक्षिण गुजरात">South Gujarat</span></p>
   </div>
 </footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo gallery">
+  <button class="lb__x" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb__nav lb__prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <figure class="lb__fig"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb__nav lb__next" id="lbNext" aria-label="Next">&#8250;</button>
+</div>
 
 <a class="fab" id="fab" href="#contact" aria-label="Chat on WhatsApp"><svg><use href="#i-wa"/></svg></a>
 
