@@ -443,3 +443,4 @@ img.hero__mark{opacity:.07;object-fit:contain;filter:saturate(.8)}
 .person__av.has-photo{width:104px;height:104px;box-shadow:0 0 0 3px var(--gold),0 0 0 9px var(--cream)}
 .person__av{width:104px;height:104px;font-size:1.6rem;box-shadow:0 0 0 3px var(--gold),0 0 0 9px var(--cream)}
 .person{align-content:start}
+.brandrow__logo--sq{border-radius:18px;background:#fff;object-fit:contain}
