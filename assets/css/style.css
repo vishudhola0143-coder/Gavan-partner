@@ -717,3 +717,9 @@ html:not([lang="en"]) .off__t h3{font-family:inherit;font-weight:700}
 /* GAVAN / GROUP wordmark */
 .brand__txt small{display:block!important;font-size:.7rem;letter-spacing:.62em;margin-top:.25rem;font-weight:600;color:var(--gold)}
 @media (max-width:360px){.brand__txt small{font-size:.6rem;letter-spacing:.5em}}
+/* GAVAN / GROUP — GROUP smaller and exactly as wide as GAVAN, both edges aligned */
+.brand__txt{display:inline-flex;flex-direction:column;align-items:stretch;line-height:1}
+.brand__txt b{font-size:1.25rem;letter-spacing:.3em;margin-right:-.3em}
+.brand__txt small{font-size:.6rem!important;letter-spacing:0!important;margin-top:.35rem!important;text-align:justify;text-align-last:justify;white-space:normal!important;word-spacing:0;font-weight:600}
+@media (max-width:560px){.brand__txt b{font-size:1.1rem}.brand__txt small{font-size:.55rem!important}}
+@media (max-width:360px){.brand__txt b{font-size:.95rem;letter-spacing:.24em;margin-right:-.24em}.brand__txt small{font-size:.5rem!important}}
