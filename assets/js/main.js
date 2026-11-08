@@ -154,6 +154,18 @@
     '<button class="link upd__all" data-gal="' + esc(u.name) + '" data-i="0">' + L('View event photos', 'इवेंट की फ़ोटो देखें', 'ઇવેન્ટના ફોટા જુઓ') + ' (' + u.gallery.length + ')<svg><use href="#i-arrow"/></svg></button>';
   }
 
+  function renderInterio() {
+    var g = $('#interioWork'), f = D.interio; if (!g || !f || !f.gallery) return;
+    var base = f.galleryPath || '', show = f.gallery.slice(0, 9), rest = f.gallery.length - show.length;
+    g.innerHTML = '<div class="iw reveal is-in"><div class="iw__head"><div><p class="vert__kicker">Gavan Interio · ' + L('Portfolio', 'पोर्टफ़ोलियो', 'પોર્ટફોલિયો') + '</p>' +
+      '<h3 class="h3">' + L('Homes we have finished', 'हमारे द्वारा तैयार किए गए घर', 'અમે તૈયાર કરેલાં ઘર') + '</h3></div>' +
+      '<button class="btn btn--gold btn--sm" data-ask="I want interior design work done (Gavan Interio)." data-ask-hi="मुझे इंटीरियर का काम करवाना है (गवन इंटीरियो)।" data-ask-gu="મારે ઇન્ટિરિયર કામ કરાવવું છે (ગવન ઇન્ટીરિયો)."><svg><use href="#i-wa"/></svg>' + L('Get a design consultation', 'डिज़ाइन कंसल्टेशन लें', 'ડિઝાઇન કન્સલ્ટેશન મેળવો') + '</button></div>' +
+      '<div class="iw__grid">' + show.map(function (im, i) {
+        var more = (i === show.length - 1 && rest > 0) ? '<span class="feat__more">+' + rest + '</span>' : '';
+        return '<button data-gal="' + esc(f.name) + '" data-i="' + i + '"><img loading="lazy" src="' + esc(base + 'thumb/' + im.src) + '" alt="' + esc(t(im.cap)) + '">' + more + '</button>';
+      }).join('') + '</div></div>';
+  }
+
   function renderFoundation() {
     var g = $('#foundWork'), f = D.foundation; if (!g || !f || !f.gallery) return;
     var base = f.galleryPath || '';
@@ -200,7 +212,7 @@
   }
 
   /* ---------- Featured project showcase + gallery ---------- */
-  function findProject(name) { return (D.projects || []).concat(D.updates || [], D.foundation ? [D.foundation] : []).filter(function (p) { return p.name === name && p.gallery; })[0]; }
+  function findProject(name) { return (D.projects || []).concat(D.updates || [], D.foundation ? [D.foundation] : [], D.interio ? [D.interio] : []).filter(function (p) { return p.name === name && p.gallery; })[0]; }
   function renderFeatured() {
     var g = $('#featured'); if (!g) return;
     var fs = (D.projects || []).filter(function (x) { return x.featured && x.gallery && x.gallery.length && inFilter(x); });
@@ -261,7 +273,7 @@
   });
 
   function renderAll() {
-    renderFeatured(); renderProjects(); renderFoundation(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
+    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
   }
 
   /* ---------- Project filter ---------- */

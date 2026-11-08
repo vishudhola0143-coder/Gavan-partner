@@ -214,6 +214,30 @@ window.GAVAN = {
       text: { en: 'The Gavan Grand Fest 2025 celebrated the Gavan family, partners and community.', hi: 'गवन ग्रैंड फेस्ट 2025 में गवन परिवार, पार्टनर्स और कम्युनिटी का उत्सव मनाया गया।', gu: 'ગવન ગ્રાન્ડ ફેસ્ટ 2025માં ગવન પરિવાર, પાર્ટનર્સ અને કોમ્યુનિટીની ઉજવણી થઈ.' } }
   ],
 
+  /* ---------- GAVAN INTERIO — portfolio (first photo = big tile) ---------- */
+  interio: {
+    name: 'Gavan Interio',
+    galleryPath: 'assets/img/interio/',
+    gallery: [
+      { src: '01-interior.jpg', cap: { en: "Master bedroom — lit bed & jaali wall", hi: "मास्टर बेडरूम — लाइटिंग बेड और जाली वॉल", gu: "માસ્ટર બેડરૂમ — લાઇટિંગ બેડ અને જાળી વૉલ" } },
+      { src: '02-interior.jpg', cap: { en: "Living room — wooden-slat ceiling", hi: "लिविंग रूम — वुडन स्लैट सीलिंग", gu: "લિવિંગ રૂમ — વુડન સ્લેટ સીલિંગ" } },
+      { src: '03-interior.jpg', cap: { en: "Marble feature door & cove lighting", hi: "मार्बल फ़ीचर डोर और कोव लाइटिंग", gu: "માર્બલ ફીચર ડોર અને કોવ લાઇટિંગ" } },
+      { src: '04-interior.jpg', cap: { en: "Bedroom with full-height wardrobe", hi: "फुल-हाइट वॉर्डरोब के साथ बेडरूम", gu: "ફુલ-હાઇટ વૉર્ડરોબ સાથે બેડરૂમ" } },
+      { src: '05-interior.jpg', cap: { en: "Upholstered headboard & textured wall", hi: "अपहोल्स्टर्ड हेडबोर्ड और टेक्सचर वॉल", gu: "અપહોલ્સ્ટર્ડ હેડબોર્ડ અને ટેક્સચર વૉલ" } },
+      { src: '06-interior.jpg', cap: { en: "Wardrobe with lit dressing niche", hi: "लाइटिंग ड्रेसिंग निच के साथ वॉर्डरोब", gu: "લાઇટિંગ ડ્રેસિંગ નીચ સાથે વૉર્ડરોબ" } },
+      { src: '07-interior.jpg', cap: { en: "Kitchen & crockery unit", hi: "किचन और क्रॉकरी यूनिट", gu: "કિચન અને ક્રોકરી યુનિટ" } },
+      { src: '08-interior.jpg', cap: { en: "Bedroom in soft taupe", hi: "सॉफ़्ट टॉप रंग में बेडरूम", gu: "સોફ્ટ ટૉપ રંગમાં બેડરૂમ" } },
+      { src: '09-interior.jpg', cap: { en: "Walnut & ivory bedroom", hi: "वॉलनट और आइवरी बेडरूम", gu: "વૉલનટ અને આઇવરી બેડરૂમ" } },
+      { src: '10-interior.jpg', cap: { en: "Panelled bed wall & storage", hi: "पैनल बेड वॉल और स्टोरेज", gu: "પેનલ બેડ વૉલ અને સ્ટોરેજ" } },
+      { src: '11-interior.jpg', cap: { en: "Tufted headboard bedroom", hi: "टफ़्टेड हेडबोर्ड बेडरूम", gu: "ટફ્ટેડ હેડબોર્ડ બેડરૂમ" } },
+      { src: '12-interior.jpg', cap: { en: "Kids / guest bedroom", hi: "बच्चों / गेस्ट बेडरूम", gu: "બાળકો / ગેસ્ટ બેડરૂમ" } },
+      { src: '13-interior.jpg', cap: { en: "Living corner with panelled wall", hi: "पैनल वॉल के साथ लिविंग कॉर्नर", gu: "પેનલ વૉલ સાથે લિવિંગ કૉર્નર" } },
+      { src: '14-interior.jpg', cap: { en: "Sage-green wardrobe & jaali panel", hi: "सेज-ग्रीन वॉर्डरोब और जाली पैनल", gu: "સેજ-ગ્રીન વૉર્ડરોબ અને જાળી પેનલ" } },
+      { src: '15-interior.jpg', cap: { en: "Light-filled bedroom", hi: "रोशनी से भरा बेडरूम", gu: "પ્રકાશથી ભરેલો બેડરૂમ" } },
+      { src: '16-interior.jpg', cap: { en: "Floor-to-ceiling glass & balcony", hi: "फ़्लोर-टू-सीलिंग ग्लास और बालकनी", gu: "ફ્લોર-ટુ-સીલિંગ ગ્લાસ અને બાલ્કની" } }
+    ]
+  },
+
   /* ---------- GAVAN FOUNDATION — work on ground ----------
      Add photos to gallery (first = cover). video is optional (mp4). */
   foundation: {
