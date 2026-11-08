@@ -108,7 +108,7 @@
         (cover ? '<button class="proj__gal" data-gal="' + esc(p.name) + '">' + L('View photos', 'फ़ोटो देखें', 'ફોટા જુઓ') + ' (' + p.gallery.length + ')</button>' : '') +
         '<span class="proj__cat">' + esc(catName[cats(p)[0]] ? cats(p).map(function (c) { return t(catName[c]); }).join(' · ') : 'Gavan') + '</span>' +
         (st ? '<span class="proj__status">' + esc(st) + '</span>' : '') +
-        (p.logo ? '<span class="proj__logo"><img src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo" loading="lazy"></span>'
+        (p.logo ? '<span class="proj__logo"><img loading="lazy" src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo" loading="lazy"></span>'
           : (cover ? '' : '<svg><use href="#' + (catIcon[cats(p)[0]] || 'i-home') + '"/></svg>')) + '</div>' +
         '<div class="proj__body"><h3>' + esc(p.name) + '</h3>' +
         '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + '</p>' +
@@ -126,7 +126,7 @@
         ? '<a class="link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + L('Visit on Instagram', 'Instagram पर देखें', 'Instagram પર જુઓ') + '<svg><use href="#i-arrow"/></svg></a>'
         : '<button class="link" data-ask="I want to know more about ' + esc(s.name) + ' (Gavan startup)." data-ask-hi="' + esc(s.name) + ' (गवन स्टार्टअप) के बारे में और जानना है।" data-ask-gu="' + esc(s.name) + ' (ગવન સ્ટાર્ટઅપ) વિશે વધુ જાણવું છે.">' + L('Know more', 'और जानें', 'વધુ જાણો') + '<svg><use href="#i-arrow"/></svg></button>';
       return '<article class="su reveal is-in"><div class="su__logo' + (s.logo ? ' su__logo--img' : '') + '">' +
-        (s.logo ? '<img src="' + esc(s.logo) + '" alt="' + esc(s.name) + ' logo">' : esc(initials)) + '</div>' +
+        (s.logo ? '<img loading="lazy" src="' + esc(s.logo) + '" alt="' + esc(s.name) + ' logo">' : esc(initials)) + '</div>' +
         '<span class="badge">' + esc(t(s.tag)) + '</span><h3>' + esc(s.name) + '</h3>' + (s.followers ? '<p class="su__f"><svg><use href="#i-ig"/></svg>' + esc(s.followers) + ' ' + L('followers', 'फॉलोअर्स', 'ફોલોઅર્સ') + '</p>' : '') + '<p>' + esc(t(s.text)) + '</p>' + cta + (s.site ? '<a class="link su__site" href="' + esc(s.site) + '" target="_blank" rel="noopener">' + esc(s.site.replace(/^https?:\/\//, '')) + '<svg><use href="#i-arrow"/></svg></a>' : '') + '</article>';
     }).join('');
   }
@@ -141,7 +141,7 @@
       var follow = s.url
         ? '<a class="btn btn--gold btn--sm" href="' + esc(s.url) + '" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>' + L('Follow', 'फॉलो करें', 'ફોલો કરો') + '</a>'
         : '';
-      var av = s.logo ? '<img src="' + esc(s.logo) + '" alt="">' : '<em>' + esc(s.initials || s.name.slice(0, 2)) + '</em>';
+      var av = s.logo ? '<img loading="lazy" src="' + esc(s.logo) + '" alt="">' : '<em>' + esc(s.initials || s.name.slice(0, 2)) + '</em>';
       return '<article class="soc"><div class="soc__top"><span class="soc__av">' + av + '</span><span class="badge">' + L('Followers', 'फॉलोअर्स', 'ફોલોઅર્સ') + '</span></div>' +
         '<div class="soc__n">' + esc(s.display || fmtK(s.followers)) + '</div>' +
         '<b>' + esc(s.name) + '</b>' + (s.ig ? '<small class="soc__ig">@' + esc(s.ig) + '</small>' : '') + '<span>' + esc(t(s.handle)) + '</span>' +
@@ -191,7 +191,7 @@
       var base = o.galleryPath || '', q = encodeURIComponent((t(o.where) || '') + ' Vapi');
       return '<article class="off reveal is-in"><button class="off__img" data-gal="' + esc(o.name) + '" data-i="0"><img loading="lazy" src="' + esc(base + 'thumb/' + o.gallery[0].src) + '" alt="' + esc(o.name) + '">' +
         '<span class="off__soon">' + L('Coming soon', 'जल्द आ रहा है', 'જલ્દી આવી રહ્યું છે') + '</span>' + (o.gallery.length > 1 ? '<span class="off__n">' + o.gallery.length + ' ' + L('photos', 'फ़ोटो', 'ફોટા') + '</span>' : '') + '</button>' +
-        '<div class="off__txt"><div class="off__t">' + (o.logo ? '<img src="' + esc(o.logo) + '" alt="">' : '') + '<h3>' + esc(o.name) + '</h3></div>' +
+        '<div class="off__txt"><div class="off__t">' + (o.logo ? '<img loading="lazy" src="' + esc(o.logo) + '" alt="">' : '') + '<h3>' + esc(o.name) + '</h3></div>' +
         '<a class="proj__meta" href="https://www.google.com/maps/search/' + q + '" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>' + esc(t(o.where)) + '</a>' +
         '<p>' + esc(t(o.text)) + '</p></div></article>';
     }).join('');
@@ -298,7 +298,7 @@
     var where = p.location ? ' (' + p.location + ')' : '';
     return '<article class="feat reveal is-in' + (n % 2 ? ' feat--rev' : '') + '">' +
       '<div class="feat__media">' +
-        '<button class="feat__main" data-gal="' + esc(p.name) + '" data-i="0"><img src="' + esc(base + hero.src) + '" alt="' + esc(p.name + ' — ' + t(hero.cap)) + '"></button>' +
+        '<button class="feat__main" data-gal="' + esc(p.name) + '" data-i="0"><img loading="lazy" decoding="async" src="' + esc(base + hero.src) + '" alt="' + esc(p.name + ' — ' + t(hero.cap)) + '"></button>' +
         '<div class="feat__side" style="grid-template-columns:repeat(' + side.length + ',1fr)">' + side.map(function (im, i) {
           var more = (i === side.length - 1 && p.gallery.length > 5) ? '<span class="feat__more">+' + (p.gallery.length - 5) + '</span>' : '';
           return '<button data-gal="' + esc(p.name) + '" data-i="' + (i + 1) + '"><img loading="lazy" src="' + esc(base + 'thumb/' + im.src) + '" alt="' + esc(t(im.cap)) + '">' + more + '</button>';
@@ -306,7 +306,7 @@
       '</div>' +
       '<div class="feat__txt">' +
         '<span class="badge">' + L('Featured project', 'मुख्य प्रोजेक्ट', 'ફીચર્ડ પ્રોજેક્ટ') + '</span>' +
-        '<div class="feat__title">' + (p.logo ? '<img class="feat__logo" src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo">' : '') + '<h3 class="h3">' + esc(p.name) + '</h3></div>' +
+        '<div class="feat__title">' + (p.logo ? '<img class="feat__logo" loading="lazy" src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo">' : '') + '<h3 class="h3">' + esc(p.name) + '</h3></div>' +
         '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + ' · ' + esc(t(p.type)) + '</p>' +
         '<p class="feat__tag">' + esc(t(p.tagline)) + '</p>' +
         '<ul class="feat__am">' + (p.amenities || []).map(function (a) { return '<li>' + esc(t(a)) + '</li>'; }).join('') + '</ul>' +

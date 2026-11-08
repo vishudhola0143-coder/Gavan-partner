@@ -1,7 +1,7 @@
 /* ============ GAVAN GROUP — STYLES ============ */
 :root{
   --ink:#150c0a; --ink-2:#1f1210; --ink-3:#2d1815;
-  --gold:#c89d5c; --gold-2:#e2c08a; --gold-d:#9c7437;
+  --gold:#c89d5c; --gold-2:#e2c08a; --gold-d:#83602c;
   --cream:#f6f0e6; --paper:#fbf8f2; --line:rgba(200,157,92,.28);
   --muted:#7d6a5f; --muted-d:#b8a596;
   --serif:'Cinzel', Georgia, serif;
@@ -603,3 +603,19 @@ html:not([lang="en"]) .off__t h3{font-family:inherit;font-weight:700}
 .vlb__out{margin-top:0}
 @media (max-width:560px){.vids{grid-template-columns:repeat(2,1fr);gap:.7rem}.vid__play{width:48px;height:48px}.vid b{font-size:.85rem}#vidTabs{display:flex;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}#vidTabs .filter{white-space:nowrap}}
 @media (min-width:1021px){.vids{grid-template-columns:repeat(5,1fr)}}
+
+/* ---------- audit fixes ---------- */
+/* links on light backgrounds: darker gold for readable contrast */
+.sec--cream .link,.sec--paper .link,.sec--foundation .link,.coastal .link,.fw .link{color:var(--gold-d)}
+/* laptop: header fits */
+@media (max-width:1180px) and (min-width:1021px){.nav__links{gap:1.1rem}.nav__links a{font-size:.85rem}}
+@media (max-width:1100px){.nav__act .btn--sm{display:none}}
+/* bigger tap targets on phones */
+@media (max-width:820px){
+  .lang button{min-width:36px;min-height:34px}
+  .link{min-height:40px}
+  .filter{min-height:38px}
+  .off .proj__meta{min-height:36px}
+}
+@media (max-width:820px){.cinfo a,.cinfo button{display:inline-block;padding:.45rem 0}.foot__links{gap:.4rem 1.2rem}.foot__links a{display:inline-block;padding:.5rem 0}}
+@media (max-width:360px){.brand__mark{width:34px;height:34px}.brand__txt b{font-size:.92rem;letter-spacing:.22em}.lang button{min-width:30px;padding:.3em .4em}.nav__act{gap:.4rem}.burger{width:38px;height:38px}}
