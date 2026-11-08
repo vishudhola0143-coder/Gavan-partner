@@ -73,10 +73,12 @@
     'Completed': { en: 'Completed', hi: 'पूर्ण', gu: 'પૂર્ણ' }, 'Booking Open': { en: 'Booking Open', hi: 'बुकिंग शुरू', gu: 'બુકિંગ શરૂ' }
   };
   var filter = 'all';
+  function cats(p) { return Array.isArray(p.category) ? p.category : [p.category]; }
+  function inFilter(p) { return filter === 'all' || cats(p).indexOf(filter) > -1; }
 
   function renderProjects() {
     var g = $('#projectGrid'); if (!g) return;
-    var list = (D.projects || []).filter(function (p) { return !(p.featured && p.gallery) && (filter === 'all' || p.category === filter); });
+    var list = (D.projects || []).filter(function (p) { return !(p.featured && p.gallery) && inFilter(p); });
     g.innerHTML = list.map(function (p) {
       var cover = p.gallery && p.gallery.length ? (p.galleryPath || '') + 'thumb/' + p.gallery[0].src : '';
       var st = p.status ? t(statusT[p.status] || p.status) : '';
@@ -87,10 +89,10 @@
       return '<article class="proj">' +
         '<div class="proj__art' + (cover ? ' proj__art--photo' : '') + '"' + (cover ? ' style="background-image:url(\'' + esc(cover) + '\')"' : '') + '>' +
         (cover ? '<button class="proj__gal" data-gal="' + esc(p.name) + '">' + L('View photos', 'फ़ोटो देखें', 'ફોટા જુઓ') + ' (' + p.gallery.length + ')</button>' : '') +
-        '<span class="proj__cat">' + esc(catName[p.category] ? t(catName[p.category]) : 'Gavan') + '</span>' +
+        '<span class="proj__cat">' + esc(catName[cats(p)[0]] ? cats(p).map(function (c) { return t(catName[c]); }).join(' · ') : 'Gavan') + '</span>' +
         (st ? '<span class="proj__status">' + esc(st) + '</span>' : '') +
         (p.logo ? '<span class="proj__logo"><img src="' + esc(p.logo) + '" alt="' + esc(p.name) + ' logo" loading="lazy"></span>'
-          : (cover ? '' : '<svg><use href="#' + (catIcon[p.category] || 'i-home') + '"/></svg>')) + '</div>' +
+          : (cover ? '' : '<svg><use href="#' + (catIcon[cats(p)[0]] || 'i-home') + '"/></svg>')) + '</div>' +
         '<div class="proj__body"><h3>' + esc(p.name) + '</h3>' +
         '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + '</p>' +
         '<div class="proj__foot"><span><b>' + esc(t(p.type)) + '</b>' + (p.size ? '<br>' + esc(t(p.size)) : '') + '</span>' +
@@ -178,12 +180,12 @@
   function findProject(name) { return (D.projects || []).filter(function (p) { return p.name === name; })[0]; }
   function renderFeatured() {
     var g = $('#featured'); if (!g) return;
-    var p = (D.projects || []).filter(function (x) { return x.featured && x.gallery && x.gallery.length; })[0];
-    if (!p || (filter !== 'all' && filter !== p.category)) { g.innerHTML = ''; return; }
+    var fs = (D.projects || []).filter(function (x) { return x.featured && x.gallery && x.gallery.length && inFilter(x); });
+    g.innerHTML = fs.map(function (p, n) {
     var base = p.galleryPath || '';
     var hero = p.gallery[0], side = p.gallery.slice(1, 5);
     var where = p.location ? ' (' + p.location + ')' : '';
-    g.innerHTML = '<article class="feat reveal is-in">' +
+    return '<article class="feat reveal is-in' + (n % 2 ? ' feat--rev' : '') + '">' +
       '<div class="feat__media">' +
         '<button class="feat__main" data-gal="' + esc(p.name) + '" data-i="0"><img src="' + esc(base + hero.src) + '" alt="' + esc(p.name + ' — ' + t(hero.cap)) + '"></button>' +
         '<div class="feat__side">' + side.map(function (im, i) {
@@ -194,12 +196,13 @@
       '<div class="feat__txt">' +
         '<span class="badge">' + L('Featured project', 'मुख्य प्रोजेक्ट', 'ફીચર્ડ પ્રોજેક્ટ') + '</span>' +
         '<h3 class="h3">' + esc(p.name) + '</h3>' +
-        '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || '') + ' · ' + esc(t(p.type)) + '</p>' +
+        '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location || L('South Gujarat', 'दक्षिण गुजरात', 'દક્ષિણ ગુજરાત')) + ' · ' + esc(t(p.type)) + '</p>' +
         '<p class="feat__tag">' + esc(t(p.tagline)) + '</p>' +
         '<ul class="feat__am">' + (p.amenities || []).map(function (a) { return '<li>' + esc(t(a)) + '</li>'; }).join('') + '</ul>' +
         '<div class="feat__cta"><button class="btn btn--gold" data-ask="I would like details and pricing for ' + esc(p.name + where) + '." data-ask-hi="' + esc(p.name + where) + ' की जानकारी और कीमत चाहिए।" data-ask-gu="' + esc(p.name + where) + ' ની માહિતી અને કિંમત જોઈએ છે."><svg><use href="#i-wa"/></svg>' + L('Get details & price', 'जानकारी और कीमत पाएँ', 'માહિતી અને કિંમત મેળવો') + '</button>' +
         '<button class="btn btn--ghost" data-gal="' + esc(p.name) + '" data-i="0">' + L('View all photos', 'सभी फ़ोटो देखें', 'બધા ફોટા જુઓ') + ' (' + p.gallery.length + ')</button></div>' +
       '</div></article>';
+    }).join('');
   }
 
   var lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap'), cur = null, idx = 0;

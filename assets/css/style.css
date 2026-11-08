@@ -397,3 +397,7 @@ img.hero__mark{opacity:.07;object-fit:contain;filter:saturate(.8)}
   .filters{display:grid;grid-template-columns:repeat(4,auto);gap:2px;padding:3px}
   .filter{padding:.55em .5em;font-size:.76rem}
 }
+@media (min-width:1021px){
+  .feat--rev{grid-template-columns:1fr 1.35fr}
+  .feat--rev .feat__media{order:2}
+}

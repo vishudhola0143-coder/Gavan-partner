@@ -30,7 +30,7 @@ window.GAVAN = {
   ],
 
   /* ---------- PROJECTS ----------
-     category: 'residential' | 'commercial' | 'industrial'
+     category: 'residential' | 'commercial' | 'industrial'  (or a list, e.g. ['residential', 'commercial'])
                (leave '' if not decided — shows under "All" only)
      location, size, status are optional.
      status: 'Ongoing' | 'Upcoming' | 'Completed' | 'Booking Open'
@@ -38,7 +38,37 @@ window.GAVAN = {
      gallery + galleryPath: photos (first photo = card cover)
      featured: true -> shown as the big showcase above the project list  */
   projects: [
-    { name: 'Gavan Homes', location: 'Tithal Road, Valsad', category: 'residential', type: { en: 'Residential', hi: 'रेसिडेंशियल', gu: 'રેસિડેન્શિયલ' } },
+    { name: 'Gavan Homes', location: '', category: ['residential', 'commercial'], featured: true,
+      type: { en: 'Apartments, Row Houses & Shops', hi: 'अपार्टमेंट, रो हाउस और दुकानें', gu: 'એપાર્ટમેન્ટ, રો હાઉસ અને દુકાનો' },
+      tagline: { en: 'A complete address — a mid-rise apartment tower with ground-floor retail on the main road, a lane of contemporary row houses, a clubhouse and a rooftop garden.',
+                 hi: 'एक संपूर्ण पता — मेन रोड पर ग्राउंड फ्लोर दुकानों के साथ अपार्टमेंट टावर, आधुनिक रो हाउस, क्लबहाउस और रूफटॉप गार्डन।',
+                 gu: 'એક સંપૂર્ણ સરનામું — મેઇન રોડ પર ગ્રાઉન્ડ ફ્લોર દુકાનો સાથે એપાર્ટમેન્ટ ટાવર, આધુનિક રો હાઉસ, ક્લબહાઉસ અને રૂફટોપ ગાર્ડન.' },
+      amenities: [
+        { en: 'Grand entrance porch', hi: 'भव्य एंट्रेंस पोर्च', gu: 'ભવ્ય એન્ટ્રન્સ પોર્ચ' },
+        { en: 'Ground-floor retail shops', hi: 'ग्राउंड फ्लोर रिटेल दुकानें', gu: 'ગ્રાઉન્ડ ફ્લોર રિટેલ દુકાનો' },
+        { en: 'Apartments & row houses', hi: 'अपार्टमेंट और रो हाउस', gu: 'એપાર્ટમેન્ટ અને રો હાઉસ' },
+        { en: 'Clubhouse', hi: 'क्लबहाउस', gu: 'ક્લબહાઉસ' },
+        { en: 'Rooftop garden', hi: 'रूफटॉप गार्डन', gu: 'રૂફટોપ ગાર્ડન' },
+        { en: "Kids' play area", hi: 'बच्चों का प्ले एरिया', gu: 'બાળકો માટે પ્લે એરિયા' },
+        { en: 'Landscaped walkways', hi: 'लैंडस्केप वॉकवे', gu: 'લેન્ડસ્કેપ વૉકવે' },
+        { en: 'Main-road frontage', hi: 'मेन रोड फ्रंटेज', gu: 'મેઇન રોડ ફ્રન્ટેજ' }
+      ],
+      galleryPath: 'assets/img/homes/',
+      gallery: [
+        { src: '01-tower.jpg', cap: { en: 'Gavan Homes', hi: 'गवन होम्स', gu: 'ગવન હોમ્સ' } },
+        { src: '02-entrance.jpg', cap: { en: 'Entrance at dusk', hi: 'शाम को प्रवेश द्वार', gu: 'સાંજે પ્રવેશદ્વાર' } },
+        { src: '03-aerial-view.jpg', cap: { en: 'Aerial view — tower & row houses', hi: 'एरियल व्यू — टावर और रो हाउस', gu: 'એરિયલ વ્યૂ — ટાવર અને રો હાઉસ' } },
+        { src: '04-tower-corner.jpg', cap: { en: 'Main-road frontage', hi: 'मेन रोड फ्रंटेज', gu: 'મેઇન રોડ ફ્રન્ટેજ' } },
+        { src: '05-tower-dusk.jpg', cap: { en: 'Apartments & shops at dusk', hi: 'शाम को अपार्टमेंट और दुकानें', gu: 'સાંજે એપાર્ટમેન્ટ અને દુકાનો' } },
+        { src: '06-retail-shops.jpg', cap: { en: 'Ground-floor retail shops', hi: 'ग्राउंड फ्लोर रिटेल दुकानें', gu: 'ગ્રાઉન્ડ ફ્લોર રિટેલ દુકાનો' } },
+        { src: '07-row-houses.jpg', cap: { en: 'Row houses', hi: 'रो हाउस', gu: 'રો હાઉસ' } },
+        { src: '08-row-house-street.jpg', cap: { en: 'Row house street', hi: 'रो हाउस की गली', gu: 'રો હાઉસની શેરી' } },
+        { src: '09-row-houses-dusk.jpg', cap: { en: 'Row houses at dusk', hi: 'शाम को रो हाउस', gu: 'સાંજે રો હાઉસ' } },
+        { src: '10-entry-porch.jpg', cap: { en: 'Entry porch', hi: 'एंट्री पोर्च', gu: 'એન્ટ્રી પોર્ચ' } },
+        { src: '11-rooftop-garden.jpg', cap: { en: 'Rooftop garden', hi: 'रूफटॉप गार्डन', gu: 'રૂફટોપ ગાર્ડન' } },
+        { src: '12-clubhouse.jpg', cap: { en: 'Clubhouse', hi: 'क्लबहाउस', gu: 'ક્લબહાઉસ' } },
+        { src: '13-kids-play.jpg', cap: { en: 'Kids\' play area', hi: 'बच्चों का प्ले एरिया', gu: 'બાળકો માટે પ્લે એરિયા' } }
+      ] },
     { name: 'Gavan Arena Park', location: 'Vapi', category: 'residential', featured: true,
       type: { en: 'Premium Row Houses', hi: 'प्रीमियम रो हाउस', gu: 'પ્રીમિયમ રો હાઉસ' },
       tagline: { en: 'A gated community of contemporary row houses — with a clubhouse, landscaped lawns, gazebo lounges and a kids\' play area.',
