@@ -26,5 +26,6 @@ The site opens in English, with an EN / हिं / ગુ language switch in th
 - `index.html` — page structure and fixed text
 - `assets/css/style.css` — design
 - `assets/js/content.js` — editable content
+- `assets/js/desk.js` — Property Desk: government links, news (edit here)
 - `assets/js/main.js` — behaviour (language switch, WhatsApp enquiry, filters)
 - `partner-workspace.html` — internal partner workspace app (linked as "Partner login" in footer)

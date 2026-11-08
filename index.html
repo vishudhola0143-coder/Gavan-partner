@@ -36,6 +36,12 @@
   <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6zM14 2v6h6M9 13h8M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 6h8v4H8zM8.5 14h1M12 14h1M15.5 14h0M8.5 18h1M12 18h1M15 14v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M9 3h6v5l-1.5 3h4.5a2 2 0 0 1 2 2v3H4v-3a2 2 0 0 1 2-2h4.5L9 8zM4 20h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5zM8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24"><path d="M3 5h14v14H5a2 2 0 0 1-2-2zM17 9h4v8a2 2 0 0 1-4 0M6 8h8M6 12h8M6 16h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
 </svg>
 
@@ -50,6 +56,7 @@
       <a href="#world" data-gu="ગવન વર્લ્ડ" data-hi="गवन वर्ल्ड">Gavan World</a>
       <a href="#verticals" data-gu="બિઝનેસ" data-hi="बिज़नेस">Verticals</a>
       <a href="#projects" data-gu="પ્રોજેક્ટ્સ" data-hi="प्रोजेक्ट्स">Projects</a>
+      <a href="#desk" data-gu="પ્રોપર્ટી ડેસ્ક" data-hi="प्रॉपर्टी डेस्क">Property Desk</a>
       <a href="#partners" data-gu="ચેનલ પાર્ટનર" data-hi="चैनल पार्टनर">Partners</a>
       <a href="#startups" data-gu="સ્ટાર્ટઅપ્સ" data-hi="स्टार्टअप्स">Startups</a>
       <a href="#foundation" data-gu="ફાઉન્ડેશન" data-hi="फाउंडेशन">Foundation</a>
@@ -104,6 +111,9 @@
     </dl>
   </div>
 </section>
+
+<!-- ================= NEWS STRIP (important updates) ================= -->
+<div class="nstrip" id="newsStrip" hidden></div>
 
 <!-- ================= GAVAN WORLD ================= -->
 <section class="sec sec--cream" id="world">
@@ -240,6 +250,20 @@
         <button class="link cpj__more" data-open-cplp><span data-gu="CPLP 2026 પ્લાન જુઓ" data-hi="CPLP 2026 प्लान देखें">View the CPLP 2026 plan</span><svg><use href="#i-arrow"/></svg></button>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= PROPERTY DESK (compact; opens full desk) ================= -->
+<section class="sec sec--paper" id="desk">
+  <div class="wrap">
+    <div class="head head--row">
+      <div>
+        <p class="eyebrow reveal" data-gu="પ્રોપર્ટી ડેસ્ક · વન ડેસ્ક સોલ્યુશન" data-hi="प्रॉपर्टी डेस्क · वन डेस्क सॉल्यूशन">Property Desk · one-desk solution</p>
+        <h2 class="h2 reveal" data-gu="જમીન-મિલકતનું દરેક સરકારી કામ — અહીંથી" data-hi="ज़मीन-जायदाद का हर सरकारी काम — यहीं से">Every government property task — from one place</h2>
+        <p class="sub reveal" data-gu="7/12, પ્રોપર્ટી કાર્ડ, જંત્રી, સ્ટેમ્પ ડ્યુટી, RERA, વેરો અને સમાચાર. જે જોઈએ તે પસંદ કરો." data-hi="7/12, प्रॉपर्टी कार्ड, जंत्री, स्टाम्प ड्यूटी, RERA, टैक्स और न्यूज़। जो चाहिए वो चुनें।">7/12, property card, jantri, stamp duty, RERA, property tax and news. Pick what you need.</p>
+      </div>
+    </div>
+    <div class="dtiles reveal" id="deskTiles"></div>
   </div>
 </section>
 
@@ -487,12 +511,23 @@
   </div>
 </div>
 
+<!-- ================= PROPERTY DESK OVERLAY ================= -->
+<div class="dsk" id="dsk" hidden role="dialog" aria-modal="true" aria-label="Gavan Property Desk">
+  <div class="dsk__bar">
+    <b class="dsk__title"><svg><use href="#i-doc"/></svg><span data-gu="ગવન પ્રોપર્ટી ડેસ્ક" data-hi="गवन प्रॉपर्टी डेस्क">Gavan Property Desk</span></b>
+    <button class="cpx__x" data-close-desk aria-label="Close">&times;</button>
+  </div>
+  <div class="dsk__tabs" id="dskTabs" role="tablist"></div>
+  <div class="dsk__body"><div class="wrap" id="dskBody"></div></div>
+</div>
+
 <div class="fabs">
   <a class="fab fab--call" data-tel-direct href="tel:+918200039897" aria-label="Call Gavan Group"><svg><use href="#i-phone"/></svg></a>
   <a class="fab" data-wa-direct href="https://wa.me/918200039897" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg><use href="#i-wa"/></svg></a>
 </div>
 
 <script src="assets/js/content.js"></script>
+<script src="assets/js/desk.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

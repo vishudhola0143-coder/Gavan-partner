@@ -349,7 +349,7 @@
   });
 
   function renderAll() {
-    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderOffices(); renderVideos(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact(); setDirect();
+    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderOffices(); renderVideos(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact(); renderDesk(); setDirect();
   }
 
   /* ---------- Project filter ---------- */
@@ -453,6 +453,146 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && cpx && !cpx.hidden) closeCp(); });
   if (location.hash === '#cplp') openCp();
+
+  /* ---------- PROPERTY DESK ---------- */
+  var K = window.GAVAN_DESK || {}, dsk = $('#dsk'), dtab = 'land';
+  var nf = function (n) { return isFinite(n) ? Math.round(n).toLocaleString('en-IN') : '0'; };
+  var UNITS = [
+    { id: 'sqm', f: 1, l: { en: 'sq. metre', hi: 'वर्ग मीटर', gu: 'ચો. મીટર' } },
+    { id: 'sqft', f: 0.09290304, l: { en: 'sq. ft', hi: 'वर्ग फ़ुट', gu: 'ચો. ફૂટ' } },
+    { id: 'sqyd', f: 0.83612736, l: { en: 'sq. yard (vaar)', hi: 'वर्ग गज़ (वार)', gu: 'ચો. વાર' } },
+    { id: 'guntha', f: 101.17141056, l: { en: 'guntha', hi: 'गुंठा', gu: 'ગુંઠા' } },
+    { id: 'acre', f: 4046.8564224, l: { en: 'acre', hi: 'एकड़', gu: 'એકર' } },
+    { id: 'ha', f: 10000, l: { en: 'hectare', hi: 'हेक्टेयर', gu: 'હેક્ટર' } }
+  ];
+  function unitSel(name) { return '<select name="' + name + '">' + UNITS.map(function (u) { return '<option value="' + u.id + '">' + esc(t(u.l)) + '</option>'; }).join('') + '</select>'; }
+  function uf(id) { for (var i = 0; i < UNITS.length; i++) if (UNITS[i].id === id) return UNITS[i].f; return 1; }
+
+  function linkCards(list) {
+    return '<div class="dl">' + (list || []).map(function (x) {
+      return '<a class="dl__i' + (x.main ? ' dl__i--main' : '') + '" href="' + esc(x.url) + '" target="_blank" rel="noopener">' +
+        '<span class="dl__t">' + esc(t(x.title)) + '<svg><use href="#i-ext"/></svg></span>' +
+        (x.how ? '<span class="dl__h">' + esc(t(x.how)) + '</span>' : '') +
+        '<span class="dl__u">' + esc(x.url.replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</span></a>';
+    }).join('') + '</div>';
+  }
+  function note(txt) { return '<p class="dnote">' + txt + '</p>'; }
+  var GOVNOTE = L('Official Gujarat government websites open in a new tab. They work best from India and may be slow at peak hours.',
+                 'सरकारी गुजरात वेबसाइट नए टैब में खुलती हैं। ये भारत से सबसे अच्छी चलती हैं और व्यस्त समय में धीमी हो सकती हैं।',
+                 'સરકારી ગુજરાત વેબસાઇટ નવા ટેબમાં ખુલે છે. ભારતમાંથી સૌથી સારી ચાલે છે અને વ્યસ્ત સમયે ધીમી હોઈ શકે.');
+
+  function panelHTML(id) {
+    var H = '', Lk = K.links || {};
+    var head = function (en, hi, gu, sen, shi, sgu) { return '<div class="dph"><h3 class="h3">' + L(en, hi, gu) + '</h3>' + (sen ? '<p>' + L(sen, shi, sgu) + '</p>' : '') + '</div>'; };
+    if (id === 'land') {
+      H = head('7/12, 8-A & property card', '7/12, 8-A और प्रॉपर्टी कार्ड', '7/12, 8-અ અને પ્રોપર્ટી કાર્ડ',
+        'The first button opens the 7/12 page of AnyRoR directly — no searching through the portal.', 'पहला बटन AnyRoR का 7/12 पेज सीधे खोलता है — पोर्टल में ढूँढना नहीं पड़ेगा।', 'પહેલું બટન AnyRoR નું 7/12 પેજ સીધું ખોલે છે — પોર્ટલમાં શોધવું નહીં પડે.') +
+        linkCards(Lk.land) +
+        note(L('Tip: the free online 7/12 is for information. For a bank loan or registration, use the digitally signed copy or a certified copy from the Mamlatdar / e-Dhara kendra.',
+               'टिप: फ़्री ऑनलाइन 7/12 सिर्फ़ जानकारी के लिए है। बैंक लोन या रजिस्ट्रेशन के लिए डिजिटल साइन कॉपी या मामलतदार / ई-धरा केंद्र की प्रमाणित कॉपी लें।',
+               'ટિપ: મફત ઓનલાઇન 7/12 ફક્ત માહિતી માટે છે. બેંક લોન કે રજિસ્ટ્રેશન માટે ડિજિટલ સહીવાળી નકલ અથવા મામલતદાર / ઇ-ધરા કેન્દ્રની પ્રમાણિત નકલ લો.'));
+    } else if (id === 'jantri') {
+      H = head('Jantri value calculator', 'जंत्री वैल्यू कैलकुलेटर', 'જંત્રી કિંમત કેલ્ક્યુલેટર',
+        'Step 1: find the jantri rate for your survey number on GARVI. Step 2: enter it below.', 'स्टेप 1: GARVI पर अपने सर्वे नंबर का जंत्री रेट देखें। स्टेप 2: नीचे डालें।', 'સ્ટેપ 1: GARVI પર તમારા સર્વે નંબરનો જંત્રી દર જુઓ. સ્ટેપ 2: નીચે નાખો.') +
+        linkCards(Lk.jantri) +
+        '<form class="calc" id="calcJ" onsubmit="return false">' +
+          '<label><span>' + L('Jantri rate (₹ per sq. metre)', 'जंत्री रेट (₹ प्रति वर्ग मीटर)', 'જંત્રી દર (₹ પ્રતિ ચો. મીટર)') + '</span><input name="rate" type="number" min="0" inputmode="decimal" placeholder="e.g. 6500"></label>' +
+          '<label><span>' + L('Area', 'क्षेत्रफल', 'ક્ષેત્રફળ') + '</span><div class="calc__row"><input name="area" type="number" min="0" inputmode="decimal" placeholder="e.g. 1200">' + unitSel('unit') + '</div></label>' +
+          '<div class="calc__out" id="outJ"></div></form>' +
+        note(L('Jantri (ready-reckoner) value is the government minimum value. Rates in force: April 2023 revision — the proposed new jantri is not yet notified (Oct 2026).',
+               'जंत्री वैल्यू सरकार की न्यूनतम कीमत है। लागू रेट: अप्रैल 2023 संशोधन — प्रस्तावित नई जंत्री अभी लागू नहीं (अक्टूबर 2026)।',
+               'જંત્રી કિંમત સરકારની લઘુત્તમ કિંમત છે. લાગુ દર: એપ્રિલ 2023 સુધારો — સૂચિત નવી જંત્રી હજુ લાગુ નથી (ઓક્ટોબર 2026).'));
+    } else if (id === 'stamp') {
+      H = head('Stamp duty & registration calculator', 'स्टाम्प ड्यूटी और रजिस्ट्रेशन कैलकुलेटर', 'સ્ટેમ્પ ડ્યુટી અને રજિસ્ટ્રેશન કેલ્ક્યુલેટર',
+        'Duty is charged on the higher of the deal value and the jantri value.', 'ड्यूटी सौदे की कीमत और जंत्री वैल्यू में से जो ज़्यादा हो उस पर लगती है।', 'ડ્યુટી સોદાની કિંમત અને જંત્રી કિંમતમાંથી જે વધુ હોય તેના પર લાગે છે.') +
+        '<form class="calc" id="calcS" onsubmit="return false">' +
+          '<label><span>' + L('Agreement / deal value (₹)', 'एग्रीमेंट / सौदे की कीमत (₹)', 'દસ્તાવેજ / સોદાની કિંમત (₹)') + '</span><input name="deal" type="number" min="0" inputmode="decimal" placeholder="e.g. 4500000"></label>' +
+          '<label><span>' + L('Jantri value (₹) — optional', 'जंत्री वैल्यू (₹) — वैकल्पिक', 'જંત્રી કિંમત (₹) — વૈકલ્પિક') + '</span><input name="jantri" type="number" min="0" inputmode="decimal" placeholder="' + L('from the jantri calculator', 'जंत्री कैलकुलेटर से', 'જંત્રી કેલ્ક્યુલેટરથી') + '"></label>' +
+          '<label class="calc__chk"><input name="woman" type="checkbox"> <span>' + L('Sole woman buyer (registration fee waived)', 'अकेली महिला खरीदार (रजिस्ट्रेशन फ़ीस माफ़)', 'એકલા મહિલા ખરીદનાર (રજિસ્ટ્રેશન ફી માફ)') + '</span></label>' +
+          '<div class="calc__out" id="outS"></div></form>' +
+        note(L('Rates used: stamp duty 4.9%, registration fee 1% (waived when a woman is the sole buyer). For an estimate only — confirm the final amount on GARVI or with your advocate before paying.',
+               'इस्तेमाल रेट: स्टाम्प ड्यूटी 4.9%, रजिस्ट्रेशन फ़ीस 1% (अकेली महिला खरीदार के लिए माफ़)। यह सिर्फ़ अनुमान है — भुगतान से पहले GARVI या वकील से पक्का करें।',
+               'વપરાયેલ દર: સ્ટેમ્પ ડ્યુટી 4.9%, રજિસ્ટ્રેશન ફી 1% (એકલા મહિલા ખરીદનાર માટે માફ). આ ફક્ત અંદાજ છે — ભરતાં પહેલાં GARVI કે વકીલ સાથે પાકું કરો.')) +
+        linkCards(Lk.stamp);
+    } else if (id === 'rera') {
+      H = head('Check a project on RERA', 'RERA पर प्रोजेक्ट जाँचें', 'RERA પર પ્રોજેક્ટ તપાસો',
+        'Before you book, confirm the project is RERA-registered and on schedule.', 'बुकिंग से पहले पक्का करें कि प्रोजेक्ट RERA रजिस्टर्ड है और समय पर चल रहा है।', 'બુકિંગ પહેલાં પાકું કરો કે પ્રોજેક્ટ RERA રજિસ્ટર્ડ છે અને સમયસર ચાલે છે.') + linkCards(Lk.rera);
+    } else if (id === 'tax') {
+      H = head('Property tax (vero) & assessment (akarni)', 'प्रॉपर्टी टैक्स (वेरो) और आकारणी', 'મિલકત વેરો અને આકારણી',
+        'Vapi is a Municipal Corporation; Valsad, Pardi, Umargam, Dharampur and other towns use e-Nagar.', 'वापी महानगरपालिका है; वलसाड, पारडी, उमरगाम, धरमपुर और अन्य शहर e-Nagar से।', 'વાપી મહાનગરપાલિકા છે; વલસાડ, પારડી, ઉમરગામ, ધરમપુર અને અન્ય શહેરો e-Nagar થી.') + linkCards(Lk.tax);
+    } else if (id === 'office') {
+      H = head('Mamlatdar, Collector & NA', 'मामलतदार, कलेक्टर और NA', 'મામલતદાર, કલેક્ટર અને બિનખેતી',
+        'Online revenue applications and district offices for South Gujarat.', 'दक्षिण गुजरात के लिए ऑनलाइन रेवेन्यू आवेदन और ज़िला ऑफिस।', 'દક્ષિણ ગુજરાત માટે ઓનલાઇન મહેસૂલી અરજી અને જિલ્લા કચેરીઓ.') + linkCards(Lk.office);
+    } else if (id === 'news') {
+      H = head('South Gujarat real estate news', 'दक्षिण गुजरात रियल एस्टेट न्यूज़', 'દક્ષિણ ગુજરાત રિયલ એસ્ટેટ સમાચાર',
+        'Important updates picked by the Gavan team, plus live news searches.', 'गवन टीम द्वारा चुने ज़रूरी अपडेट और लाइव न्यूज़ सर्च।', 'ગવન ટીમે પસંદ કરેલા જરૂરી અપડેટ અને લાઇવ ન્યૂઝ સર્ચ.') +
+        '<div class="dnews">' + (K.news || []).map(function (n) {
+          return '<a class="dn' + (n.important ? ' dn--imp' : '') + '" href="' + esc(n.url) + '" target="_blank" rel="noopener">' +
+            '<span class="dn__m"><span class="badge">' + esc(n.tag || '') + '</span>' + (n.important ? '<span class="dn__new">' + L('Important', 'ज़रूरी', 'મહત્વનું') + '</span>' : '') + '<small>' + esc(fmtDate(n.date)) + '</small></span>' +
+            '<b>' + esc(t(n.title)) + '</b><small class="dn__s">' + esc(n.source || '') + ' ↗</small></a>';
+        }).join('') + '</div>' +
+        '<p class="dlive__h">' + L('Live news — always the latest', 'लाइव न्यूज़ — हमेशा ताज़ा', 'લાઇવ સમાચાર — હંમેશાં તાજા') + '</p>' +
+        '<div class="dlive">' + (K.liveNews || []).map(function (q) {
+          return '<a class="chip" target="_blank" rel="noopener" href="https://news.google.com/search?q=' + encodeURIComponent(q.q) + '&hl=en-IN&gl=IN&ceid=IN:en"><svg><use href="#i-news"/></svg>' + esc(q.label) + '</a>';
+        }).join('') + '</div>';
+    }
+    return H + (id !== 'news' ? note(GOVNOTE) : '');
+  }
+  function fmtDate(d) {
+    d = String(d || ''); if (/^\d{4}$/.test(d)) return d;
+    var p = d.split('-'), dt = new Date(+p[0], (+p[1] || 1) - 1, +p[2] || 1);
+    return (p[2] ? dt.getDate() + ' ' : '') + dt.toLocaleString(L('en-IN', 'hi-IN', 'gu-IN'), { month: 'short' }) + ' ' + p[0];
+  }
+  function calcJ() {
+    var f = $('#calcJ'); if (!f) return;
+    var rate = +f.rate.value || 0, area = (+f.area.value || 0) * uf(f.unit.value), v = rate * area;
+    $('#outJ').innerHTML = '<div><small>' + L('Area in sq. metre', 'क्षेत्रफल वर्ग मीटर में', 'ક્ષેત્રફળ ચો. મીટરમાં') + '</small><b>' + area.toLocaleString('en-IN', { maximumFractionDigits: 2 }) + '</b></div>' +
+      '<div class="calc__big"><small>' + L('Jantri value', 'जंत्री वैल्यू', 'જંત્રી કિંમત') + '</small><b>₹ ' + nf(v) + '</b></div>' +
+      (v ? '<button class="link" data-jtos="' + Math.round(v) + '">' + L('Use in stamp duty calculator', 'स्टाम्प ड्यूटी कैलकुलेटर में इस्तेमाल करें', 'સ્ટેમ્પ ડ્યુટી કેલ્ક્યુલેટરમાં વાપરો') + '<svg><use href="#i-arrow"/></svg></button>' : '');
+  }
+  function calcS() {
+    var f = $('#calcS'); if (!f) return;
+    var deal = +f.deal.value || 0, jv = +f.jantri.value || 0, base = Math.max(deal, jv);
+    var sd = base * 0.049, rf = f.woman.checked ? 0 : base * 0.01;
+    $('#outS').innerHTML = '<div><small>' + L('Value for duty', 'ड्यूटी के लिए कीमत', 'ડ્યુટી માટે કિંમત') + (jv > deal ? ' (' + L('jantri', 'जंत्री', 'જંત્રી') + ')' : '') + '</small><b>₹ ' + nf(base) + '</b></div>' +
+      '<div><small>' + L('Stamp duty 4.9%', 'स्टाम्प ड्यूटी 4.9%', 'સ્ટેમ્પ ડ્યુટી 4.9%') + '</small><b>₹ ' + nf(sd) + '</b></div>' +
+      '<div><small>' + L('Registration fee 1%', 'रजिस्ट्रेशन फ़ीस 1%', 'રજિસ્ટ્રેશન ફી 1%') + '</small><b>₹ ' + nf(rf) + '</b></div>' +
+      '<div class="calc__big"><small>' + L('Total to pay', 'कुल भुगतान', 'કુલ ભરવાના') + '</small><b>₹ ' + nf(sd + rf) + '</b></div>';
+  }
+  var jToS = '';
+  function renderDesk() {
+    var tl = $('#deskTiles');
+    if (tl) tl.innerHTML = (K.tabs || []).map(function (x) {
+      return '<button class="dtile" data-open-desk="' + x.id + '"><span class="dtile__i"><svg><use href="#' + x.icon + '"/></svg></span><span>' + esc(t(x.label)) + '</span><svg class="dtile__a"><use href="#i-arrow"/></svg></button>';
+    }).join('');
+    var tb = $('#dskTabs');
+    if (tb) tb.innerHTML = (K.tabs || []).map(function (x) {
+      return '<button role="tab" data-dtab="' + x.id + '" class="' + (x.id === dtab ? 'is-on' : '') + '"><svg><use href="#' + x.icon + '"/></svg>' + esc(t(x.label)) + '</button>';
+    }).join('');
+    var b = $('#dskBody');
+    if (b && dsk && !dsk.hidden) { b.innerHTML = panelHTML(dtab); if (dtab === 'jantri') calcJ(); if (dtab === 'stamp') { if (jToS) { $('#calcS').jantri.value = jToS; jToS = ''; } calcS(); } }
+    var s = $('#newsStrip'), imp = (K.news || []).filter(function (n) { return n.important; });
+    if (s) {
+      s.hidden = !imp.length;
+      s.innerHTML = '<div class="wrap nstrip__in"><span class="nstrip__l"><span class="dot"></span>' + L('New update', 'नया अपडेट', 'નવું અપડેટ') + '</span>' +
+        '<div class="nstrip__v"><div class="nstrip__track">' + imp.concat(imp).map(function (n) {
+          return '<button data-open-desk="news">' + esc(t(n.title)) + '</button>';
+        }).join('<i>•</i>') + '</div></div>' +
+        '<button class="nstrip__all" data-open-desk="news">' + L('All news', 'सभी न्यूज़', 'બધા સમાચાર') + ' →</button></div>';
+    }
+  }
+  function openDesk(id) { if (!dsk) return; dtab = id || 'land'; dsk.hidden = false; document.body.style.overflow = 'hidden'; renderDesk(); var bd = $('.dsk__body'); if (bd) bd.scrollTop = 0; var on = $('#dskTabs .is-on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+  function closeDesk() { if (!dsk) return; dsk.hidden = true; document.body.style.overflow = ''; }
+  document.addEventListener('click', function (e) {
+    var o = e.target.closest('[data-open-desk]'); if (o) { e.preventDefault(); openDesk(o.getAttribute('data-open-desk')); return; }
+    var tbb = e.target.closest('[data-dtab]'); if (tbb) { openDesk(tbb.getAttribute('data-dtab')); return; }
+    if (e.target.closest('[data-close-desk]')) { closeDesk(); return; }
+    var js = e.target.closest('[data-jtos]'); if (js) { jToS = js.getAttribute('data-jtos'); openDesk('stamp'); }
+  });
+  document.addEventListener('input', function (e) { if (e.target.closest('#calcJ')) calcJ(); if (e.target.closest('#calcS')) calcS(); });
+  document.addEventListener('change', function (e) { if (!/SELECT|INPUT/.test(e.target.tagName) || (e.target.tagName === 'INPUT' && e.target.type !== 'checkbox')) return; if (e.target.closest('#calcJ')) calcJ(); if (e.target.closest('#calcS')) calcS(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dsk && !dsk.hidden) closeDesk(); });
+  var hm = location.hash.match(/^#desk-(\w+)/); if (hm) setTimeout(function () { openDesk(hm[1]); }, 0);
 
   $('#yr').textContent = new Date().getFullYear();
   applyLang();
