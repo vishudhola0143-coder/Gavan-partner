@@ -735,3 +735,7 @@ html:not([lang="en"]) .off__t h3{font-family:inherit;font-weight:700}
 .brand__txt small{text-align:center!important;text-align-last:center!important;letter-spacing:.42em!important;padding-left:.42em;font-size:.62rem!important;font-weight:600;white-space:nowrap!important}
 @media (max-width:560px){.brand__txt small{font-size:.56rem!important}}
 @media (max-width:360px){.brand__txt small{font-size:.48rem!important;letter-spacing:.36em!important;padding-left:.36em}}
+/* tighter GAVAN, wider GROUP */
+.brand__txt b{letter-spacing:.16em!important;margin-right:-.16em!important}
+.brand__txt small{letter-spacing:.62em!important;padding-left:.62em!important}
+@media (max-width:360px){.brand__txt b{letter-spacing:.14em!important;margin-right:-.14em!important}.brand__txt small{letter-spacing:.5em!important;padding-left:.5em!important}}
