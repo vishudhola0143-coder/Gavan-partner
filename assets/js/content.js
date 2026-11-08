@@ -212,7 +212,7 @@ window.GAVAN = {
       ] },
     { date: '2026-10-27', tag: 'Event', name: 'CPLP 2026', where: 'Fortune Park Galaxy, Vapi',
       title: { en: 'CP Meet 2026 — Channel Partner Legacy Program (CPLP)', hi: 'CP मीट 2026 — चैनल पार्टनर लेगेसी प्रोग्राम (CPLP)', gu: 'CP મીટ 2026 — ચેનલ પાર્ટનર લેગસી પ્રોગ્રામ (CPLP)' },
-      text: { en: 'Presented by The Coastal Era — Gavan and Shivaay brought hundreds of channel partners together to share the vision for South Gujarat\'s coastal industrial corridor, felicitate partners and celebrate the legacy ahead.',
+      text: { en: 'Held at Fortune Park Galaxy, Vapi and presented by The Coastal Era — Gavan and Shivaay brought hundreds of channel partners together to share the vision for South Gujarat\'s coastal industrial corridor, felicitate partners and celebrate the legacy ahead.',
               hi: 'द कोस्टल एरा द्वारा प्रस्तुत — गवन और शिवाय ने सैकड़ों चैनल पार्टनर्स को एक साथ लाकर दक्षिण गुजरात के तटीय इंडस्ट्रियल कॉरिडोर का विज़न साझा किया, पार्टनर्स का सम्मान किया और आगे की विरासत का जश्न मनाया।',
               gu: 'ધ કોસ્ટલ એરા દ્વારા પ્રસ્તુત — ગવન અને શિવાયે સેંકડો ચેનલ પાર્ટનર્સને એકસાથે ભેગા કરીને દક્ષિણ ગુજરાતના દરિયાકાંઠાના ઇન્ડસ્ટ્રીયલ કોરિડોરનું વિઝન રજૂ કર્યું, પાર્ટનર્સનું સન્માન કર્યું અને આગળની સફરની ઉજવણી કરી.' },
       galleryPath: 'assets/img/cpmeet/',

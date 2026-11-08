@@ -16,7 +16,24 @@
   function wa(text) {
     var num = String(C.whatsapp || '').replace(/\D/g, '');
     var url = 'https://wa.me/' + num + '?text=' + encodeURIComponent(text);
-    window.open(url, '_blank', 'noopener');
+    var w = null;
+    try { w = window.open(url, '_blank'); } catch (e) {}
+    if (w) { try { w.opener = null; } catch (e) {} }
+    else { try { window.top.location.href = url; } catch (e) { location.href = url; } }
+  }
+  /* direct links: real <a> tags open WhatsApp / dialer most reliably on phones */
+  var NUM = String(C.whatsapp || '').replace(/\D/g, '');
+  function waHref(text) { return 'https://wa.me/' + NUM + (text ? '?text=' + encodeURIComponent(text) : ''); }
+  function askText(el) {
+    var msg = (lang !== 'en' && el.getAttribute('data-ask-' + lang)) || el.getAttribute('data-ask');
+    return L('Hello Gavan Group 🙏\n', 'नमस्ते गवन ग्रुप 🙏\n', 'નમસ્તે ગવન ગ્રુપ 🙏\n') + msg;
+  }
+  function setDirect() {
+    var hi = L('Hello Gavan Group 🙏 I would like some information.', 'नमस्ते गवन ग्रुप 🙏 मुझे जानकारी चाहिए।', 'નમસ્તે ગવન ગ્રુપ 🙏 મારે માહિતી જોઈએ છે.');
+    $$('a[data-wa-direct]').forEach(function (a) { a.href = waHref(hi); a.target = '_blank'; a.rel = 'noopener'; });
+    $$('a[data-ask]').forEach(function (a) { a.href = waHref(askText(a)); a.target = '_blank'; a.rel = 'noopener'; });
+    $$('a[data-tel-direct]').forEach(function (a) { a.href = 'tel:+' + NUM; });
+    $$('[data-num]').forEach(function (s) { s.textContent = C.phone || ('+' + NUM); });
   }
   function ask(el) {
     var msg = (lang !== 'en' && el.getAttribute('data-ask-' + lang)) || el.getAttribute('data-ask');
@@ -24,7 +41,7 @@
   }
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-ask]');
-    if (el) { e.preventDefault(); ask(el); }
+    if (el) { if (el.tagName === 'A') return; e.preventDefault(); ask(el); }
   });
 
   /* ---------- Language ---------- */
@@ -207,7 +224,7 @@
     rows.push('<li><svg><use href="#i-pin"/></svg><div><small>' + T.a + '</small><a href="https://www.google.com/maps/search/' + encodeURIComponent(C.mapQuery || 'Vapi, Gujarat') + '" target="_blank" rel="noopener">' + esc(t(C.address)) + '</a></div></li>');
     if (C.phone) rows.push('<li><svg><use href="#i-phone"/></svg><div><small>' + T.p + '</small><a href="tel:' + esc(C.phone.replace(/\s/g, '')) + '">' + esc(C.phone) + '</a></div></li>');
     if (C.email) rows.push('<li><svg><use href="#i-mail"/></svg><div><small>' + T.e + '</small><a href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a></div></li>');
-    rows.push('<li><svg><use href="#i-wa"/></svg><div><small>' + T.w + '</small><button data-ask="I would like to connect with Gavan Group." data-ask-hi="मुझे गवन ग्रुप से बात करनी है।" data-ask-gu="મારે ગવન ગ્રુપ સાથે વાત કરવી છે.">' + T.wv + '</button></div></li>');
+    rows.push('<li><svg><use href="#i-wa"/></svg><div><small>' + T.w + '</small><a data-wa-direct href="#">' + T.wv + '</a></div></li>');
     if (C.hours) rows.push('<li><svg><use href="#i-clock"/></svg><div><small>' + T.h + '</small>' + esc(t(C.hours)) + '</div></li>');
     g.innerHTML = rows.join('');
   }
@@ -274,7 +291,7 @@
   });
 
   function renderAll() {
-    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
+    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact(); setDirect();
   }
 
   /* ---------- Project filter ---------- */
@@ -304,10 +321,7 @@
   });
 
   /* ---------- FAB ---------- */
-  $('#fab').addEventListener('click', function (e) {
-    e.preventDefault();
-    wa(L('Hello Gavan Group 🙏 I would like some information.', 'नमस्ते गवन ग्रुप 🙏 मुझे जानकारी चाहिए।', 'નમસ્તે ગવન ગ્રુપ 🙏 મારે માહિતી જોઈએ છે.'));
-  });
+
 
   /* ---------- Nav ---------- */
   var nav = $('#nav'), burger = $('#burger'), links = $('#navLinks');
