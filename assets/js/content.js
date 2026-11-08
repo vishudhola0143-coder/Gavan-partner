@@ -306,6 +306,24 @@ window.GAVAN = {
     ]
   },
 
+  /* ---------- NEW OFFICES — coming soon ---------- */
+  offices: [
+    { name: 'Gavan Homes — Head Office', logo: 'assets/img/gavan-mark.png',
+      where: { en: 'New Ring Road, Vapi Town', hi: 'न्यू रिंग रोड, वापी टाउन', gu: 'ન્યૂ રિંગ રોડ, વાપી ટાઉન' },
+      text: { en: 'A landmark new head office for Gavan Group — a sculpted, petal-shaped glass building with a grand lobby, boardroom and open workspaces.',
+              hi: 'गवन ग्रुप का नया लैंडमार्क हेड ऑफिस — पंखुड़ी जैसी आकृति वाली ग्लास बिल्डिंग, भव्य लॉबी, बोर्डरूम और खुले वर्कस्पेस के साथ।',
+              gu: 'ગવન ગ્રુપની નવી લેન્ડમાર્ક હેડ ઓફિસ — પાંખડી જેવા આકારની ગ્લાસ બિલ્ડિંગ, ભવ્ય લોબી, બોર્ડરૂમ અને ખુલ્લા વર્કસ્પેસ સાથે.' },
+      galleryPath: 'assets/img/offices/', gallery: [ { src: 'gavan-ho.jpg', cap: { en: 'Gavan Homes Head Office — aerial view', hi: 'गवन होम्स हेड ऑफिस — एरियल व्यू', gu: 'ગવન હોમ્સ હેડ ઓફિસ — એરિયલ વ્યૂ' } } ] },
+    { name: 'Shivaay Industrial Park — Site Office', logo: 'assets/img/shivaay.jpg',
+      where: { en: 'SIP Mamakwada, near Sarai Fatak', hi: 'SIP मामकवाडा, सराई फाटक के पास', gu: 'SIP મામકવાડા, સરાઈ ફાટક પાસે' },
+      text: { en: 'A modern, curved-form office at Shivaay Industrial Park — the place to meet the team, see the master plan and book your plot.',
+              hi: 'शिवाय इंडस्ट्रियल पार्क में आधुनिक, घुमावदार डिज़ाइन वाला ऑफिस — टीम से मिलने, मास्टर प्लान देखने और प्लॉट बुक करने की जगह।',
+              gu: 'શિવાય ઇન્ડસ્ટ્રીયલ પાર્કમાં આધુનિક, વળાંકવાળી ડિઝાઇનની ઓફિસ — ટીમને મળવા, માસ્ટર પ્લાન જોવા અને પ્લોટ બુક કરવાની જગ્યા.' },
+      galleryPath: 'assets/img/offices/', gallery: [
+        { src: 'shivaay-office-1.jpg', cap: { en: 'Shivaay office — front at sunset', hi: 'शिवाय ऑफिस — सूर्यास्त में फ्रंट', gu: 'શિવાય ઓફિસ — સૂર્યાસ્ત સમયે ફ્રન્ટ' } },
+        { src: 'shivaay-office-2.jpg', cap: { en: 'Shivaay office — landscaped parking', hi: 'शिवाय ऑफिस — लैंडस्केप पार्किंग', gu: 'શિવાય ઓફિસ — લેન્ડસ્કેપ પાર્કિંગ' } } ] }
+  ],
+
   /* ---------- FUTURE ROADMAP ---------- */
   roadmap: [
     { when: { en: 'Now', hi: 'अभी', gu: 'હાલ' }, title: { en: 'Gavan Radio Centre, Vapi', hi: 'गवन रेडियो सेंटर, वापी', gu: 'ગવન રેડિયો સેન્ટર, વાપી' }, text: { en: 'Launching a modern radiology & diagnostic centre for the region.', hi: 'क्षेत्र के लिए आधुनिक रेडियोलॉजी और डायग्नोस्टिक सेंटर।', gu: 'પ્રદેશ માટે આધુનિક રેડિયોલોજી અને ડાયગ્નોસ્ટિક સેન્ટર.' } },

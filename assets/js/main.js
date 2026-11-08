@@ -185,6 +185,18 @@
       '<button class="link iw__all" data-gal="' + esc(f.name) + '" data-i="0">' + L('Swipe or view all', 'स्वाइप करें या सभी देखें', 'સ્વાઇપ કરો અથવા બધા જુઓ') + ' (' + f.gallery.length + ')<svg><use href="#i-arrow"/></svg></button></div>';
   }
 
+  function renderOffices() {
+    var g = $('#officeGrid'); if (!g) return;
+    g.innerHTML = (D.offices || []).map(function (o) {
+      var base = o.galleryPath || '', q = encodeURIComponent((t(o.where) || '') + ' Vapi');
+      return '<article class="off reveal is-in"><button class="off__img" data-gal="' + esc(o.name) + '" data-i="0"><img loading="lazy" src="' + esc(base + 'thumb/' + o.gallery[0].src) + '" alt="' + esc(o.name) + '">' +
+        '<span class="off__soon">' + L('Coming soon', 'जल्द आ रहा है', 'જલ્દી આવી રહ્યું છે') + '</span>' + (o.gallery.length > 1 ? '<span class="off__n">' + o.gallery.length + ' ' + L('photos', 'फ़ोटो', 'ફોટા') + '</span>' : '') + '</button>' +
+        '<div class="off__txt"><div class="off__t">' + (o.logo ? '<img src="' + esc(o.logo) + '" alt="">' : '') + '<h3>' + esc(o.name) + '</h3></div>' +
+        '<a class="proj__meta" href="https://www.google.com/maps/search/' + q + '" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>' + esc(t(o.where)) + '</a>' +
+        '<p>' + esc(t(o.text)) + '</p></div></article>';
+    }).join('');
+  }
+
   function renderFoundation() {
     var g = $('#foundWork'), f = D.foundation; if (!g || !f || !f.gallery) return;
     var base = f.galleryPath || '';
@@ -231,7 +243,7 @@
   }
 
   /* ---------- Featured project showcase + gallery ---------- */
-  function findProject(name) { return (D.projects || []).concat(D.updates || [], D.foundation ? [D.foundation] : [], D.interio ? [D.interio] : []).filter(function (p) { return p.name === name && p.gallery; })[0]; }
+  function findProject(name) { return (D.projects || []).concat(D.updates || [], D.foundation ? [D.foundation] : [], D.interio ? [D.interio] : [], D.offices || []).filter(function (p) { return p.name === name && p.gallery; })[0]; }
   function renderFeatured() {
     var g = $('#featured'); if (!g) return;
     var fs = (D.projects || []).filter(function (x) { return x.featured && x.gallery && x.gallery.length && inFilter(x); });
@@ -292,7 +304,7 @@
   });
 
   function renderAll() {
-    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact(); setDirect();
+    renderFeatured(); renderProjects(); renderFoundation(); renderInterio(); renderOffices(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact(); setDirect();
   }
 
   /* ---------- Project filter ---------- */
