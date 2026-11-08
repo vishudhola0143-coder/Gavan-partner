@@ -379,6 +379,23 @@
     $$('.soc__bar i').forEach(function (b) { if (bo) bo.observe(b); else b.style.width = b.getAttribute('data-w') + '%'; });
   }
 
+  /* ---------- CPLP tab ---------- */
+  var cpx = $('#cplp');
+  function cpTab(n) {
+    $$('[data-cptab]').forEach(function (b) { var on = +b.getAttribute('data-cptab') === n; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on); });
+    $$('[data-cppanel]').forEach(function (p) { p.hidden = +p.getAttribute('data-cppanel') !== n; });
+    var body = $('.cpx__body'); if (body) body.scrollTop = 0;
+  }
+  function openCp() { if (!cpx) return; cpTab(0); cpx.hidden = false; document.body.style.overflow = 'hidden'; }
+  function closeCp() { if (!cpx) return; cpx.hidden = true; document.body.style.overflow = ''; if (location.hash === '#cplp') history.replaceState(null, '', location.pathname + location.search); }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-open-cplp]')) { e.preventDefault(); openCp(); }
+    else if (e.target.closest('[data-close-cplp]')) { e.preventDefault(); closeCp(); }
+    var tb = e.target.closest('[data-cptab]'); if (tb) cpTab(+tb.getAttribute('data-cptab'));
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && cpx && !cpx.hidden) closeCp(); });
+  if (location.hash === '#cplp') openCp();
+
   $('#yr').textContent = new Date().getFullYear();
   applyLang();
 })();
