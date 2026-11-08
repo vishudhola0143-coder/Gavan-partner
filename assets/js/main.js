@@ -594,6 +594,39 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dsk && !dsk.hidden) closeDesk(); });
   var hm = location.hash.match(/^#desk-(\w+)/); if (hm) setTimeout(function () { openDesk(hm[1]); }, 0);
 
+  /* ---------- Call buttons ----------
+     On the real website tel: links open the phone dialer directly.
+     Inside a preview frame (e.g. the claude.ai demo) browsers block tel: navigation,
+     so we open it in a new window and also show the number with a copy button. */
+  var framed = false; try { framed = window.self !== window.top; } catch (e) { framed = true; }
+  function toastCall(num) {
+    var d = $('#callSheet');
+    if (!d) {
+      d = document.createElement('div'); d.id = 'callSheet'; d.className = 'callsheet';
+      document.body.appendChild(d);
+      d.addEventListener('click', function (e) {
+        if (e.target === d || e.target.closest('[data-cs-x]')) d.hidden = true;
+        var c = e.target.closest('[data-cs-copy]');
+        if (c) { try { navigator.clipboard.writeText(num); } catch (er) {} c.textContent = L('Copied ✓', 'कॉपी हो गया ✓', 'કૉપી થઈ ગયું ✓'); }
+      });
+    }
+    var pretty = C.phone || num;
+    d.innerHTML = '<div class="callsheet__box"><button class="callsheet__x" data-cs-x aria-label="Close">&times;</button>' +
+      '<small>' + L('Call Gavan Group', 'गवन ग्रुप को कॉल करें', 'ગવન ગ્રુપને કૉલ કરો') + '</small><b>' + esc(pretty) + '</b>' +
+      '<div class="callsheet__btns"><a class="btn btn--gold" href="tel:' + esc(num) + '" target="_blank" rel="noopener"><svg><use href="#i-phone"/></svg>' + L('Call now', 'कॉल करें', 'કૉલ કરો') + '</a>' +
+      '<button class="btn btn--ghost" data-cs-copy>' + L('Copy number', 'नंबर कॉपी करें', 'નંબર કૉપી કરો') + '</button>' +
+      '<a class="btn btn--wa" href="' + waHref('') + '" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a></div></div>';
+    d.hidden = false;
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="tel:"]');
+    if (!a || !framed || a.closest('#callSheet')) return;
+    e.preventDefault();
+    var num = a.getAttribute('href').slice(4);
+    try { window.open('tel:' + num, '_blank'); } catch (er) {}
+    toastCall(num);
+  });
+
   $('#yr').textContent = new Date().getFullYear();
   applyLang();
 })();

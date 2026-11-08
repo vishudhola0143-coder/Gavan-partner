@@ -694,3 +694,14 @@ html:not([lang="en"]) .off__t h3{font-family:inherit;font-weight:700}
 .dlive .chip svg{color:var(--gold-d)}
 @media (max-width:560px){.dl{grid-template-columns:1fr}.calc__row{grid-template-columns:1fr 120px}.dtiles{grid-template-columns:1fr 1fr}.dtile{flex-direction:column;align-items:flex-start;gap:.6rem;font-size:.86rem}.dtile__a{display:none}}
 @media (prefers-reduced-motion:reduce){.nstrip__track{animation:none}}
+/* call sheet (shown when tel: is blocked inside a preview frame) */
+.callsheet{position:fixed;inset:0;z-index:120;background:rgba(10,6,5,.6);display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.callsheet[hidden]{display:none}
+.callsheet__box{position:relative;width:min(420px,100%);background:var(--paper);border-radius:24px;padding:1.6rem 1.4rem 1.4rem;text-align:center;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.callsheet__box small{display:block;color:var(--muted);font-weight:600;letter-spacing:.06em}
+.callsheet__box b{display:block;font-size:1.9rem;margin:.3rem 0 1.1rem;color:var(--ink);letter-spacing:.02em}
+.callsheet__btns{display:grid;gap:.6rem}
+.callsheet__btns .btn{width:100%;margin:0}
+.btn--wa{background:#25d366;color:#fff}
+.callsheet__x{position:absolute;right:12px;top:10px;width:40px;height:40px;font-size:1.8rem;line-height:1;color:var(--muted)}
+@media (min-width:821px){.callsheet{align-items:center}}
