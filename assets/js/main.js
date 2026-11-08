@@ -1,0 +1,245 @@
+(function () {
+  'use strict';
+  var D = window.GAVAN || {};
+  var C = D.contact || {};
+  var root = document.documentElement;
+  var lang = 'en';
+  try { lang = localStorage.getItem('gavan-lang') || 'en'; } catch (e) {}
+
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var t = function (v) { return v == null ? '' : (typeof v === 'string' ? v : (v[lang] || v.en || '')); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+
+  /* ---------- WhatsApp ---------- */
+  function wa(text) {
+    var num = String(C.whatsapp || '').replace(/\D/g, '');
+    var url = 'https://wa.me/' + num + '?text=' + encodeURIComponent(text);
+    window.open(url, '_blank', 'noopener');
+  }
+  function ask(el) {
+    var msg = (lang === 'gu' && el.getAttribute('data-ask-gu')) || el.getAttribute('data-ask');
+    var hi = lang === 'gu' ? 'નમસ્તે ગવન ગ્રુપ 🙏\n' : 'Hello Gavan Group 🙏\n';
+    wa(hi + msg);
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-ask]');
+    if (el) { e.preventDefault(); ask(el); }
+  });
+
+  /* ---------- Language ---------- */
+  function setText(el, str) {
+    if (!el.children.length) { el.textContent = str; return; }
+    for (var i = 0; i < el.childNodes.length; i++) {
+      var n = el.childNodes[i];
+      if (n.nodeType === 3 && n.textContent.trim()) { n.textContent = str; return; }
+    }
+    el.insertBefore(document.createTextNode(str), el.firstChild);
+  }
+  function getText(el) {
+    if (!el.children.length) return el.textContent;
+    for (var i = 0; i < el.childNodes.length; i++) {
+      var n = el.childNodes[i];
+      if (n.nodeType === 3 && n.textContent.trim()) return n.textContent;
+    }
+    return '';
+  }
+  function applyLang() {
+    root.lang = lang;
+    $$('[data-gu]').forEach(function (el) {
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', getText(el));
+      setText(el, el.getAttribute(lang === 'gu' ? 'data-gu' : 'data-en'));
+    });
+    renderAll();
+  }
+  $('#langBtn').addEventListener('click', function () {
+    lang = lang === 'en' ? 'gu' : 'en';
+    try { localStorage.setItem('gavan-lang', lang); } catch (e) {}
+    applyLang();
+  });
+
+  /* ---------- Renderers ---------- */
+  var catIcon = { residential: 'i-home', commercial: 'i-shop', industrial: 'i-factory' };
+  var catName = {
+    residential: { en: 'Residential', gu: 'રેસિડેન્શિયલ' },
+    commercial: { en: 'Commercial', gu: 'કોમર્શિયલ' },
+    industrial: { en: 'Industrial', gu: 'ઇન્ડસ્ટ્રીયલ' }
+  };
+  var statusGu = { 'Ongoing': 'ચાલુ', 'Upcoming': 'આગામી', 'Completed': 'પૂર્ણ', 'Booking Open': 'બુકિંગ શરૂ' };
+  var filter = 'all';
+
+  function renderProjects() {
+    var g = $('#projectGrid'); if (!g) return;
+    var list = (D.projects || []).filter(function (p) { return filter === 'all' || p.category === filter; });
+    g.innerHTML = list.map(function (p) {
+      var st = lang === 'gu' ? (statusGu[p.status] || p.status) : p.status;
+      var askEn = 'I would like details about ' + p.name + ' (' + p.location + ').';
+      var askGu = p.name + ' (' + p.location + ') વિશે માહિતી જોઈએ છે.';
+      return '<article class="proj">' +
+        '<div class="proj__art"><span class="proj__cat">' + esc(t(catName[p.category])) + '</span>' +
+        (p.status ? '<span class="proj__status">' + esc(st) + '</span>' : '') +
+        '<svg><use href="#' + (catIcon[p.category] || 'i-home') + '"/></svg></div>' +
+        '<div class="proj__body"><h3>' + esc(p.name) + '</h3>' +
+        '<p class="proj__meta"><svg><use href="#i-pin"/></svg>' + esc(p.location) + '</p>' +
+        '<div class="proj__foot"><span><b>' + esc(t(p.type)) + '</b><br>' + esc(p.size || '') + '</span>' +
+        '<button data-ask="' + esc(askEn) + '" data-ask-gu="' + esc(askGu) + '">' + (lang === 'gu' ? 'વિગત' : 'Enquire') + '<svg><use href="#i-arrow"/></svg></button></div>' +
+        '</div></article>';
+    }).join('') || '<p>' + (lang === 'gu' ? 'જલ્દી આવી રહ્યું છે.' : 'Coming soon.') + '</p>';
+  }
+
+  function renderStartups() {
+    var g = $('#startupGrid'); if (!g) return;
+    g.innerHTML = (D.startups || []).map(function (s) {
+      var initials = s.name.split(/\s+/).map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
+      var cta = s.url
+        ? '<a class="link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + (lang === 'gu' ? 'વધુ જાણો' : 'Know more') + '<svg><use href="#i-arrow"/></svg></a>'
+        : '<button class="link" data-ask="I want to know more about ' + esc(s.name) + ' (Gavan startup)." data-ask-gu="' + esc(s.name) + ' (ગવન સ્ટાર્ટઅપ) વિશે વધુ જાણવું છે.">' + (lang === 'gu' ? 'વધુ જાણો' : 'Know more') + '<svg><use href="#i-arrow"/></svg></button>';
+      return '<article class="su reveal is-in"><div class="su__logo">' + esc(initials) + '</div>' +
+        '<span class="badge">' + esc(t(s.tag)) + '</span><h3>' + esc(s.name) + '</h3><p>' + esc(t(s.text)) + '</p>' + cta + '</article>';
+    }).join('');
+  }
+
+  function fmtK(n) { return n >= 1000 ? (Math.round(n / 100) / 10).toString().replace(/\.0$/, '') + 'K' : String(n); }
+
+  function renderSocial() {
+    var g = $('#socialGrid'); if (!g) return;
+    var list = D.social || [];
+    var max = Math.max.apply(null, list.map(function (s) { return s.followers || 0; }).concat([1]));
+    g.innerHTML = list.map(function (s) {
+      var follow = s.url
+        ? '<a class="btn btn--gold btn--sm" href="' + esc(s.url) + '" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>' + (lang === 'gu' ? 'ફોલો કરો' : 'Follow') + '</a>'
+        : '';
+      return '<article class="soc"><div class="soc__top"><svg><use href="#i-ig"/></svg><span class="badge">' + (lang === 'gu' ? 'ફોલોઅર્સ' : 'Followers') + '</span></div>' +
+        '<div class="soc__n">' + esc(s.display || fmtK(s.followers)) + '</div>' +
+        '<b>' + esc(s.name) + '</b><span>' + esc(t(s.handle)) + '</span>' +
+        '<div class="soc__bar"><i data-w="' + Math.round((s.followers / max) * 100) + '"></i></div>' + follow + '</article>';
+    }).join('');
+    observeBars();
+  }
+
+  function renderRoadmap() {
+    var g = $('#roadmap'); if (!g) return;
+    g.innerHTML = (D.roadmap || []).map(function (r) {
+      return '<li><span class="when">' + esc(t(r.when)) + '</span><h3>' + esc(t(r.title)) + '</h3><p>' + esc(t(r.text)) + '</p></li>';
+    }).join('');
+  }
+
+  var tagGu = { Event: 'ઇવેન્ટ', Update: 'અપડેટ', Milestone: 'માઇલસ્ટોન', Foundation: 'ફાઉન્ડેશન', Launch: 'લોન્ચ' };
+  function renderUpdates() {
+    var g = $('#updateList'); if (!g) return;
+    var list = (D.updates || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    g.innerHTML = list.map(function (u, i) {
+      var d = new Date(u.date + 'T00:00:00');
+      var mon = d.toLocaleString(lang === 'gu' ? 'gu-IN' : 'en-IN', { month: 'short' });
+      var tag = lang === 'gu' ? (tagGu[u.tag] || u.tag) : u.tag;
+      return '<article class="upd' + (i === 0 ? ' upd--first' : '') + '"><div class="upd__d"><b>' + d.getDate() + '</b><small>' + esc(mon) + ' ' + d.getFullYear() + '</small></div>' +
+        '<div><span class="badge">' + esc(tag) + '</span><h3>' + esc(t(u.title)) + '</h3><p>' + esc(t(u.text)) + '</p></div></article>';
+    }).join('');
+  }
+
+  function renderContact() {
+    var g = $('#contactInfo'); if (!g) return;
+    var L = lang === 'gu'
+      ? { a: 'ઓફિસ', p: 'ફોન', e: 'ઇમેઇલ', h: 'સમય', w: 'WhatsApp', wv: 'તરત ચેટ કરો' }
+      : { a: 'Office', p: 'Phone', e: 'Email', h: 'Hours', w: 'WhatsApp', wv: 'Chat with us instantly' };
+    var rows = [];
+    rows.push('<li><svg><use href="#i-pin"/></svg><div><small>' + L.a + '</small><a href="https://www.google.com/maps/search/' + encodeURIComponent(C.mapQuery || 'Vapi, Gujarat') + '" target="_blank" rel="noopener">' + esc(t(C.address)) + '</a></div></li>');
+    if (C.phone) rows.push('<li><svg><use href="#i-phone"/></svg><div><small>' + L.p + '</small><a href="tel:' + esc(C.phone.replace(/\s/g, '')) + '">' + esc(C.phone) + '</a></div></li>');
+    if (C.email) rows.push('<li><svg><use href="#i-mail"/></svg><div><small>' + L.e + '</small><a href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a></div></li>');
+    rows.push('<li><svg><use href="#i-wa"/></svg><div><small>' + L.w + '</small><button data-ask="I would like to connect with Gavan Group." data-ask-gu="મારે ગવન ગ્રુપ સાથે વાત કરવી છે.">' + L.wv + '</button></div></li>');
+    if (C.hours) rows.push('<li><svg><use href="#i-clock"/></svg><div><small>' + L.h + '</small>' + esc(t(C.hours)) + '</div></li>');
+    g.innerHTML = rows.join('');
+  }
+
+  function renderAll() {
+    renderProjects(); renderStartups(); renderSocial(); renderRoadmap(); renderUpdates(); renderContact();
+  }
+
+  /* ---------- Project filter ---------- */
+  $$('.filter').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filter = b.getAttribute('data-f');
+      $$('.filter').forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', x === b); });
+      renderProjects();
+    });
+  });
+
+  /* ---------- Enquiry form ---------- */
+  $('#enquiry').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, name = f.name.value.trim(), phone = f.phone.value.replace(/[^\d+]/g, '');
+    var err = $('#formErr');
+    if (!name || phone.replace(/\D/g, '').length < 10) { err.hidden = false; return; }
+    err.hidden = true;
+    var interest = f.interest.options[f.interest.selectedIndex].text;
+    var msg = lang === 'gu'
+      ? 'નમસ્તે ગવન ગ્રુપ 🙏\nનામ: ' + name + '\nમોબાઇલ: ' + phone + '\nરસ: ' + interest + (f.msg.value.trim() ? '\nસંદેશ: ' + f.msg.value.trim() : '')
+      : 'Hello Gavan Group 🙏\nName: ' + name + '\nMobile: ' + phone + '\nInterested in: ' + interest + (f.msg.value.trim() ? '\nMessage: ' + f.msg.value.trim() : '');
+    wa(msg);
+  });
+
+  /* ---------- FAB ---------- */
+  $('#fab').addEventListener('click', function (e) {
+    e.preventDefault();
+    wa(lang === 'gu' ? 'નમસ્તે ગવન ગ્રુપ 🙏 મારે માહિતી જોઈએ છે.' : 'Hello Gavan Group 🙏 I would like some information.');
+  });
+
+  /* ---------- Nav ---------- */
+  var nav = $('#nav'), burger = $('#burger'), links = $('#navLinks');
+  function onScroll() { nav.classList.toggle('is-solid', window.scrollY > 30); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  burger.addEventListener('click', function () {
+    var open = links.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { links.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); }
+  });
+
+  /* ---------- Reveal / active section / counters ---------- */
+  var hasIO = 'IntersectionObserver' in window;
+  if (hasIO) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    $$('.reveal').forEach(function (el) { io.observe(el); });
+
+    var navMap = {};
+    $$('.nav__links a').forEach(function (a) { navMap[a.getAttribute('href').slice(1)] = a; });
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.isIntersecting && navMap[en.target.id]) {
+          $$('.nav__links a').forEach(function (a) { a.classList.remove('is-active'); });
+          navMap[en.target.id].classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $$('main section[id]').forEach(function (s) { so.observe(s); });
+
+    var co = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target, end = +el.getAttribute('data-count'), suf = el.getAttribute('data-suffix') || '', t0 = null;
+        co.unobserve(el);
+        (function step(ts) {
+          t0 = t0 || ts; var p = Math.min((ts - t0) / 1200, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        })(performance.now());
+      });
+    }, { threshold: .6 });
+    $$('[data-count]').forEach(function (el) { co.observe(el); });
+  } else {
+    $$('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  var bo = hasIO ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.style.width = en.target.getAttribute('data-w') + '%'; bo.unobserve(en.target); } });
+  }, { threshold: .5 }) : null;
+  function observeBars() {
+    $$('.soc__bar i').forEach(function (b) { if (bo) bo.observe(b); else b.style.width = b.getAttribute('data-w') + '%'; });
+  }
+
+  $('#yr').textContent = new Date().getFullYear();
+  applyLang();
+})();
