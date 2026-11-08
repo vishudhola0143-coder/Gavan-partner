@@ -182,7 +182,7 @@
 
   function renderUpdates() {
     var g = $('#updateList'); if (!g) return;
-    var list = (D.updates || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    var list = (D.updates || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
     g.innerHTML = list.map(function (u, i) {
       var ds = String(u.date || ''), big, small = '';
       if (/^\d{4}$/.test(ds)) { big = ds; }

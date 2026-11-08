@@ -192,6 +192,24 @@ window.GAVAN = {
      tag: 'Event' | 'Update' | 'Milestone' | 'Foundation' | 'Launch'
      Newest is shown first and highlighted. */
   updates: [
+    { date: '2026', tag: 'Event', name: 'Pre-Diwali 2026',
+      title: { en: 'Pre-Diwali 2026 — Staff Celebration & Welfare', hi: 'प्री-दिवाली 2026 — स्टाफ सेलिब्रेशन और वेलफ़ेयर', gu: 'પ્રી-દિવાળી 2026 — સ્ટાફ સેલિબ્રેશન અને વેલફેર' },
+      text: { en: 'The whole Gavan family — team members and their families — came together before Diwali for a staff programme with Diwali gifts, appreciation for every member, garba and celebration. Our people are our biggest strength.',
+              hi: 'दिवाली से पहले पूरा गवन परिवार — टीम के सदस्य और उनके परिवार — स्टाफ प्रोग्राम के लिए एक साथ आए: दिवाली उपहार, हर सदस्य की सराहना, गरबा और जश्न। हमारे लोग ही हमारी सबसे बड़ी ताक़त हैं।',
+              gu: 'દિવાળી પહેલાં આખો ગવન પરિવાર — ટીમના સભ્યો અને તેમના પરિવાર — સ્ટાફ પ્રોગ્રામ માટે એકસાથે ભેગા થયા: દિવાળીની ભેટ, દરેક સભ્યની કદર, ગરબા અને ઉજવણી. આપણા લોકો જ આપણી સૌથી મોટી તાકાત છે.' },
+      galleryPath: 'assets/img/diwali/',
+      gallery: [
+        { src: '01-diwali.jpg', cap: { en: "The Gavan family — Pre-Diwali 2026", hi: "गवन परिवार — प्री-दिवाली 2026", gu: "ગવન પરિવાર — પ્રી-દિવાળી 2026" } },
+        { src: '02-diwali.jpg', cap: { en: "Leadership on stage", hi: "मंच पर नेतृत्व", gu: "સ્ટેજ પર નેતૃત્વ" } },
+        { src: '03-diwali.jpg', cap: { en: "Diwali gifts for the team", hi: "टीम के लिए दिवाली उपहार", gu: "ટીમ માટે દિવાળી ભેટ" } },
+        { src: '04-diwali.jpg', cap: { en: "Thank you for a great year", hi: "शानदार साल के लिए धन्यवाद", gu: "શાનદાર વર્ષ માટે આભાર" } },
+        { src: '05-diwali.jpg', cap: { en: "Staff welfare — gifts for every member", hi: "स्टाफ वेलफ़ेयर — हर सदस्य को उपहार", gu: "સ્ટાફ વેલફેર — દરેક સભ્યને ભેટ" } },
+        { src: '06-diwali.jpg', cap: { en: "Appreciating our people", hi: "अपने लोगों की सराहना", gu: "આપણા લોકોની કદર" } },
+        { src: '07-diwali.jpg', cap: { en: "Team celebrating together", hi: "साथ मिलकर जश्न मनाती टीम", gu: "સાથે મળીને ઉજવણી કરતી ટીમ" } },
+        { src: '08-diwali.jpg', cap: { en: "Families joined the celebration", hi: "परिवार भी जश्न में शामिल हुए", gu: "પરિવારો પણ ઉજવણીમાં જોડાયા" } },
+        { src: '09-diwali.jpg', cap: { en: "Garba & dance", hi: "गरबा और डांस", gu: "ગરબા અને ડાન્સ" } },
+        { src: '10-diwali.jpg', cap: { en: "Gifts and smiles", hi: "उपहार और मुस्कान", gu: "ભેટ અને સ્મિત" } }
+      ] },
     { date: '2026', tag: 'Event', name: 'CPLP 2026',
       title: { en: 'CP Meet 2026 — Channel Partner Legacy Program (CPLP)', hi: 'CP मीट 2026 — चैनल पार्टनर लेगेसी प्रोग्राम (CPLP)', gu: 'CP મીટ 2026 — ચેનલ પાર્ટનર લેગસી પ્રોગ્રામ (CPLP)' },
       text: { en: 'Presented by The Coastal Era — Gavan and Shivaay brought hundreds of channel partners together to share the vision for South Gujarat\'s coastal industrial corridor, felicitate partners and celebrate the legacy ahead.',
