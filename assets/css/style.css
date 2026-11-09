@@ -785,3 +785,14 @@ html:not([lang="en"]) .off__t h3{font-family:inherit;font-weight:700}
 .tier2--platinum .tier2__art svg,.tier2--diamond .tier2__art svg,.tier2--elite .tier2__art svg{width:min(210px,92%);filter:drop-shadow(0 8px 16px rgba(0,0,0,.45)) drop-shadow(0 0 10px color-mix(in srgb,var(--c) 35%,transparent))}
 .tier2--elite .tier2__art svg{filter:drop-shadow(0 8px 14px rgba(21,12,10,.35))}
 @media (max-width:560px){.tier2{grid-template-columns:1fr 140px}.tier2__art{height:92px}}
+
+/* ---------- lock the page horizontally on phones (iOS Safari / in-app browsers) ---------- */
+html,body{max-width:100%;overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+body{position:relative}
+main,section,header,footer,.nstrip,.sec{max-width:100vw;overflow-x:hidden}
+@supports (overflow:clip){main,section,footer,.nstrip,.sec{overflow-x:clip}}
+/* the rotating ring in "Gavan World" grew wider than the screen while turning */
+.eco{overflow:visible}
+@media (max-width:1020px){.eco__ring--1{animation:none}}
+.eco__ring--1{will-change:transform}
