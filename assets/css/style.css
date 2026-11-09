@@ -739,3 +739,49 @@ html:not([lang="en"]) .off__t h3{font-family:inherit;font-weight:700}
 .brand__txt b{letter-spacing:.16em!important;margin-right:-.16em!important}
 .brand__txt small{letter-spacing:.62em!important;padding-left:.62em!important}
 @media (max-width:360px){.brand__txt b{letter-spacing:.14em!important;margin-right:-.14em!important}.brand__txt small{letter-spacing:.5em!important;padding-left:.5em!important}}
+
+/* ---------- Legacy League reward cards ---------- */
+.tiers2{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tier2{position:relative;display:flex;flex-direction:column;border-radius:22px;padding:1.2rem 1.2rem 1.1rem;background:linear-gradient(165deg,#2d1a15,#1a0f0c 70%);border:1px solid rgba(200,157,92,.22);overflow:hidden;--c:var(--gold);transition:transform .4s var(--ease),box-shadow .4s}
+.tier2::before{content:'';position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--c) 28%,transparent),transparent 70%);pointer-events:none}
+.tier2:hover{transform:translateY(-5px);box-shadow:0 26px 50px -30px rgba(0,0,0,.9)}
+.tier2__top{display:flex;align-items:center;gap:.55rem}
+.tier2__lvl{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.4)}
+.tier2__dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
+.tier2__top b{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--c);font-size:1rem}
+.tier2__rng{margin-top:.5rem;font-size:1.45rem;font-weight:800;color:#fff!important;line-height:1.1}
+.tier2__rng small{font-size:.75rem;font-weight:500;color:rgba(255,255,255,.5)}
+.tier2__art{position:relative;margin:1rem 0 .9rem;height:96px;border-radius:16px;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 85%,color-mix(in srgb,var(--c) 22%,transparent),transparent 70%),rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--c)}
+.tier2__art svg{width:min(150px,80%);height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.4))}
+.tier2__art::after{content:'';position:absolute;left:20%;right:20%;bottom:14px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--c) 60%,transparent),transparent)}
+.tier2__eq{display:flex;align-items:center;gap:.6rem;margin-top:auto;padding-top:.9rem;border-top:1px dashed rgba(255,255,255,.12)}
+.tier2__pct{display:flex;flex-direction:column;font-size:1.7rem;font-weight:800;line-height:1;color:var(--gold-2)}
+.tier2__pct small{font-size:.68rem;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.5);margin-top:.25rem}
+.tier2__plus{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.1rem;color:var(--ink);background:var(--gold)}
+.tier2__rw{display:flex;flex-direction:column;min-width:0}
+.tier2__rw small{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.tier2__rw em{font-style:normal;font-weight:800;font-size:1.05rem;color:#fff;line-height:1.2}
+.tier2--bronze{--c:#d29a66}.tier2--silver{--c:#dfe4ec}.tier2--gold{--c:#e2c08a}.tier2--platinum{--c:#c9d6ec}.tier2--diamond{--c:#a6dcf7}
+.tier2--elite{--c:var(--ink);background:linear-gradient(150deg,#f3dcae,var(--gold) 45%,#8a6430);border-color:var(--gold)}
+.tier2--elite .tier2__lvl{color:rgba(21,12,10,.5)}
+.tier2--elite .tier2__rng{color:var(--ink)!important}.tier2--elite .tier2__rng small{color:rgba(21,12,10,.6)}
+.tier2--elite .tier2__art{background:radial-gradient(ellipse at 50% 85%,rgba(21,12,10,.22),transparent 70%),rgba(255,255,255,.18);border-color:rgba(21,12,10,.12)}
+.tier2--elite .tier2__pct{color:var(--ink)}.tier2--elite .tier2__pct small,.tier2--elite .tier2__rw small{color:rgba(21,12,10,.6)}
+.tier2--elite .tier2__rw em{color:var(--ink);font-size:1.3rem;letter-spacing:.06em}
+.tier2--elite .tier2__plus{background:var(--ink);color:var(--gold-2)}
+.tier2--elite .tier2__eq{border-top-color:rgba(21,12,10,.2)}
+.tier2--elite::after{content:'TOP REWARD';position:absolute;top:14px;right:14px;font-size:.6rem;font-weight:800;letter-spacing:.16em;padding:.35em .8em;border-radius:999px;background:var(--ink);color:var(--gold-2)}
+@media (max-width:1020px){.tiers2{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){
+  .tiers2{grid-template-columns:1fr;gap:10px}
+  .tier2{display:grid;grid-template-columns:1fr 120px;grid-template-areas:"top art" "rng art" "eq eq";column-gap:.8rem;padding:1rem}
+  .tier2__top{grid-area:top}.tier2__rng{grid-area:rng;font-size:1.3rem}
+  .tier2__art{grid-area:art;margin:0;height:84px}
+  .tier2__eq{grid-area:eq;margin-top:.8rem}
+  .tier2--elite::after{top:auto;bottom:14px}
+}
+.tier2__art{height:118px}
+.tier2__art svg{width:min(190px,88%)}
+.tier2--platinum .tier2__art svg,.tier2--diamond .tier2__art svg,.tier2--elite .tier2__art svg{width:min(210px,92%);filter:drop-shadow(0 8px 16px rgba(0,0,0,.45)) drop-shadow(0 0 10px color-mix(in srgb,var(--c) 35%,transparent))}
+.tier2--elite .tier2__art svg{filter:drop-shadow(0 8px 14px rgba(21,12,10,.35))}
+@media (max-width:560px){.tier2{grid-template-columns:1fr 140px}.tier2__art{height:92px}}
